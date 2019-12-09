@@ -7,7 +7,7 @@ import HelperConf from './Components/Screens/HelperConf';
 export class App extends React.Component {
 render(){
   return(
-    <HelperConf />
+    <Navigation />
    )
   }
 }
