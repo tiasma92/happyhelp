@@ -16,12 +16,12 @@ render(){
             </View>
 
             <View  style={{ marginTop: 20}}>
-            <Button title="JE PROPOSE MON AIDE"onPress={()=>this.props.navigation.navigate('Helper')}  buttonStyle={{ width:'100%', backgroundColor: '#2C5F13', padding: 10}}/>
+            <Button title="JE PROPOSE MON AIDE"onPress={()=>this.props.navigation.navigate('helper')}  buttonStyle={{ width:'100%', backgroundColor: '#2C5F13', padding: 10}}/>
             </View>
 
 
             <View  style={{ marginTop: 20}} >
-            <Button title="J'AI BESOIN D'AIDE"onPress={()=>this.props.navigation.navigate('Help')}  buttonStyle={{width:'100%',  backgroundColor: '#2C5F13', padding: 10}}/>
+            <Button title="J'AI BESOIN D'AIDE"onPress={()=>this.props.navigation.navigate('help')}  buttonStyle={{width:'100%',  backgroundColor: '#2C5F13', padding: 10}}/>
             </View>
 
 
@@ -37,7 +37,7 @@ render(){
 
 
             <View  style={{  marginTop: 20}} >
-            <Button title="  MON PROFIL  "onPress={()=>this.props.navigation.navigate('Profil')}  buttonStyle={{width:'100%', backgroundColor: '#2C5F13', padding: 10}}/>
+            <Button title="  MON PROFIL  "onPress={()=>this.props.navigation.navigate('profil')}  buttonStyle={{width:'100%', backgroundColor: '#2C5F13', padding: 10}}/>
             </View>
 
 

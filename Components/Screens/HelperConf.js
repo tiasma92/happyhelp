@@ -10,8 +10,7 @@ export default class HelperConf extends React.Component {
     
   return (
     <View style = {{
-        width:'80%',
-    textAlign:'center'
+    alignItems: 'center'
    }}>
 
     <View style={{ 
