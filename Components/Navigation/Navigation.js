@@ -14,9 +14,9 @@ import Map from '../Screens/Map';
 
 const AppNavigator = createStackNavigator(
     {
-      Home: Homepage,
-      signin: Signin,
       signup: Signup,
+      signin: Signin,
+      Home: Homepage,
       profil: Profil,
       forget: PasswordForget,
       confirm: ConfirmPassword,

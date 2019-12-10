@@ -7,45 +7,34 @@ export default class Signup extends React.Component {
       email: '',
       password: '',
       repeatPassword:'',
+      address: '',
       firstName:'',
       lastName:'',
       telephone:'',
-
+      isUserExist:false,
    }
-   handleEmail = (text) => {
-      this.setState({ email: text })
+   
+   handleSubmitSignUp(){
+
+      fetch(`http://192.168.23.83:3000/sign-up`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `firstName=${this.state.firstName}&lastName=${this.state.lastName}&email=${this.state.email}&password=${this.state.password}&telephone=${this.state.telephone}&address=${this.state.address}`
+      }
+      ).then(function(res, err){
+        return res.json()
+      }).then((data)=> {
+      
+         console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data)
+         this.props.navigation.navigate("Home")
+      })
+      .catch((error)=> {
+          console.log('Request failed in my Sign-Up Home request', error)
+      });
    }
-   handlePassword = (text) => {
-      this.setState({ password: text })
-   }
-
-
-   handleRepeat = (text) => {
-    this.setState({ repeatPassword: text })
- }
-
-
-   handlefirstName = (text) => {
-    this.setState({ firstName: text })
- }
-
- handlelastName = (text) => {
-    this.setState({ lastName: text })
- }
-
-
- handleAdress = (text) => {
-    this.setState({ adress: text })
- }
-
-
- handleNum = (text) => {
-    this.setState({ telephone: text })
- }
-   login = (email, pass) => {
-      alert('email: ' + email + ' password: ' + pass)
-   }
+   
    render() {
+      console.log(this.state.lastName)
       return (
          <ScrollView style = {styles.container}>
 
@@ -63,7 +52,7 @@ export default class Signup extends React.Component {
                placeholder = "Entrez votre Nom"
               
                autoCapitalize = "none"
-               onChangeText = {this.handlelastName}/>
+               onChangeText = {(text) => {this.setState({lastName: text})}}/>
 
 <View style={{ marginLeft:50, marginTop:1}}>
             <Text style={{  fontWeight: 'bold', fontSize: 15}}>VOTRE PRENOM</Text>
@@ -74,7 +63,7 @@ export default class Signup extends React.Component {
                placeholder = "Entrez votre Prenom"
               
                autoCapitalize = "none"
-               onChangeText = {this.handlefirstName}/>
+               onChangeText = {(text) => {this.setState({firstName: text})}}/>
 
 <View style={{ marginLeft:50, marginTop:1}}>
             <Text style={{  fontWeight: 'bold', fontSize: 15}}>VOTRE ADRESSE</Text>
@@ -85,7 +74,7 @@ export default class Signup extends React.Component {
                placeholder = "Entrez votre adresse"
                
                autoCapitalize = "none"
-               onChangeText = {this.handleAdress}/>
+               onChangeText = {(text) => {this.setState({address: text})}}/>
 
 
 
@@ -98,7 +87,7 @@ export default class Signup extends React.Component {
                placeholder = "Entrez votre Email"
                
                autoCapitalize = "none"
-               onChangeText = {this.handleEmail}/>
+               onChangeText = {(text) => {this.setState({email: text})}}/>
 
 
             <View style={{ marginLeft:50, marginTop:1}}>
@@ -110,7 +99,7 @@ export default class Signup extends React.Component {
                placeholder = "Entrez votre Mot de Passe"
                
                autoCapitalize = "none"
-               onChangeText = {this.handlePassword}/>
+               onChangeText = {(text) => {this.setState({password: text})}}/>
 
 
 
@@ -123,7 +112,7 @@ export default class Signup extends React.Component {
                placeholder = "Confirmer votre Mot de Passe"
                
                autoCapitalize = "none"
-               onChangeText = {this.handleRepeat}/>
+               onChangeText = {(text) => {this.setState({repeatPassword: text})}}/>
 
             
 
@@ -137,12 +126,12 @@ export default class Signup extends React.Component {
                placeholder = "0601020304"
                
                autoCapitalize = "none"
-               onChangeText = {this.handlePassword}/>
+               onChangeText = {(text) => {this.setState({telephone: text})}}/>
             
             <TouchableOpacity
                style = {styles.submitButton}
                onPress = {
-                  () => this.login(this.state.email, this.state.password)
+                  () => this.handleSubmitSignUp()
                }>
                <Text style = {styles.submitButtonText}> VALIDER </Text>
             </TouchableOpacity>

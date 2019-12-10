@@ -135,7 +135,7 @@ render(){
     </TouchableOpacity>
     </View>
     <View style={{alignItems:'center', justifyContent:'center', textAlign:'center', marginTop:20}}>
-    <Button title="RETOUR" onPress={() => console.log('pressed retour')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
+    <Button title="RETOUR" onPress={() => this.props.navigation.navigate("Home")} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
     </View>
 </View> 
 
