@@ -3,6 +3,9 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet, Image, ScrollView 
 import { Input} from 'react-native-elements';
 
 export default class Signup extends React.Component {
+   constructor(props){
+      super();
+   }
    state = {
       email: '',
       password: '',
