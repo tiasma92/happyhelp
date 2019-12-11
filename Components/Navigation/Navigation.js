@@ -35,7 +35,11 @@ const AppNavigator = createStackNavigator(
       myhelp: MyHelp,
     },
     {
+<<<<<<< HEAD
       initialRouteName: 'signin',
+=======
+      initialRouteName: 'Home',
+>>>>>>> 188a752b48516e7bdd2f0d06eaaeac3f67701c90
     }
   );
   
