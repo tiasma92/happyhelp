@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Image, StyleSheet, Dimensions, ScrollView} from 'react-native';
-import MapView, {Marker} from 'react-native-maps'; 
-import { Button, Card, Icon  } from 'react-native-elements';
+import MapView, {Marker, Callout} from 'react-native-maps'; 
+import { Button} from 'react-native-elements';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import * as Font from 'expo-font';
@@ -41,16 +41,12 @@ this.setState({ fontLoaded: true });
    Location.watchPositionAsync({distanceInterval: 5}, 
     (location) => {
       this.setState({
-        currentLatitude:this.state.currentLongitude,
-        currentLongitude:this.state.currentlongitude });
+        currentLatitude:location.coords.latitude,
+        currentLongitude:location.coords.longitude });
 
       })
    
     }
-   
-
-
-
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
@@ -64,9 +60,9 @@ render(){
 
 { this.state.fontLoaded? (
    <View style={{textAlign: 'center', alignContent:'center'}}>
-    <Text style={{fontWeight: 'bold', fontFamily: 'openSansRegular', fontSize: 18, textAlign:'center' }}>ILS ONT BESOIN DE VOUS</Text>
+    <Text style={{fontWeight: 'bold', fontSize: 18, textAlign:'center', fontFamily:'openSansRegular' }}>ILS ONT BESOIN DE VOUS</Text>
 
-    <Text style={{fontFamily: 'openSansRegular', fontWeight: 'normal', fontSize: 15, textAlign:'center' }}>Cliquez sur le picto pour voir la demande</Text>
+    <Text style={{ fontWeight: 'normal', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>Cliquez sur le picto pour voir la demande</Text>
   
       <View style={{
         flex: 1,
@@ -75,52 +71,90 @@ render(){
         
       }}>
 
-<View style={styles.container}>
+      <View style={styles.container}>
+      <Button title="RETOUR" onPress={() => this.props.navigation.navigate('Home')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center'}}/>
+
+
         <MapView style={styles.mapStyle}
         initialRegion={{
-          latitude: 48.858370,
-          longitude: 2.294481,
+          latitude: 48.866667,
+          longitude: 2.333333,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }} >
 
-<Marker
-    draggable 
-    opacity={0.5}
-    pinColor="red"
-    title="Je suis ici"
-    coordinate={{latitude: this.state.currentLatitude, longitude: this.state.currentLongitude}}
-  />
-  </MapView>
-      </View>
+               
+            
+            <Marker
+              draggable 
+              opacity={0.5}
+              pinColor="red"
+              title="Je suis ici"
+              coordinate={{latitude: this.state.currentLatitude, longitude: this.state.currentLongitude}}
+            />
 
-      {/* <Card
-        title='yy'
-        image={require('./assets/images/tool.png')}>
-        <Text style={{marginBottom: 10}}>
-          Ma demande: Bricolage
-        </Text>
-      <Button
-        icon={<Icon name='code' color='#ffffff' />}
-        buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-        title='VALIDER' />
-      </Card> */}
+       
+
+            <Marker
+                draggable 
+                opacity={0.5}
+                pinColor="blue"
+                title="Cliquez ici"
+                coordinate={{latitude: 48.866667, longitude: 2.333333}}
+              >   
+              <Callout>
+              <View >
+                <Text>
+              <Image source={require('../../assets/images/tool.png')} resizeMode="cover"
+              style={{  width: 100, height: 100, alignItems:'center', borderWidth: 1, borderColor:'grey', borderRadius: 7 }}/>
+              </Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>Bricolage</Text>
+                <Text style={{ fontWeight: 'normal', fontSize: 13, textAlign:'center', fontFamily:'openSansRegular' }}>Réparation de meuble</Text>
+                <Button title="J'aide" fontSize="30" onPress={() => console.log('pressed retour')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center', height:12}} />
+              </View>
+            </Callout></Marker>
+
+
+            <Marker
+                draggable 
+                opacity={0.5}
+                pinColor="blue"
+                title="Cliquez ici"
+                coordinate={{latitude: 48.2296, longitude: -69.8006}}
+              >   
+              <Callout>
+              <View >
+                <Text>
+              <Image source={require('../../assets/images/tool.png')} resizeMode="cover"
+              style={{  width: 100, height: 100, alignItems:'center', borderWidth: 1, borderColor:'grey', borderRadius: 7 }}/>
+              </Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>Bricolage</Text>
+                <Text style={{ fontWeight: 'normal', fontSize: 13, textAlign:'center', fontFamily:'openSansRegular' }}>Réparation de meuble</Text>
+                <Button title="J'aide" fontSize="30" onPress={() => console.log('pressed retour')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center', height:12}} />
+              </View>
+            </Callout></Marker>
+            
+        </MapView>
+      
+
+      </View>
+   
+     
 
         </View>
 
-
-    <View style={{alignItems:'center', justifyContent:'center', textAlign:'center', marginTop:20}}>
-    <Button title="RETOUR" onPress={() => console.log('pressed retour')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
-    </View>
+  
+  
 
 </View> 
 
 
 ) : null}
  
- 
+
  
  </ScrollView>
+ 
  
   )
 }}
@@ -135,6 +169,7 @@ const styles = StyleSheet.create({
   mapStyle: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+ 
   },
 });
 

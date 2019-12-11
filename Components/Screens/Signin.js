@@ -73,11 +73,11 @@ render(){
     <Button title="Je me connecte" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn()} 
     />
 
-    <Text style={{fontSize: 12, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}}>
+    <Text style={{fontSize: 12, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}} onPress= {() => this.props.navigation.navigate("forget")}>
     J'ai oublié mon mot de passe
       </Text>
 
-    <Text style={{fontSize: 12, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}}>
+    <Text style={{fontSize: 12, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}} onPress= {() => this.props.navigation.navigate("signup")}>
     Je m'inscris
     </Text>
     </View>

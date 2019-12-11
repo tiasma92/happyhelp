@@ -16,11 +16,11 @@ render(){
             </View>
 
             <View  style={{ marginTop: 20, alignItems: 'center'}}> 
-            <Button title="JE PROPOSE MON AIDE"onPress={()=>this.props.navigation.navigate('map')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
-            <Button title="J'AI BESOIN D'AIDE"onPress={()=>this.props.navigation.navigate('help')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
-            <Button title="MES DEMANDE D'AIDE"onPress={()=>this.props.navigation.navigate('Demande')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
-            <Button title="  MES AIDE  "onPress={()=>this.props.navigation.navigate('MesAides')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
-            <Button title="  MON PROFIL  "onPress={()=>this.props.navigation.navigate('profil')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+            <Button title="JE PROPOSE MON AIDE" onPress={()=>this.props.navigation.navigate('map')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+            <Button title="J'AI BESOIN D'AIDE" onPress={()=>this.props.navigation.navigate('help')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+            <Button title="MES DEMANDES D'AIDE" onPress={()=>this.props.navigation.navigate('historyhelp')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+            <Button title="  MES AIDES  " onPress={()=>this.props.navigation.navigate('myhelp')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+            <Button title="  MON PROFIL  " onPress={()=>this.props.navigation.navigate('profil')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
             </View>
 
 
