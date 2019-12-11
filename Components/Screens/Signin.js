@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
-import { Input, Button } from 'react-native-elements';
+import { Button, Input } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Font from 'expo-font';
 
@@ -9,7 +9,9 @@ export default class Signin extends React.Component {
   constructor () {
     super();
     this.state = {
-      fontLoaded: false
+      fontLoaded: false,
+      email: '',
+      password: ''
     }
   }
 
@@ -20,6 +22,24 @@ export default class Signin extends React.Component {
  
 this.setState({ fontLoaded: true });
   }
+
+  handleSubmitSignIn() {
+
+    fetch(`http://10.2.4.23:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
+    .then(function(res, err){
+      return res.json()
+    }).then((data)=> {
+      if (data.result === false){
+        this.props.navigation.navigate("signup")
+      } else {
+        this.props.navigation.navigate('Home')
+      }
+       console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data)
+    })
+    .catch((error)=> {
+        console.log('Request failed in my Sign-In Home request', error)
+    });
+ }
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
@@ -41,14 +61,16 @@ render(){
     <Input style={{fontSize: 12, height: 40, borderColor: 'gray', borderWidth: 4}} placeholder="Votre adresse mail" marginTop= '10%'
     errorStyle={{ color: 'red' }}
     errorMessage="Votre mail n'est pas valide"
-    value=""/>
+    onChangeText = {(text) => {this.setState({email: text})}}
+    />
 
     <Input style={{fontSize: 12, height: 40, borderColor: 'gray', borderWidth: 4, alignItems: 'center', justifyContent: 'center'}} placeholder="Votre mot de passe"
     errorStyle={{ color: 'red' }}
     errorMessage="Votre mot de passe n'est pas valide"
-    value=""/>
+    onChangeText = {(text) => {this.setState({password: text})}}
+    />
 
-    <Button title="Je me connecte" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} 
+    <Button title="Je me connecte" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn()} 
     />
 
     <Text style={{fontSize: 12, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}}>
