@@ -29,7 +29,7 @@ const AppNavigator = createStackNavigator(
       historyhelp: HistoryHelp,
     },
     {
-      initialRouteName: 'historyhelp',
+      initialRouteName: 'Home',
     }
   );
   

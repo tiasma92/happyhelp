@@ -50,7 +50,7 @@ render(){
         flex: 1,
         flexDirection: 'row',
         marginTop: 20,
-        marginLeft: 25
+        
       }}>
         <TouchableOpacity 
         onPress={() => {if (this.state.backgroundColorShop == 'transparent') {
@@ -93,7 +93,7 @@ render(){
         flex: 1,
         flexDirection: 'row',
         marginTop: 20,
-        marginLeft: 25
+        
       }}>
     
     <TouchableOpacity 
