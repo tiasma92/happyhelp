@@ -11,6 +11,8 @@ import ConfirmPassword from '../Screens/ConfirmPassword';
 import Help from '../Screens/Help';
 import HelperConf from '../Screens/HelperConf';
 import Map from '../Screens/Map';
+import ConfirmRequest from '../Screens/ConfirmRequest';
+import HistoryHelp from '../Screens/HistoryHelp';
 
 const AppNavigator = createStackNavigator(
     {
@@ -19,13 +21,15 @@ const AppNavigator = createStackNavigator(
       Home: Homepage,
       profil: Profil,
       forget: PasswordForget,
-      confirm: ConfirmPassword,
+      confirmP: ConfirmPassword,
       help: Help,
       helper: HelperConf,
       map: Map,
+      confirmR: ConfirmRequest,
+      historyhelp: HistoryHelp,
     },
     {
-      initialRouteName: 'signin',
+      initialRouteName: 'historyhelp',
     }
   );
   

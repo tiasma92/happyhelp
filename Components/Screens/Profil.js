@@ -28,7 +28,9 @@ render(){
             <Text style={styles.infoText}>Ville:                      75 000</Text>
             <Text style={styles.infoText}>Telephone:          06 06 06 06 06</Text>
             </View>
-            <Button title="Modifier Profil" style={{alignItems: 'center', marginTop: 30}} buttonStyle={{backgroundColor: '#2C5F13', padding: 10}}/>
+            <View style={{alignItems: 'center'}}>
+            <Button title="Modifier Profil" buttonStyle={{backgroundColor: '#2C5F13', padding: 10, width: 200, marginTop: 30}}/>
+            </View>
         </View>
     )
 }
