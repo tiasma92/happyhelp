@@ -26,6 +26,9 @@ this.setState({ fontLoaded: true });
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
+  const { navigation } = this.props;
+  console.log(this.props.navigation.getParam('img'))
+  var img=this.props.navigation.getParam("img");
   return(
       
     <ScrollView>
@@ -45,7 +48,7 @@ render(){
         flexDirection: 'row',
         marginTop: 20,
       }}>
-    <Image source={require('../../assets/images/shop.png')} 
+    <Image source={img} 
       style={{ marginLeft: 60, marginRight: 60, textAlign: 'center', backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted' }}/>
     </View>
 
@@ -58,7 +61,7 @@ render(){
         justifyContent:'center',
         alignItems:'center'
       }}>
-    <Text style={{fontWeight: "bold", textAlign:'center', fontSize: 15, alignItems:'center', justifyContent:'center'}}>Courses</Text>
+    <Text style={{fontWeight: "bold", textAlign:'center', fontSize: 15, alignItems:'center', justifyContent:'center'}}>{this.props.navigation.getParam('type')}</Text>
     </View>
 
 

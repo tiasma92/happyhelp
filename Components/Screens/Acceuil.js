@@ -53,7 +53,7 @@ render(){
       <Button title="Se connecter" buttonStyle={{backgroundColor: '#2C5F13', marginBottom:20, width:250}} style={{ height: 50, marginTop: '10%' }} onPress= {() => this.props.navigation.navigate("signin")} 
     />
 
-<Button title="S'inscrire" buttonStyle={{backgroundColor: '#2C5F13', width:250}} style={{ height: 50,  }} onPress= {() => this.props.navigation.navigate("signup")} 
+<Button title="S'inscrire" buttonStyle={{backgroundColor: '#2C5F13', width:250}} style={{ height: 50}} onPress= {() => this.props.navigation.navigate("signup")} 
     />
     </View>
     ) : null}
