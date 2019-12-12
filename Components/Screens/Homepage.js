@@ -1,12 +1,35 @@
 import React from 'react';
 import { Text, View, Image, } from 'react-native';
 import {  Button } from 'react-native-elements';
+import {connect} from 'react-redux';
 
 
-var Name= 'John';
+class HomePage extends React.Component{
+    constructor(props){
+        super()
+        this.state = ({
+            firstName: "",
+        })
+    }
+componentDidMount() {
+    var ctx = this;
+    fetch(`http://10.2.4.23:3000/profil?id=${ctx.props.userIdfromStore}`)
+    .then(function(res, err){
+      return res.json()
+    }).then((data)=> {
+       console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data)
+       ctx.setState({
+           firstName: data.user.firstName
+       })
+    })
+    .catch((error)=> {
+        console.log('Request failed in my Sign-In Home request', error)
+    });
+}
 
-export default class HomePage extends React.Component{
+
 render(){
+    var Name= this.state.firstName;
     return(
         <View>
         <View style={{ alignItems: 'center',}}>
@@ -30,3 +53,15 @@ render(){
     )
 }
 }
+
+function mapStateToProps(state) {
+    console.log(state)
+    console.log('je recois de mon reducer lid suivant : ',state.userId)
+
+    return { userIdfromStore: state.userId }
+  }
+  
+  export default connect(
+      mapStateToProps,
+      null
+  )(HomePage);

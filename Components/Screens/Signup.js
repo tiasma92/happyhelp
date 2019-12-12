@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Image, ScrollView } from 'react-native';
 import { Input} from 'react-native-elements';
+import {connect} from 'react-redux'; 
 
-export default class Signup extends React.Component {
+
+class Signup extends React.Component {
    constructor(props){
       super();
    }
@@ -28,7 +30,8 @@ export default class Signup extends React.Component {
         return res.json()
       }).then((data)=> {
       
-         console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data)
+         console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data.user)
+         this.props.saveId(data.user._id)
          this.props.navigation.navigate("Home")
       })
       .catch((error)=> {
@@ -196,3 +199,18 @@ const styles = StyleSheet.create({
       color: 'white'
    }
 })
+
+function mapDispatchToProps(dispatch) {
+   return {
+     saveId: function(id) {
+         dispatch( {type: 'connect',
+          id,
+         } );
+     }
+   }
+ }
+ 
+ export default connect(
+     null, 
+     mapDispatchToProps
+ )(Signup);

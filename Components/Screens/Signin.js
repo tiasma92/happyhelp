@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, ScrollView } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Font from 'expo-font';
@@ -7,6 +7,7 @@ import * as Font from 'expo-font';
 export default class Signin extends React.Component {
 
   constructor () {
+    
     super();
     this.state = {
       fontLoaded: false,
@@ -44,8 +45,9 @@ this.setState({ fontLoaded: true });
 render(){
   console.log('loaded :',this.state.fontLoaded)
   return(
-    <View style={{ alignItems:'center', textAlign:'center'}}>
-<Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 200, height: 200, marginTop: 30, alignItems:'center', justifyContent: 'center' }}/>
+    
+      <View  style={{ alignItems:'center', textAlign:'center'}}>
+<Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 200, height: 200, marginTop: 10, alignItems:'center', justifyContent: 'center' }}/>
 
    { this.state.fontLoaded? (
    <View>
@@ -70,22 +72,22 @@ render(){
     onChangeText = {(text) => {this.setState({password: text})}}
     />
 
-    <Button title="Je me connecte" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn()} 
+    <Button title="Se connecter" buttonStyle={{backgroundColor: '#2C5F13', marginBottom:20}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn(this.props.navigation.navigate("Home")) } 
     />
 
-    <Text style={{fontSize: 12, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}} onPress= {() => this.props.navigation.navigate("forget")}>
+
+    <Text style={{fontSize: 15, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}} onPress= {() => this.props.navigation.navigate("forget")}>
     J'ai oublié mon mot de passe
       </Text>
 
-    <Text style={{fontSize: 12, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}} onPress= {() => this.props.navigation.navigate("signup")}>
-    Je m'inscris
-    </Text>
+   
     </View>
     </View>
 
 
     ) : null}
- </View>
+    </View>
+ 
   )
 }}
 
