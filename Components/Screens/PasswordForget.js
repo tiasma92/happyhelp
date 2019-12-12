@@ -54,7 +54,7 @@ render(){
     <TouchableOpacity
        style = {styles.submitButton}
        onPress = {
-          () => this.login(this.state.email)
+          () => this.props.navigation.navigate("signin")
        }>
        <Text style = {styles.submitButtonText}> ENVOYER </Text>
     </TouchableOpacity>

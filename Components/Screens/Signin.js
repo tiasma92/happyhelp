@@ -26,11 +26,11 @@ this.setState({ fontLoaded: true });
 
   handleSubmitSignIn() {
 
-    fetch(`http://10.2.4.23:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
+    fetch(`http://10.2.4.39:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
-      if (data.result === false){
+      if (data.result === true){
         this.props.navigation.navigate("signup")
       } else {
         this.props.navigation.navigate('Home')

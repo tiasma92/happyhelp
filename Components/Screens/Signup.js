@@ -19,7 +19,7 @@ export default class Signup extends React.Component {
    
    handleSubmitSignUp(){
 
-      fetch(`http://10.2.4.23:3000/sign-up`, {
+      fetch(`http://10.2.4.39:3000/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `firstName=${this.state.firstName}&lastName=${this.state.lastName}&email=${this.state.email}&password=${this.state.password}&telephone=${this.state.telephone}&address=${this.state.address}`
