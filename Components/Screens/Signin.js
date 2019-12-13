@@ -28,13 +28,19 @@ this.setState({ fontLoaded: true });
 
   handleSubmitSignIn() {
 
-    fetch(`http://10.2.4.23:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
+    fetch(`http://192.168.43.103:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
+<<<<<<< HEAD
       console.log('RESULTAT DE LERENGISTREMENT EN BD USER submit signin--->', data)
       if (data.result === true){
         this.props.saveId(data.user._id)
+=======
+      if (data.result === true){
+        this.props.navigation.navigate("signup")
+      } else {
+>>>>>>> c0a7a30f4b8456284d9aba60f9bbf4cc731cbaa3
         this.props.navigation.navigate('Home')
       } else {
         this.props.navigation.navigate("signup")

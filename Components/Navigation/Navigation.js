@@ -16,7 +16,7 @@ import HistoryHelp from '../Screens/HistoryHelp';
 import MyHelp from '../Screens/MyHelp';
 import Comments from '../Screens/Comments';
 import Acceuil from '../Screens/Acceuil';
-
+import DemandeConf from '../Screens/DemandeConf';
 
 const AppNavigator = createStackNavigator(
     {
@@ -33,7 +33,8 @@ const AppNavigator = createStackNavigator(
       historyhelp: HistoryHelp,
       comment: Comments,
       myhelp: MyHelp,
-      acceuil:Acceuil
+      acceuil:Acceuil,
+      confirmD:DemandeConf
     },
     {
       initialRouteName: 'acceuil',

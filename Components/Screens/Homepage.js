@@ -13,9 +13,13 @@ class HomePage extends React.Component{
     }
 componentDidMount() {
     var ctx = this;
+<<<<<<< HEAD
     console.log('componentDidMount',ctx.props.userIdfromStore)
     
     fetch(`http://10.2.4.23:3000/profil?id=${ctx.props.userIdfromStore}`)
+=======
+    fetch(`http://192.168.43.103:3000/profil?id=${ctx.props.userIdfromStore}`)
+>>>>>>> c0a7a30f4b8456284d9aba60f9bbf4cc731cbaa3
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
