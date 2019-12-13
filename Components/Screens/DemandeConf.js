@@ -2,39 +2,16 @@ import React from 'react';
 import { Text, View, Image,TextInput, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import {  Button } from 'react-native-elements';
 
-var name = 'John';
 
-export default class HelperConf extends React.Component {
-   constructor(props){
-      super()
-      this.state = ({
-          firstName: "",
-      })
-  }
-componentDidMount() {
-  var ctx = this;
-  fetch(`http://192.168.43.103:3000/profil?id=${ctx.props.userIdfromStore}`)
-  .then(function(res, err){
-    return res.json()
-  }).then((data)=> {
-     console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data)
-     ctx.setState({
-         firstName: data.user.firstName
-     })
-  })
-  .catch((error)=> {
-      console.log('Request failed in my Sign-In Home request', error)
-  });
-}
-
-
-render(){
-  var Name= this.state.firstName;
+export default class DemandeConf extends React.Component {
+    render(){
 
     
   return (
     <View style = {{
-    alignItems: 'center'
+        width:'80%',
+    textAlign:'center',
+    alignItems:'center'
    }}>
 
     <View style={{ 
@@ -59,7 +36,7 @@ render(){
         textAlign:'center',
         alignItems: 'center',
         justifyContent: 'center'}}>
-  Merci {Name} pour ton aide. Martine va te contacter
+  Vous allez recevoir un message avec le numero du Helper qui souhaite vous aider
     </Text>
     </View>
 
@@ -107,7 +84,7 @@ const styles = StyleSheet.create({
         submitButton: {
            backgroundColor: '#2C5F13',
            padding: 10,
-           marginTop:100,
+          
            height: 45,
            borderWidth: 0,
            borderRadius: 5,

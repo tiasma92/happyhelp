@@ -11,7 +11,10 @@ class ConfirmRequest extends React.Component {
     super();
     this.state = {
       fontLoaded: false,
-      desc: ''
+      desc: '',
+      date:'',
+      category:'',
+      position:''
     }
   }
 
@@ -90,7 +93,7 @@ render(){
     </View>
        
     <View style={{alignItems:'center', justifyContent:'center', textAlign:'center', marginTop:20}}>
-    <Button title="VALIDER" onPress={() => console.log('pressed retour')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
+    <Button title="VALIDER"  onPress={()=>this.props.navigation.navigate('confirmD')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
     </View>
 </View> 
 
