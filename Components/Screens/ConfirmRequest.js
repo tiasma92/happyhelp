@@ -2,16 +2,21 @@ import React from 'react';
 import { Text, View, Image, TextInput, ScrollView} from 'react-native';
 import { Button } from 'react-native-elements';
 import * as Font from 'expo-font';
+import {connect} from 'react-redux';
 
 
 
 class ConfirmRequest extends React.Component {
 
-  constructor () {
+  constructor (props) {
     super();
     this.state = {
       fontLoaded: false,
-      desc: ''
+      desc: '',
+      category: "",
+      dateRequest: '',
+      position: '',
+      img: "",
     }
   }
 
@@ -21,14 +26,38 @@ class ConfirmRequest extends React.Component {
       'openSansRegular': require('../../assets/fonts/OpenSans-Regular.ttf')
     });
  
-this.setState({ fontLoaded: true });
+this.setState({ fontLoaded: true,
+              category: this.props.navigation.getParam("type") });
   }
+
+handleSubmitRequest() {
+  console.log(this.props.navigation.getParam("img"))
+  this.setState({
+    img: this.props.navigation.getParam("img")
+  })
+  console.log(this.state.img)
+  fetch(`http://10.2.4.23:3000/new_request`,{
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}`
+  })
+    .then(function(res, err){
+      return res.json()
+    }).then((data)=> {
+       console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data)
+    })
+    .catch((error)=> {
+        console.log('Request failed in my ConfirmRequest Home request', error)
+    });
+}
+
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
   const { navigation } = this.props;
   console.log(this.props.navigation.getParam('img'))
   var img=this.props.navigation.getParam("img");
+  console.log(img)
   return(
       
     <ScrollView>
@@ -90,7 +119,7 @@ render(){
     </View>
        
     <View style={{alignItems:'center', justifyContent:'center', textAlign:'center', marginTop:20}}>
-    <Button title="VALIDER" onPress={() => console.log('pressed retour')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
+    <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
     </View>
 </View> 
 
@@ -101,4 +130,14 @@ render(){
   )
 }}
 
-export default ConfirmRequest;
+function mapStateToProps(state) {
+  console.log(state)
+  console.log('je recois de mon reducer lid suivant : ',state.userId)
+
+  return { userIdfromStore: state.userId }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(ConfirmRequest);

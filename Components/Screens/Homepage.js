@@ -13,6 +13,8 @@ class HomePage extends React.Component{
     }
 componentDidMount() {
     var ctx = this;
+    console.log('componentDidMount',ctx.props.userIdfromStore)
+    
     fetch(`http://10.2.4.23:3000/profil?id=${ctx.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
@@ -20,7 +22,7 @@ componentDidMount() {
        console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data)
        ctx.setState({
            firstName: data.user.firstName
-       })
+       }, () => console.log('state',ctx.state.firstName))
     })
     .catch((error)=> {
         console.log('Request failed in my Sign-In Home request', error)
@@ -56,7 +58,7 @@ render(){
 
 function mapStateToProps(state) {
     console.log(state)
-    console.log('je recois de mon reducer lid suivant : ',state.userId)
+    console.log('je recois de mon reducer lid suivant homepage: ',state.userId)
 
     return { userIdfromStore: state.userId }
   }

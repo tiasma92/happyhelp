@@ -3,8 +3,10 @@ import { Text, View, Image, ScrollView } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Font from 'expo-font';
+import {connect} from 'react-redux'; 
 
-export default class Signin extends React.Component {
+
+class Signin extends React.Component {
 
   constructor () {
     
@@ -30,12 +32,14 @@ this.setState({ fontLoaded: true });
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
-      if (data.result === false){
-        this.props.navigation.navigate("signup")
-      } else {
+      console.log('RESULTAT DE LERENGISTREMENT EN BD USER submit signin--->', data)
+      if (data.result === true){
+        this.props.saveId(data.user._id)
         this.props.navigation.navigate('Home')
+      } else {
+        this.props.navigation.navigate("signup")
       }
-       console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data)
+       
     })
     .catch((error)=> {
         console.log('Request failed in my Sign-In Home request', error)
@@ -72,7 +76,7 @@ render(){
     onChangeText = {(text) => {this.setState({password: text})}}
     />
 
-    <Button title="Se connecter" buttonStyle={{backgroundColor: '#2C5F13', marginBottom:20}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn(this.props.navigation.navigate("Home")) } 
+    <Button title="Se connecter" buttonStyle={{backgroundColor: '#2C5F13', marginBottom:20}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn() } 
     />
 
 
@@ -90,4 +94,19 @@ render(){
  
   )
 }}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    saveId: function(id) {
+        dispatch( {type: 'connect',
+         id,
+        } );
+    }
+  }
+}
+
+export default connect(
+    null, 
+    mapDispatchToProps
+)(Signin);
 

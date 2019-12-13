@@ -56,7 +56,7 @@ render(){
             <Text style={styles.infoText}>Prenom:               {this.state.firstName}</Text>
             <Text style={styles.infoText}>Adresse:              {this.state.address}</Text>
             <Text style={styles.infoText}>Ville:                      {this.state.city}</Text>
-            <Text style={styles.infoText}>Telephone:          {this.state.phone}</Text>
+            <Text style={styles.infoText}>Telephone:          0{this.state.phone}</Text>
             </View>
             <View style={{alignItems: 'center'}}>
             <Button title="Modifier Profil" buttonStyle={{backgroundColor: '#2C5F13', padding: 10, width: 200, marginTop: 30}}/>
