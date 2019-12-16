@@ -32,16 +32,12 @@ this.setState({ fontLoaded: true });
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
-<<<<<<< HEAD
       console.log('RESULTAT DE LERENGISTREMENT EN BD USER submit signin--->', data)
       if (data.result === true){
         this.props.saveId(data.user._id)
-=======
-      if (data.result === true){
-        this.props.navigation.navigate("signup")
+        this.props.navigation.navigate("Home")
       } else {
->>>>>>> 1da53e63ab9a42ba1eb4a0221db690d7bd0d3a11
-        this.props.navigation.navigate('Home')
+        this.props.navigation.navigate('signup')
       }  
        
     })
@@ -81,7 +77,7 @@ render(){
     onChangeText = {(text) => {this.setState({password: text})}}
     />
 
-    <Button title="Se connecter" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', marginBottom:20}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn(this.props.navigation.navigate("Home")) } 
+    <Button title="Se connecter" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', marginBottom:20}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn() } 
     />
 
 

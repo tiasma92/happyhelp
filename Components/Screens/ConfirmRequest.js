@@ -36,7 +36,7 @@ handleSubmitRequest() {
     img: this.props.navigation.getParam("img")
   })
   console.log(this.state.img)
-  fetch(`http://192.168.43.103:3000/new_request`,{
+  fetch(`http://10.2.4.23:3000/new_request`,{
     method: 'POST',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}`

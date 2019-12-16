@@ -84,7 +84,7 @@ render(){
               </Text>
                 <Text style={{ fontWeight: 'bold', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>{data.category}</Text>
                 <Text style={{ fontWeight: 'normal', fontSize: 13, textAlign:'center', fontFamily:'openSansRegular' }}>{data.description}</Text>
-                <Button title="J'aide" fontSize="30" onPress={() => console.log('pressed retour')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center', height:12}} />
+                <Button title="J'aide" fontSize="30" onPress={() => this.props.navigation.navigate("Home")} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center', height:12}} />
               </View>
             </Callout></Marker>)
 
