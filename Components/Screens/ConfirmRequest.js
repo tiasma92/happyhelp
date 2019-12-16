@@ -13,16 +13,10 @@ class ConfirmRequest extends React.Component {
     this.state = {
       fontLoaded: false,
       desc: '',
-<<<<<<< HEAD
       category: "",
       dateRequest: '',
       position: '',
       img: "",
-=======
-      date:'',
-      category:'',
-      position:''
->>>>>>> c0a7a30f4b8456284d9aba60f9bbf4cc731cbaa3
     }
   }
 
@@ -118,18 +112,13 @@ render(){
       }}>
     <TextInput
       style={{ height: 120, borderColor: 'gray', borderWidth: 1, width:"90%", marginLeft: 10 }}
-      onChange={(e) => this.setState({desc: e.target.value})} 
-      value={this.state.desc}
-       placeholder="Détails de votre demande"
+      onChangeText = {(text) => {this.setState({desc: text})}}
+      placeholder="Détails de votre demande"
     />
     </View>
        
     <View style={{alignItems:'center', justifyContent:'center', textAlign:'center', marginTop:20}}>
-<<<<<<< HEAD
     <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
-=======
-    <Button title="VALIDER"  onPress={()=>this.props.navigation.navigate('confirmD')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
->>>>>>> c0a7a30f4b8456284d9aba60f9bbf4cc731cbaa3
     </View>
 </View> 
 

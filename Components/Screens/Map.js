@@ -15,18 +15,33 @@ class Map extends React.Component {
     this.state = {
       fontLoaded: false,
       currentLatitude:0,
-      currentLongitude:0
-      
+      currentLongitude:0,
+      allRequest: [],
     }
   }
 
   async componentDidMount() {
+    var ctx = this;
     await Font.loadAsync({
       'pacifico': require('../../assets/fonts/Pacifico-Regular.ttf'),
       'openSansRegular': require('../../assets/fonts/OpenSans-Regular.ttf')
     });
-    this._getLocationAsync();
-this.setState({ fontLoaded: true });
+    ctx._getLocationAsync();
+ctx.setState({ fontLoaded: true });
+
+fetch(`http://10.2.4.23:3000/request`)
+.then(function(res, err){
+  return res.json()
+}).then((data)=> {
+  console.log('RESULTAT DE Recuperation EN BD Request sur la map--->', data)
+  ctx.setState({
+    allRequest: data.request,
+  })
+  console.log(ctx.state.allRequest)
+})
+.catch((error)=> {
+    console.log('Request failed in my Map Home request', error)
+});
   }
 
 
@@ -50,6 +65,29 @@ this.setState({ fontLoaded: true });
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
+  console.log(this.state.allRequest)
+  var markerList = [];
+  markerallRequest = [...this.state.allRequest];
+  markerList = markerallRequest.map((data,i) =>  
+  <Marker
+                draggable 
+                opacity={0.5}
+                pinColor="blue"
+                title="Cliquez ici"
+                coordinate={{latitude: data.latitude, longitude: data.longitude}}
+              >   
+              <Callout>
+              <View >
+                <Text>
+              <Image source={require('../../assets/images/tool.png')} resizeMode="cover"
+              style={{  width: 100, height: 100, alignItems:'center', borderWidth: 1, borderColor:'grey', borderRadius: 7 }}/>
+              </Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>{data.category}</Text>
+                <Text style={{ fontWeight: 'normal', fontSize: 13, textAlign:'center', fontFamily:'openSansRegular' }}>{data.description}</Text>
+                <Button title="J'aide" fontSize="30" onPress={() => console.log('pressed retour')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center', height:12}} />
+              </View>
+            </Callout></Marker>)
+
   return(
     
       
@@ -95,24 +133,7 @@ render(){
 
        
 
-            <Marker
-                draggable 
-                opacity={0.5}
-                pinColor="blue"
-                title="Cliquez ici"
-                coordinate={{latitude: 48.866667, longitude: 2.333333}}
-              >   
-              <Callout>
-              <View >
-                <Text>
-              <Image source={require('../../assets/images/tool.png')} resizeMode="cover"
-              style={{  width: 100, height: 100, alignItems:'center', borderWidth: 1, borderColor:'grey', borderRadius: 7 }}/>
-              </Text>
-                <Text style={{ fontWeight: 'bold', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>Bricolage</Text>
-                <Text style={{ fontWeight: 'normal', fontSize: 13, textAlign:'center', fontFamily:'openSansRegular' }}>Réparation de meuble</Text>
-                <Button title="J'aide" fontSize="30" onPress={() => console.log('pressed retour')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center', height:12}} />
-              </View>
-            </Callout></Marker>
+            {markerList}
 
 
             <Marker
