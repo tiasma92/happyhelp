@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Image, ScrollView,AppRegistry } from 'react-native';
 import { Input} from 'react-native-elements';
 import {connect} from 'react-redux'; 
 
@@ -21,7 +21,7 @@ class Signup extends React.Component {
    
    handleSubmitSignUp(){
 
-      fetch(`http://192.168.43.103:3000/sign-up`, {
+      fetch(`http://192.168.0.17:3000/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `firstName=${this.state.firstName}&lastName=${this.state.lastName}&email=${this.state.email}&password=${this.state.password}&telephone=${this.state.telephone}&address=${this.state.address}`
@@ -71,6 +71,9 @@ class Signup extends React.Component {
                autoCapitalize = "none"
                onChangeText = {(text) => {this.setState({firstName: text})}}/>
 
+
+
+
 <View style={{ marginLeft:50, marginTop:1}}>
             <Text style={{  fontWeight: 'bold', fontSize: 15}}>VOTRE ADRESSE</Text>
             </View>
@@ -103,7 +106,7 @@ class Signup extends React.Component {
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Entrez votre Mot de Passe"
-               
+               secureTextEntry={true}
                autoCapitalize = "none"
                onChangeText = {(text) => {this.setState({password: text})}}/>
 
@@ -164,7 +167,7 @@ const styles = StyleSheet.create({
       flex:1,
       flexDirection:'column',
       borderWidth: 0,
-      borderRadius: 5,
+      borderRadius: 13,
       marginBottom:15,
       marginLeft: 50,
       marginRight: 50,
@@ -188,7 +191,7 @@ const styles = StyleSheet.create({
       marginLeft: 50,
       marginRight: 50,
       marginTop:20,
-      
+      borderRadius: 13,
       
       justifyContent:"center",
        textAlign:"center",

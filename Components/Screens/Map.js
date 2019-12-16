@@ -72,7 +72,7 @@ render(){
       }}>
 
       <View style={styles.container}>
-      <Button title="RETOUR" onPress={() => this.props.navigation.navigate('Home')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center'}}/>
+      <Button title="RETOUR" onPress={() => this.props.navigation.navigate('Home')} buttonStyle={{borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center'}}/>
 
 
         <MapView style={styles.mapStyle}
@@ -102,15 +102,17 @@ render(){
                 title="Cliquez ici"
                 coordinate={{latitude: 48.866667, longitude: 2.333333}}
               >   
-              <Callout>
-              <View >
-                <Text>
-              <Image source={require('../../assets/images/tool.png')} resizeMode="cover"
-              style={{  width: 100, height: 100, alignItems:'center', borderWidth: 1, borderColor:'grey', borderRadius: 7 }}/>
-              </Text>
+              <Callout onPress={()=>this.props.navigation.navigate('helper')}>
+              <View style={{alignItems:'center'}}>
+                
+                  <View style={{  width: 50, height: 50, alignItems:'center', borderWidth: 1, borderColor:'grey', borderRadius: 7 }}>
+              <Image source={require('../../assets/images/tool.png')} resizeMode="cover" 
+             />
+              </View>
+              
                 <Text style={{ fontWeight: 'bold', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>Bricolage</Text>
                 <Text style={{ fontWeight: 'normal', fontSize: 13, textAlign:'center', fontFamily:'openSansRegular' }}>Réparation de meuble</Text>
-                <Button title="J'aide" fontSize="30" onPress={() => console.log('pressed retour')} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center', height:12}} />
+                <Button  title="J'aide" fontSize="30"  buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center', height:12}} />
               </View>
             </Callout></Marker>
 

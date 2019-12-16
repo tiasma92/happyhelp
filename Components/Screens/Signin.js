@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, ScrollView } from 'react-native';
+import { Text, View, Image, AppRegistry } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Font from 'expo-font';
@@ -26,7 +26,7 @@ this.setState({ fontLoaded: true });
 
   handleSubmitSignIn() {
 
-    fetch(`http://192.168.43.103:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
+    fetch(`http://192.168.0.17:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -69,10 +69,11 @@ render(){
     <Input style={{fontSize: 12, height: 40, borderColor: 'gray', borderWidth: 4, alignItems: 'center', justifyContent: 'center'}} placeholder="Votre mot de passe"
     errorStyle={{ color: 'red' }}
     errorMessage="Votre mot de passe n'est pas valide"
+    secureTextEntry={true}
     onChangeText = {(text) => {this.setState({password: text})}}
     />
 
-    <Button title="Se connecter" buttonStyle={{backgroundColor: '#2C5F13', marginBottom:20}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn(this.props.navigation.navigate("Home")) } 
+    <Button title="Se connecter" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', marginBottom:20}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn(this.props.navigation.navigate("Home")) } 
     />
 
 

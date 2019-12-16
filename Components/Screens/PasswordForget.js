@@ -98,7 +98,7 @@ input: {
 
        height: 45,
        borderWidth: 0,
-       borderRadius: 5,
+       borderRadius: 13,
        marginBottom:15,
        marginLeft: 50,
        marginRight: 50,

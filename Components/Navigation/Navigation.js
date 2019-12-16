@@ -34,11 +34,15 @@ const AppNavigator = createStackNavigator(
       comment: Comments,
       myhelp: MyHelp,
       acceuil:Acceuil,
-      confirmD:DemandeConf
+      confirmD:DemandeConf,
+      
     },
     {
       initialRouteName: 'acceuil',
     }
   );
+
+ 
+  
   
    export default Navigation = createAppContainer(AppNavigator)

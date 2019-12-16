@@ -9,7 +9,7 @@ export default class DemandeConf extends React.Component {
     
   return (
     <View style = {{
-        width:'80%',
+        width:'100%',
     textAlign:'center',
     alignItems:'center'
    }}>
@@ -43,8 +43,7 @@ export default class DemandeConf extends React.Component {
 
     <TouchableOpacity
            style = {styles.submitButton}
-           onPress = {
-              () => this.login(this.state.email)
+           onPress={()=>this.props.navigation.navigate('Home')
            }>
            <Text style = {styles.submitButtonText}> RETOUR AU MENU </Text>
         </TouchableOpacity>
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
           
            height: 45,
            borderWidth: 0,
-           borderRadius: 5,
+           borderRadius: 13,
            marginBottom:20,
            marginLeft: 50,
            marginRight: 50,
