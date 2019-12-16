@@ -13,9 +13,15 @@ class HomePage extends React.Component{
     }
 componentDidMount() {
     var ctx = this;
+<<<<<<< HEAD
     console.log('componentDidMount',ctx.props.userIdfromStore)
     
     fetch(`http://10.2.4.23:3000/profil?id=${ctx.props.userIdfromStore}`)
+=======
+
+    fetch(`http://192.168.43.103:3000/profil?id=${ctx.props.userIdfromStore}`)
+
+>>>>>>> 1da53e63ab9a42ba1eb4a0221db690d7bd0d3a11
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -33,23 +39,34 @@ componentDidMount() {
 render(){
     var Name= this.state.firstName;
     return(
-        <View>
+        <View style = {{
+            width:'100%',
+        textAlign:'center',
+        alignItems: 'center'
+       }}>
+        
+        <View style={{ 
+        alignItems: 'center',
+         textAlign:'center',
+         marginBottom:20,}}>
+        <Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 250, height: 250, marginTop: 2}}/>
+        </View>
+
+        
         <View style={{ alignItems: 'center',}}>
-            <Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 150, height: 150}}/>
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>Bienvenue {Name}</Text>
+
+            <Text style={{fontWeight: 'bold', fontSize: 20 ,marginBottom:30,}}>Bienvenue {Name}</Text>
            
             </View>
 
-            <View  style={{ marginTop: 20, alignItems: 'center'}}> 
-            <Button title="JE PROPOSE MON AIDE" onPress={()=>this.props.navigation.navigate('map')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
-            <Button title="J'AI BESOIN D'AIDE" onPress={()=>this.props.navigation.navigate('help')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
-            <Button title="MES DEMANDES D'AIDE" onPress={()=>this.props.navigation.navigate('historyhelp')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
-            <Button title="  MES AIDES  " onPress={()=>this.props.navigation.navigate('myhelp')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
-            <Button title="  MON PROFIL  " onPress={()=>this.props.navigation.navigate('profil')}  buttonStyle={{ backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
-            </View>
+      <Button title="J'AI BESOIN D'AIDE" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', marginBottom:20, width:250}} style={{ height: 50, marginTop: '10%' }} onPress= {() => this.props.navigation.navigate("HomeH")} 
+    />
 
-
-        </View>
+<Button title="JE VEUX AIDER" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', width:250}} style={{ height: 50}} onPress= {() => this.props.navigation.navigate("HomeA")} 
+    />
+    </View>
+    
+    
 
 
     )

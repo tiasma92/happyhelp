@@ -59,7 +59,7 @@ render(){
             <Text style={styles.infoText}>Telephone:          0{this.state.phone}</Text>
             </View>
             <View style={{alignItems: 'center'}}>
-            <Button title="Modifier Profil" buttonStyle={{backgroundColor: '#2C5F13', padding: 10, width: 200, marginTop: 30}}/>
+            <Button title="Modifier Profil" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', padding: 10, width: 200, marginTop: 30}}/>
             </View>
         </View>
     )

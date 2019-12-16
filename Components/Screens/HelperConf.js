@@ -1,10 +1,11 @@
 import React from 'react';
 import { Text, View, Image,TextInput, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import {  Button } from 'react-native-elements';
+import {connect} from 'react-redux'; 
 
-var name = 'John';
 
-export default class HelperConf extends React.Component {
+
+ class HelperConf extends React.Component {
    constructor(props){
       super()
       this.state = ({
@@ -66,8 +67,7 @@ render(){
 
     <TouchableOpacity
            style = {styles.submitButton}
-           onPress = {
-              () => this.login(this.state.email)
+           onPress={()=>this.props.navigation.navigate('Home')
            }>
            <Text style = {styles.submitButtonText}> RETOUR AU MENU </Text>
         </TouchableOpacity>
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
            marginTop:100,
            height: 45,
            borderWidth: 0,
-           borderRadius: 5,
+           borderRadius: 13,
            marginBottom:20,
            marginLeft: 50,
            marginRight: 50,
@@ -126,3 +126,25 @@ const styles = StyleSheet.create({
            color: 'white'
         }
      })
+
+     function mapDispatchToProps(dispatch) {
+      return {
+        saveId: function(id) {
+            dispatch( {type: 'connect',
+             id,
+            } );
+        }
+      }
+    }
+    
+    function mapStateToProps(state) {
+      console.log(state)
+      console.log('je recois de mon reducer lid suivant : ',state.userId)
+  
+      return { userIdfromStore: state.userId }
+    }
+    
+    export default connect(
+        mapStateToProps,
+        null
+    )(HelperConf);
