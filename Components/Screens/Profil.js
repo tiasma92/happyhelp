@@ -27,7 +27,7 @@ class Profil extends React.Component{
     }
 componentDidMount() {
     var ctx = this;
-    fetch(`http://192.168.0.17:3000/profil?id=${ctx.props.userIdfromStore}`)
+    fetch(`http://192.168.43.103:3000/profil?id=${ctx.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -56,7 +56,7 @@ render(){
             <Text style={styles.infoText}>Prenom:               {this.state.firstName}</Text>
             <Text style={styles.infoText}>Adresse:              {this.state.address}</Text>
             <Text style={styles.infoText}>Ville:                      {this.state.city}</Text>
-            <Text style={styles.infoText}>Telephone:          {this.state.phone}</Text>
+            <Text style={styles.infoText}>Telephone:          0{this.state.phone}</Text>
             </View>
             <View style={{alignItems: 'center'}}>
             <Button title="Modifier Profil" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', padding: 10, width: 200, marginTop: 30}}/>

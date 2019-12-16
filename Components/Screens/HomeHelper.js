@@ -4,7 +4,7 @@ import {  Button } from 'react-native-elements';
 import {connect} from 'react-redux';
 
 
-class HomePage extends React.Component{
+class HomeHelper extends React.Component{
     constructor(props){
         super()
         this.state = ({
@@ -33,34 +33,23 @@ componentDidMount() {
 render(){
     var Name= this.state.firstName;
     return(
-        <View style = {{
-            width:'100%',
-        textAlign:'center',
-        alignItems: 'center'
-       }}>
-        
-        <View style={{ 
-        alignItems: 'center',
-         textAlign:'center',
-         marginBottom:20,}}>
-        <Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 250, height: 250, marginTop: 2}}/>
-        </View>
-
-        
+        <View>
         <View style={{ alignItems: 'center',}}>
-
-            <Text style={{fontWeight: 'bold', fontSize: 20 ,marginBottom:30,}}>Bienvenue {Name}</Text>
+            <Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 200, height: 200}}/>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>Bienvenue {Name}</Text>
            
             </View>
 
-      <Button title="J'AI BESOIN D'AIDE" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', marginBottom:20, width:250}} style={{ height: 50, marginTop: '10%' }} onPress= {() => this.props.navigation.navigate("HomeH")} 
-    />
+        <View  style={{ marginTop: 50, alignItems: 'center'}}> 
+            
+        <Button title="QUI A BESOIN D'AIDE?" onPress={()=>this.props.navigation.navigate('map')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+        <Button title="  MES AIDES  " onPress={()=>this.props.navigation.navigate('myhelp')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+            <Button title="  MON PROFIL  " onPress={()=>this.props.navigation.navigate('profil')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+            
+        </View>
 
-<Button title="JE VEUX AIDER" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', width:250}} style={{ height: 50}} onPress= {() => this.props.navigation.navigate("HomeA")} 
-    />
-    </View>
-    
-    
+
+        </View>
 
 
     )
@@ -77,4 +66,4 @@ function mapStateToProps(state) {
   export default connect(
       mapStateToProps,
       null
-  )(HomePage);
+  )(HomeHelper);

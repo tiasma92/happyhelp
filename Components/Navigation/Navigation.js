@@ -17,6 +17,8 @@ import MyHelp from '../Screens/MyHelp';
 import Comments from '../Screens/Comments';
 import Acceuil from '../Screens/Acceuil';
 import DemandeConf from '../Screens/DemandeConf';
+import HomeHelper from '../Screens/HomeHelper';
+import HomeHelp from '../Screens/HomeHelp';
 
 const AppNavigator = createStackNavigator(
     {
@@ -35,6 +37,8 @@ const AppNavigator = createStackNavigator(
       myhelp: MyHelp,
       acceuil:Acceuil,
       confirmD:DemandeConf,
+      HomeH:HomeHelp,
+      HomeA:HomeHelper
       
     },
     {

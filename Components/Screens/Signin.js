@@ -3,8 +3,10 @@ import { Text, View, Image, AppRegistry } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Font from 'expo-font';
+import {connect} from 'react-redux'; 
 
-export default class Signin extends React.Component {
+
+class Signin extends React.Component {
 
   constructor () {
     
@@ -26,7 +28,7 @@ this.setState({ fontLoaded: true });
 
   handleSubmitSignIn() {
 
-    fetch(`http://192.168.0.17:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
+    fetch(`http://192.168.43.103:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -34,8 +36,8 @@ this.setState({ fontLoaded: true });
         this.props.navigation.navigate("signup")
       } else {
         this.props.navigation.navigate('Home')
-      }
-       console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data)
+      }  
+       
     })
     .catch((error)=> {
         console.log('Request failed in my Sign-In Home request', error)
@@ -91,4 +93,19 @@ render(){
  
   )
 }}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    saveId: function(id) {
+        dispatch( {type: 'connect',
+         id,
+        } );
+    }
+  }
+}
+
+export default connect(
+    null, 
+    mapDispatchToProps
+)(Signin);
 

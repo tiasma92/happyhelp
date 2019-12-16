@@ -17,7 +17,6 @@ export default class Help extends React.Component {
       backgroundColorVoice: 'transparent',
       backgroundColorTool: 'transparent',
       backgroundColorPen: 'transparent',
-      courses: {img: require('../../assets/images/shop.png'), type: "courses" }
     }
   }
 

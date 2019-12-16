@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 
 
 
-class ConfirmRequest extends React.Component {
+export default class HelperValid extends React.Component {
 
   constructor (props) {
     super();
@@ -25,39 +25,15 @@ class ConfirmRequest extends React.Component {
       'pacifico': require('../../assets/fonts/Pacifico-Regular.ttf'),
       'openSansRegular': require('../../assets/fonts/OpenSans-Regular.ttf')
     });
- 
-this.setState({ fontLoaded: true,
-              category: this.props.navigation.getParam("type") });
   }
 
 handleSubmitRequest() {
-  console.log(this.props.navigation.getParam("img"))
-  this.setState({
-    img: this.props.navigation.getParam("img")
-  })
-  console.log(this.state.img)
-  fetch(`http://192.168.43.103:3000/new_request`,{
-    method: 'POST',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}`
-  })
-    .then(function(res, err){
-      return res.json()
-    }).then((data)=> {
-       console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data)
-    })
-    .catch((error)=> {
-        console.log('Request failed in my ConfirmRequest Home request', error)
-    });
+  
 }
 
 
 render(){
-  console.log('loaded :',this.state.fontLoaded)
-  const { navigation } = this.props;
-  console.log(this.props.navigation.getParam('img'))
-  var img=this.props.navigation.getParam("img");
-  console.log(img)
+  
   return(
       
     <ScrollView>
@@ -134,14 +110,3 @@ render(){
   )
 }}
 
-function mapStateToProps(state) {
-  console.log(state)
-  console.log('je recois de mon reducer lid suivant : ',state.userId)
-
-  return { userIdfromStore: state.userId }
-}
-
-export default connect(
-    mapStateToProps,
-    null
-)(ConfirmRequest);
