@@ -70,6 +70,7 @@ render(){
   markerallRequest = [...this.state.allRequest];
   markerList = markerallRequest.map((data,i) =>  
   <Marker
+                key={i}
                 draggable 
                 opacity={0.5}
                 pinColor="blue"

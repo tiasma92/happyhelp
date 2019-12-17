@@ -81,9 +81,9 @@ render(){
   //     color: 'warning'
   //   }]
 
-  var historyList = [];
-  historyallRequest = [...this.state.allRequest];
-  historyList = historyallRequest.map((data,i) =>  <historyList
+  var HistoryList = [];
+  HistoryallRequest = [...this.state.allRequest];
+  HistoryList = HistoryallRequest.map((data,i) =>  <ListItem
   key={i}
   title={data.category}
   titleStyle={{ fontWeight: 'bold' }}
@@ -118,7 +118,7 @@ render(){
       }}>
      
       <View>
-      {historyList }
+      {HistoryList }
       </View >
 
 

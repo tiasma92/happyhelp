@@ -71,7 +71,7 @@ render(){
           >
     
     <Image source={require('../../assets/images/shop.png')} 
-      style={{ backgroundColor: this.state.backgroundColorShop, width: 100, height: 100, margin: 10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted' }}/>
+      style={{ backgroundColor: this.state.backgroundColorShop, width: 100, height: 100, margin: 10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
     <Text style={{textAlign:'center', fontSize: 12}}>Courses</Text>
     </TouchableOpacity>
     
