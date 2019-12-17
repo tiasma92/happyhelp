@@ -36,7 +36,7 @@ handleSubmitRequest() {
     img: this.props.navigation.getParam("img")
   })
   console.log(this.state.img)
-  fetch(`http://10.2.4.23:3000/new_request`,{
+  fetch(`http://192.168.43.103:3000/new_request`,{
     method: 'POST',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}`
@@ -79,7 +79,7 @@ render(){
         marginTop: 20,
       }}>
     <Image source={img} 
-      style={{ marginLeft: 60, marginRight: 60, textAlign: 'center', backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted' }}/>
+      style={{ marginLeft: 60, marginRight: 60,  backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
     </View>
 
     

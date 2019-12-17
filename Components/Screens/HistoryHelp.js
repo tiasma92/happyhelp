@@ -9,7 +9,11 @@ class HistoryHelp extends React.Component {
 
   constructor () {
     super();
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 99ffa266f5ee86e17e38e5fb390ee92ae17a5b9f
     this.state = {
       fontLoaded: false,
       allRequest: [],
@@ -22,14 +26,22 @@ class HistoryHelp extends React.Component {
       'pacifico': require('../../assets/fonts/Pacifico-Regular.ttf'),
       'openSansRegular': require('../../assets/fonts/OpenSans-Regular.ttf')
     });
+<<<<<<< HEAD
 
     ctx.setState({ fontLoaded: true });
 
     fetch(`http://10.2.4.23:3000/myhistory?id=${this.props.userIdfromStore}`)
+=======
+   
+    ctx.setState({ fontLoaded: true });
+    
+    fetch(`http://192.168.43.103:3000/request`)
+>>>>>>> 99ffa266f5ee86e17e38e5fb390ee92ae17a5b9f
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
       console.log('RESULTAT DE Recuperation EN BD Request dans l histo--->', data)
+<<<<<<< HEAD
       for (var i =0; i<data.user.helpRequest.length; i++) {
         var HistoryList = [];
         HistoryList.push(data.user.helpRequest[i])
@@ -37,6 +49,11 @@ class HistoryHelp extends React.Component {
         allRequest: HistoryList,
       })
     }
+=======
+      ctx.setState({
+        allRequest: data.request,
+      })
+>>>>>>> 99ffa266f5ee86e17e38e5fb390ee92ae17a5b9f
       console.log(ctx.state.allRequest)
     })
     .catch((error)=> {
@@ -85,9 +102,52 @@ render(){
   //     color: 'warning'
   //   }]
   
+<<<<<<< HEAD
   var HistoryList = [];
   HistoryallRequest = [...this.state.allRequest];
   console.log("-------------------",HistoryallRequest)
+=======
+  
+  // const data =[
+  //   {
+  //     name: 'BRICOLAGE',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'En attente',
+  //     color:'primary'
+  //   },
+  //   {
+  //     name: 'BRICOLAGE',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'En attente',
+  //     color:'primary'
+  //   },
+  //   {
+  //     name: 'COURS',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'En cours',
+  //     color:'warning'
+  //   },
+  //   {
+  //     name: 'VISITE DE COURTOISIE',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'Terminé',
+  //     color:'success'
+  //   },
+  //   {
+  //     name: 'JARDINAGE',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'En cours',
+  //     color: 'warning'
+  //   }]
+
+  var HistoryList = [];
+  HistoryallRequest = [...this.state.allRequest];
+>>>>>>> 99ffa266f5ee86e17e38e5fb390ee92ae17a5b9f
   HistoryList = HistoryallRequest.map((data,i) =>  <ListItem
   key={i}
   title={data.category}
@@ -115,6 +175,7 @@ render(){
    <View style={{textAlign: 'center', alignContent:'center'}}>
     <Text style={{fontWeight: 'bold', fontFamily: 'openSansRegular', fontSize: 20, textAlign:'center' }}>MES DEMANDES D'AIDE</Text>
 
+<<<<<<< HEAD
   <View style={{
     flex: 1,
     marginTop: 20,
@@ -130,6 +191,23 @@ render(){
     <Button title="RETOUR" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} 
     /> 
     </View> 
+=======
+      <View style={{
+        flex: 1,
+        marginTop: 20,
+        
+      }}>
+     
+      <View>
+      {HistoryList }
+      </View >
+
+
+      <View style={{marginLeft:100, marginRight:100}}>
+        <Button title="RETOUR" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} 
+        /> 
+        </View> 
+>>>>>>> 99ffa266f5ee86e17e38e5fb390ee92ae17a5b9f
 </View>
       </View>
       

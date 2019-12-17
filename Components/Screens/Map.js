@@ -29,7 +29,7 @@ class Map extends React.Component {
     ctx._getLocationAsync();
 ctx.setState({ fontLoaded: true });
 
-fetch(`http://10.2.4.23:3000/request`)
+fetch(`http://192.168.43.103:3000/request`)
 .then(function(res, err){
   return res.json()
 }).then((data)=> {
@@ -70,6 +70,7 @@ render(){
   markerallRequest = [...this.state.allRequest];
   markerList = markerallRequest.map((data,i) =>  
   <Marker
+                key={i}
                 draggable 
                 opacity={0.5}
                 pinColor="blue"
