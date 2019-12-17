@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 
 
 
-export default class HelperValid extends React.Component {
+class HelperValid extends React.Component {
 
   constructor (props) {
     super();
@@ -17,6 +17,7 @@ export default class HelperValid extends React.Component {
       dateRequest: '',
       position: '',
       img: "",
+      allRequest: [],
     }
   }
 
@@ -25,11 +26,26 @@ export default class HelperValid extends React.Component {
       'pacifico': require('../../assets/fonts/Pacifico-Regular.ttf'),
       'openSansRegular': require('../../assets/fonts/OpenSans-Regular.ttf')
     });
+    this.setState({ fontLoaded: true})
+    
   }
-
-handleSubmitRequest() {
-  
-}
+  handleSubmitRequest() {
+    console.log(this.props.navigation.getParam("id"))
+    fetch(`http://10.2.4.23:3000/valid_request?id_request=${this.props.navigation.getParam("id")}&id_user=${this.props.userIdfromStore}`)
+    .then(function(res, err){
+      return res.json()
+    }).then((data)=> {
+      console.log('RESULTAT DE Recuperation EN BD Request sur la map--->', data)
+      this.setState({
+        allRequest: data.request,
+      })
+      console.log("-------------------"+this.state.allRequest)
+    })
+    .catch((error)=> {
+        console.log('Request failed in my HelperValid Home request', error)
+    });
+    this.props.navigation.navigate("myhelp")
+  }
 
 
 render(){
@@ -53,7 +69,7 @@ render(){
         flexDirection: 'row',
         marginTop: 20,
       }}>
-    <Image source={img} 
+    <Image source={require("../../assets/images/shop.png")} 
       style={{ marginLeft: 60, marginRight: 60, textAlign: 'center', backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted' }}/>
     </View>
 
@@ -110,3 +126,14 @@ render(){
   )
 }}
 
+function mapStateToProps(state) {
+  console.log(state)
+  console.log('je recois de mon reducer lid suivant : ',state.userId)
+
+  return { userIdfromStore: state.userId }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(HelperValid);

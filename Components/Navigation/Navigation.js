@@ -19,6 +19,7 @@ import Acceuil from '../Screens/Acceuil';
 import DemandeConf from '../Screens/DemandeConf';
 import HomeHelper from '../Screens/HomeHelper';
 import HomeHelp from '../Screens/HomeHelp';
+import HelperValid from '../Screens/HelperValid';
 
 const AppNavigator = createStackNavigator(
     {
@@ -38,7 +39,8 @@ const AppNavigator = createStackNavigator(
       acceuil:Acceuil,
       confirmD:DemandeConf,
       HomeH:HomeHelp,
-      HomeA:HomeHelper
+      HomeA:HomeHelper,
+      validhelp: HelperValid
       
     },
     {

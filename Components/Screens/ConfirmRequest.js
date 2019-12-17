@@ -49,6 +49,7 @@ handleSubmitRequest() {
     .catch((error)=> {
         console.log('Request failed in my ConfirmRequest Home request', error)
     });
+    this.props.navigation.navigate("helper")
 }
 
 

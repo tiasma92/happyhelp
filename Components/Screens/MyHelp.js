@@ -2,87 +2,110 @@ import React from 'react';
 import { Text, View, Image, ScrollView} from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 import * as Font from 'expo-font';
+import {connect} from 'react-redux';
 
 
-
-export default class MyHelp extends React.Component {
+class MyHelp extends React.Component {
 
   constructor () {
     super();
+
     this.state = {
       fontLoaded: false,
+      allRequest: [],
     }
   }
 
   async componentDidMount() {
+    var ctx = this;
     await Font.loadAsync({
       'pacifico': require('../../assets/fonts/Pacifico-Regular.ttf'),
       'openSansRegular': require('../../assets/fonts/OpenSans-Regular.ttf')
     });
- 
-this.setState({ fontLoaded: true });
-  }
 
+    ctx.setState({ fontLoaded: true });
+
+    fetch(`http://10.2.4.23:3000/myhelp?id=${this.props.userIdfromStore}`)
+    .then(function(res, err){
+      return res.json()
+    }).then((data)=> {
+      console.log('RESULTAT DE Recuperation EN BD Request dans l histo--->', data)
+      for (var i =0; i<data.user.helperRequest.length; i++) {
+        var HistoryList = [];
+        HistoryList.push(data.user.helperRequest[i])
+      ctx.setState({
+        allRequest: HistoryList,
+      })
+    }
+      console.log(ctx.state.allRequest)
+    })
+    .catch((error)=> {
+        console.log('Request failed in my histo request', error)
+    });
+      }
 render(){
   console.log('loaded :',this.state.fontLoaded)
 
-  
-  const data =[
-    {
-      name: 'BRICOLAGE',
-      avatar: '../../assets/images/LogoHappyHelp.png',
-      subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-      value: 'En attente',
-      color:'primary'
-    },
-    {
-      name: 'BRICOLAGE',
-      avatar: '../../assets/images/LogoHappyHelp.png',
-      subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-      value: 'En attente',
-      color:'primary'
-    },
-    {
-      name: 'COURS',
-      avatar: '../../assets/images/LogoHappyHelp.png',
-      subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-      value: 'En cours',
-      color:'warning'
-    },
-    {
-      name: 'VISITE DE COURTOISIE',
-      avatar: '../../assets/images/LogoHappyHelp.png',
-      subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-      value: 'Terminé',
-      color:'success'
-    },
-    {
-      name: 'JARDINAGE',
-      avatar: '../../assets/images/LogoHappyHelp.png',
-      subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-      value: 'En cours',
-      color: 'warning'
-    }]
 
-  const listItems = data.map((item,i) => <ListItem
+
+  // const data =[
+  //   {
+  //     name: 'BRICOLAGE',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'En attente',
+  //     color:'primary'
+  //   },
+  //   {
+  //     name: 'BRICOLAGE',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'En attente',
+  //     color:'primary'
+  //   },
+  //   {
+  //     name: 'COURS',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'En cours',
+  //     color:'warning'
+  //   },
+  //   {
+  //     name: 'VISITE DE COURTOISIE',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'Terminé',
+  //     color:'success'
+  //   },
+  //   {
+  //     name: 'JARDINAGE',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'En cours',
+  //     color: 'warning'
+  //   }]
+  
+  var HistoryList = [];
+  HistoryallRequest = [...this.state.allRequest];
+  console.log("-------------------",HistoryallRequest)
+  HistoryList = HistoryallRequest.map((data,i) =>  <ListItem
   key={i}
-  title={item.name}
+  title={data.category}
   titleStyle={{ fontWeight: 'bold' }}
   leftAvatar={{source: require('../../assets/images/avatar.png')}}
-  subtitle={item.subtitle}
+  subtitle={data.description}
   bottomDivider
   style={{width:400, marginLeft: 10, marginRight:10}}
   onPress={() => console.log("commentaire")}
-  badge={{value:item.value , status:item.color}}
+  badge={{value:data.value , status:data.color}}
   chevron={{ color: 'black', height:20 }}
-  
-  
+
+
 />);
 
-
   return(
-    
-      
+
+
     <ScrollView>
       <View style={{alignItems:'center'}}>
       <Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 150, height: 150, marginTop: 30, alignItems:'center', justifyContent: 'center' }}/>
@@ -92,29 +115,41 @@ render(){
    <View style={{textAlign: 'center', alignContent:'center'}}>
     <Text style={{fontWeight: 'bold', fontFamily: 'openSansRegular', fontSize: 20, textAlign:'center' }}>MES AIDES</Text>
 
-      <View style={{
-        flex: 1,
-        marginTop: 20,
-        
-      }}>
-     
-      <View>
-      {listItems }
-      </View >
+  <View style={{
+    flex: 1,
+    marginTop: 20,
+    
+  }}>
+ 
+  <View>
+  {HistoryList}
+  </View >
 
 
-      <View style={{marginLeft:100, marginRight:100}}>
-        <Button title="RETOUR" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} 
-        /> 
-        </View> 
+  <View style={{marginLeft:100, marginRight:100}}>
+    <Button title="RETOUR" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} 
+    /> 
+    </View> 
 </View>
       </View>
       
 
 ) : null}
 
-  
+
  </ScrollView>
  
   )
 }}
+
+function mapStateToProps(state) {
+  console.log(state)
+  console.log('je recois de mon reducer lid suivant : ',state.userId)
+
+  return { userIdfromStore: state.userId }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(MyHelp);

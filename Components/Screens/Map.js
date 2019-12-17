@@ -76,7 +76,7 @@ render(){
                 title="Cliquez ici"
                 coordinate={{latitude: data.latitude, longitude: data.longitude}}
               >   
-              <Callout>
+              <Callout onPress={() => this.props.navigation.navigate("validhelp", {id: data._id})}>
               <View >
                 <Text>
               <Image source={require('../../assets/images/tool.png')} resizeMode="cover"
@@ -84,7 +84,7 @@ render(){
               </Text>
                 <Text style={{ fontWeight: 'bold', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>{data.category}</Text>
                 <Text style={{ fontWeight: 'normal', fontSize: 13, textAlign:'center', fontFamily:'openSansRegular' }}>{data.description}</Text>
-                <Button title="J'aide" fontSize="30" onPress={() => this.props.navigation.navigate("Home")} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center', height:12}} />
+                <Button title="J'aide" fontSize="30" buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center', height:12}} />
               </View>
             </Callout></Marker>)
 
