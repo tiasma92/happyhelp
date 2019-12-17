@@ -9,71 +9,90 @@ export default class HistoryHelp extends React.Component {
 
   constructor () {
     super();
+    
     this.state = {
       fontLoaded: false,
+      allRequest: [],
     }
   }
 
   async componentDidMount() {
+    var ctx = this;
     await Font.loadAsync({
       'pacifico': require('../../assets/fonts/Pacifico-Regular.ttf'),
       'openSansRegular': require('../../assets/fonts/OpenSans-Regular.ttf')
     });
- 
-this.setState({ fontLoaded: true });
-  }
-
+   
+    ctx.setState({ fontLoaded: true });
+    
+    fetch(`http://192.168.43.103:3000/request`)
+    .then(function(res, err){
+      return res.json()
+    }).then((data)=> {
+      console.log('RESULTAT DE Recuperation EN BD Request dans l histo--->', data)
+      ctx.setState({
+        allRequest: data.request,
+      })
+      console.log(ctx.state.allRequest)
+    })
+    .catch((error)=> {
+        console.log('Request failed in my histo request', error)
+    });
+      }
 render(){
   console.log('loaded :',this.state.fontLoaded)
 
   
-  const data =[
-    {
-      name: 'BRICOLAGE',
-      avatar: '../../assets/images/LogoHappyHelp.png',
-      subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-      value: 'En attente',
-      color:'primary'
-    },
-    {
-      name: 'BRICOLAGE',
-      avatar: '../../assets/images/LogoHappyHelp.png',
-      subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-      value: 'En attente',
-      color:'primary'
-    },
-    {
-      name: 'COURS',
-      avatar: '../../assets/images/LogoHappyHelp.png',
-      subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-      value: 'En cours',
-      color:'warning'
-    },
-    {
-      name: 'VISITE DE COURTOISIE',
-      avatar: '../../assets/images/LogoHappyHelp.png',
-      subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-      value: 'Terminé',
-      color:'success'
-    },
-    {
-      name: 'JARDINAGE',
-      avatar: '../../assets/images/LogoHappyHelp.png',
-      subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-      value: 'En cours',
-      color: 'warning'
-    }]
+  
+  // const data =[
+  //   {
+  //     name: 'BRICOLAGE',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'En attente',
+  //     color:'primary'
+  //   },
+  //   {
+  //     name: 'BRICOLAGE',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'En attente',
+  //     color:'primary'
+  //   },
+  //   {
+  //     name: 'COURS',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'En cours',
+  //     color:'warning'
+  //   },
+  //   {
+  //     name: 'VISITE DE COURTOISIE',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'Terminé',
+  //     color:'success'
+  //   },
+  //   {
+  //     name: 'JARDINAGE',
+  //     avatar: '../../assets/images/LogoHappyHelp.png',
+  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
+  //     value: 'En cours',
+  //     color: 'warning'
+  //   }]
 
-  const listItems = data.map((item,i) => <ListItem
+  var historyList = [];
+  historyallRequest = [...this.state.allRequest];
+  historyList = historyallRequest.map((data,i) =>  <historyList
   key={i}
-  title={item.name}
+  title={data.category}
   titleStyle={{ fontWeight: 'bold' }}
   leftAvatar={{source: require('../../assets/images/avatar.png')}}
-  subtitle={item.subtitle}
+  subtitle={data.description}
   bottomDivider
   style={{width:400, marginLeft: 10, marginRight:10}}
   onPress={() => console.log("commentaire")}
-  badge={{value:item.value , status:item.color}}
+  badge={{value:data.value , status:data.color}}
   chevron={{ color: 'black', height:20 }}
   
   
@@ -99,7 +118,7 @@ render(){
       }}>
      
       <View>
-      {listItems }
+      {historyList }
       </View >
 
 
