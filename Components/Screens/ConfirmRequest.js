@@ -47,7 +47,7 @@ handleSubmitRequest() {
     .catch((error)=> {
         console.log('Request failed in my ConfirmRequest Home request', error)
     });
-    this.props.navigation.navigate("helper")
+    this.props.navigation.navigate("confirmD")
 }
 
 
@@ -117,7 +117,7 @@ render(){
     </View>
        
     <View style={{alignItems:'center', justifyContent:'center', textAlign:'center', marginTop:20}}>
-    <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
+    <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
     </View>
 </View> 
 

@@ -6,6 +6,7 @@ import * as Font from 'expo-font';
 import {connect} from 'react-redux'; 
 
 
+
 class Signin extends React.Component {
 
   constructor () {
@@ -22,6 +23,7 @@ class Signin extends React.Component {
     await Font.loadAsync({
       'pacifico': require('../../assets/fonts/Pacifico-Regular.ttf'),
     });
+    
  
 this.setState({ fontLoaded: true });
   }
@@ -78,6 +80,8 @@ render(){
     />
 
     <Button title="Se connecter" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', marginBottom:20}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn() } 
+    />
+    <Button  title="Se connecté via Facebook" buttonStyle={{borderRadius: 13,backgroundColor: '#375D81', marginBottom:20}} style={{fontFamily: 'pacifico', height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn() } 
     />
 
 

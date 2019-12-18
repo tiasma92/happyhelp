@@ -95,7 +95,7 @@ render(){
   subtitle={data.description}
   bottomDivider
   style={{width:400, marginLeft: 10, marginRight:10}}
-  onPress={() => console.log("commentaire")}
+  onPress={() => this.props.navigation.navigate("comment")}
   badge={{value:data.value , status:data.color}}
   chevron={{ color: 'black', height:20 }}
 
@@ -126,7 +126,7 @@ render(){
 
 
   <View style={{marginLeft:100, marginRight:100}}>
-    <Button title="RETOUR" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} 
+    <Button title="RETOUR" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }}onPress= {() => this.props.navigation.navigate("HomeH")}
     /> 
     </View> 
 </View>

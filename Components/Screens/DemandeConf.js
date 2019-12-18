@@ -43,7 +43,7 @@ export default class DemandeConf extends React.Component {
 
     <TouchableOpacity
            style = {styles.submitButton}
-           onPress={()=>this.props.navigation.navigate('Home')
+           onPress={()=>this.props.navigation.navigate('HomeH')
            }>
            <Text style = {styles.submitButtonText}> RETOUR AU MENU </Text>
         </TouchableOpacity>
@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
         submitButton: {
            backgroundColor: '#2C5F13',
            padding: 10,
-          
            height: 45,
            borderWidth: 0,
            borderRadius: 13,

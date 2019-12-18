@@ -53,10 +53,10 @@ render(){
            
             </View>
 
-      <Button title="J'AI BESOIN D'AIDE" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', marginBottom:20, width:250}} style={{ height: 50, marginTop: '10%' }} onPress= {() => this.props.navigation.navigate("HomeH")} 
+      <Button title="BESOIN D'AIDE ?" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', marginBottom:20, width:250}} style={{ height: 50, marginTop: '10%' }} onPress= {() => this.props.navigation.navigate("HomeH")} 
     />
 
-<Button title="JE VEUX AIDER" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', width:250}} style={{ height: 50}} onPress= {() => this.props.navigation.navigate("HomeA")} 
+<Button title="JE VEUX AIDER" buttonStyle={{borderRadius: 13,backgroundColor: '#139725', width:250}} style={{ height: 50}} onPress= {() => this.props.navigation.navigate("HomeA")} 
     />
     </View>
     

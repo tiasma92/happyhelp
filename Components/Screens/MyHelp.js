@@ -127,7 +127,7 @@ render(){
 
 
   <View style={{marginLeft:100, marginRight:100}}>
-    <Button title="RETOUR" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} 
+    <Button title="RETOUR" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} onPress= {() => this.props.navigation.navigate("HomeA")}
     /> 
     </View> 
 </View>
