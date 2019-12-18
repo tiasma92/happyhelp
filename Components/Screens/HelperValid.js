@@ -44,12 +44,11 @@ class HelperValid extends React.Component {
     .catch((error)=> {
         console.log('Request failed in my HelperValid Home request', error)
     });
-    this.props.navigation.navigate("myhelp")
+    this.props.navigation.navigate("helper")
   }
 
 
 render(){
-  
   return(
       
     <ScrollView>
@@ -69,29 +68,15 @@ render(){
         flexDirection: 'row',
         marginTop: 20,
       }}>
-    <Image source={require("../../assets/images/shop.png")} 
+    <Image source={this.props.navigation.getParam("img")} 
       style={{ marginLeft: 60, marginRight: 60, textAlign: 'center', backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted' }}/>
     </View>
-
-    
-    <View style={{
-        flex: 1,
-        flexDirection: 'row',
-        marginTop: 10,
-        textAlign: 'center', 
-        justifyContent:'center',
-        alignItems:'center'
-      }}>
-    <Text style={{fontWeight: "bold", textAlign:'center', fontSize: 15, alignItems:'center', justifyContent:'center'}}>{this.props.navigation.getParam('type')}</Text>
-    </View>
-
+    <View style={{alignItems:'center', marginTop: 4}}><Text>{this.props.navigation.getParam("category")}</Text></View>
 
     <View style={{
         flex: 1,
         flexDirection: 'row',
         marginTop: 30, 
-        
-        
       }}>
 
       <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Détaillez votre demande (facultative):</Text>

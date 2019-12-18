@@ -20,8 +20,8 @@ class Signup extends React.Component {
    }
    
    handleSubmitSignUp(){
-
-      fetch(`http://192.168.43.103:3000/sign-up`, {
+      if (this.state.password === this.state.repeatPassword){
+      fetch(`http://10.2.4.23:3000/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `firstName=${this.state.firstName}&lastName=${this.state.lastName}&email=${this.state.email}&password=${this.state.password}&telephone=${this.state.telephone}&address=${this.state.address}`
@@ -37,6 +37,7 @@ class Signup extends React.Component {
       .catch((error)=> {
           console.log('Request failed in my Sign-Up Home request', error)
       });
+   }
    }
    
    render() {
@@ -118,8 +119,8 @@ class Signup extends React.Component {
             
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
-               placeholder = "Confirmer votre Mot de Passe"
-               
+               placeholder = "Confirmez votre mot de passe"
+               secureTextEntry={true}
                autoCapitalize = "none"
                onChangeText = {(text) => {this.setState({repeatPassword: text})}}/>
 

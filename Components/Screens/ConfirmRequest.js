@@ -27,19 +27,17 @@ class ConfirmRequest extends React.Component {
     });
  
 this.setState({ fontLoaded: true,
-              category: this.props.navigation.getParam("type") });
+              category: this.props.navigation.getParam("type"),
+            img: this.props.navigation.getParam("img") });
+            console.log(img)
   }
 
 handleSubmitRequest() {
-  console.log(this.props.navigation.getParam("img"))
-  this.setState({
-    img: this.props.navigation.getParam("img")
-  })
-  console.log(this.state.img)
-  fetch(`http://192.168.43.103:3000/new_request`,{
+  
+  fetch(`http://10.2.4.23:3000/new_request`,{
     method: 'POST',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}`
+    body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}&image=${this.state.img}`
   })
     .then(function(res, err){
       return res.json()
@@ -78,8 +76,8 @@ render(){
         flexDirection: 'row',
         marginTop: 20,
       }}>
-    <Image source={img} 
-      style={{ marginLeft: 60, marginRight: 60,  backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
+    <Image source={this.state.img} 
+      style={{ marginLeft: 60, marginRight: 60, backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
     </View>
 
     

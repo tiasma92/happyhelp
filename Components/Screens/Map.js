@@ -29,7 +29,7 @@ class Map extends React.Component {
     ctx._getLocationAsync();
 ctx.setState({ fontLoaded: true });
 
-fetch(`http://192.168.43.103:3000/request`)
+fetch(`http://10.2.4.23:3000/request`)
 .then(function(res, err){
   return res.json()
 }).then((data)=> {
@@ -65,7 +65,7 @@ fetch(`http://192.168.43.103:3000/request`)
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
-  console.log(this.state.allRequest)
+  console.log(this.state.allRequest) 
   var markerList = [];
   markerallRequest = [...this.state.allRequest];
   markerList = markerallRequest.map((data,i) =>  
@@ -77,15 +77,14 @@ render(){
                 title="Cliquez ici"
                 coordinate={{latitude: data.latitude, longitude: data.longitude}}
               >   
-              <Callout onPress={() => this.props.navigation.navigate("validhelp", {id: data._id})}>
-              <View >
+              <Callout onPress={() => this.props.navigation.navigate("validhelp", {id: data._id, img:data.image, category:data.category})}>
+              <View style={{ alignItems: 'center'}} >
                 <Text>
-              <Image source={require('../../assets/images/tool.png')} resizeMode="cover"
+              <Image source={data.image} resizeMode="cover"
               style={{  width: 100, height: 100, alignItems:'center', borderWidth: 1, borderColor:'grey', borderRadius: 7 }}/>
               </Text>
                 <Text style={{ fontWeight: 'bold', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>{data.category}</Text>
                 <Text style={{ fontWeight: 'normal', fontSize: 13, textAlign:'center', fontFamily:'openSansRegular' }}>{data.description}</Text>
-                <Button title="J'aide" fontSize="30" buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center', height:12}} />
               </View>
             </Callout></Marker>)
 

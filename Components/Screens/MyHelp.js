@@ -30,14 +30,14 @@ class MyHelp extends React.Component {
       return res.json()
     }).then((data)=> {
       console.log('RESULTAT DE Recuperation EN BD Request dans l histo--->', data)
+      var HistoryList = [];
       for (var i =0; i<data.user.helperRequest.length; i++) {
-        var HistoryList = [];
         HistoryList.push(data.user.helperRequest[i])
-      ctx.setState({
-        allRequest: HistoryList,
-      })
     }
-      console.log(ctx.state.allRequest)
+    ctx.setState({
+      allRequest: HistoryList,
+    })
+      console.log("--------Mon tableau allrequest",ctx.state.allRequest)
     })
     .catch((error)=> {
         console.log('Request failed in my histo request', error)
