@@ -29,7 +29,6 @@ class ConfirmRequest extends React.Component {
 this.setState({ fontLoaded: true,
               category: this.props.navigation.getParam("type"),
             img: this.props.navigation.getParam("img") });
-            console.log(img)
   }
 
 handleSubmitRequest() {
@@ -53,10 +52,7 @@ handleSubmitRequest() {
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
-  const { navigation } = this.props;
-  console.log(this.props.navigation.getParam('img'))
-  var img=this.props.navigation.getParam("img");
-  console.log(img)
+  
   return(
       
     <ScrollView>
@@ -117,7 +113,7 @@ render(){
     </View>
        
     <View style={{alignItems:'center', justifyContent:'center', textAlign:'center', marginTop:20}}>
-    <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
+    <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center'}}/>
     </View>
 </View> 
 

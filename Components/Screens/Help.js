@@ -88,7 +88,7 @@ render(){
           // }}}
           >
     <Image source={require('../../assets/images/tool.png')} 
-      style={{ backgroundColor: this.state.backgroundColorTool, width: 100, height: 100, margin: 10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted' }}/>
+      style={{ backgroundColor: this.state.backgroundColorTool, width: 100, height: 100, margin: 10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
     <Text style={{textAlign:'center', fontSize: 12}}>Bricolage</Text>
     </TouchableOpacity>
     
@@ -105,7 +105,7 @@ render(){
           // }}
           >
       <Image source={require('../../assets/images/taptop-windows.png')} 
-        style={{ backgroundColor: this.state.backgroundColorLaptop, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted', borderWidth: 1, width: 100, height: 100, margin: 10, alignItems:'center', justifyContent: 'center'}}/>
+        style={{ backgroundColor: this.state.backgroundColorLaptop, borderColor:'grey', borderRadius: 7, borderWidth: 1, width: 100, height: 100, margin: 10, alignItems:'center', justifyContent: 'center'}}/>
       <Text style={{textAlign:'center', fontSize: 12}}>Aide informatique</Text>
       </TouchableOpacity>
     </View>
@@ -130,7 +130,7 @@ render(){
           // }}
           >
     <Image source={require('../../assets/images/car.png')} 
-      style={{ backgroundColor: this.state.backgroundColorCar, width: 100, height: 100, margin: 10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted' }}/>
+      style={{ backgroundColor: this.state.backgroundColorCar, width: 100, height: 100, margin: 10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
     <Text style={{textAlign:'center', fontSize: 12}}>Accompagnement</Text>
     </TouchableOpacity>
     
@@ -147,7 +147,7 @@ render(){
           // }}
           >
     <Image source={require('../../assets/images/voice.png')} 
-    style={{ backgroundColor: this.state.backgroundColorVoice, width: 100, height: 100, margin: 10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted'}}/>
+    style={{ backgroundColor: this.state.backgroundColorVoice, width: 100, height: 100, margin: 10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
     <Text style={{textAlign:'center', fontSize: 12}}>Visite de courtoisie</Text>
     </TouchableOpacity>
     
@@ -164,14 +164,14 @@ render(){
           // }}
           >
     <Image source={require('../../assets/images/pen.png')} 
-      style={{backgroundColor: this.state.backgroundColorPen, width: 100, height: 100, margin: 10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted' }}/>
+      style={{backgroundColor: this.state.backgroundColorPen, width: 100, height: 100, margin: 10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
      <Text style={{textAlign:'center', fontSize: 12}}>Démarches</Text>
      <Text style={{textAlign:'center', fontSize: 12}}>administratives</Text>
 
     </TouchableOpacity>
     </View>
     <View style={{alignItems:'center', justifyContent:'center', textAlign:'center', marginTop:20}}>
-    <Button title="RETOUR" onPress={() => this.props.navigation.navigate("HomeH")} buttonStyle={{borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
+    <Button title="RETOUR" onPress={() => this.props.navigation.navigate("HomeH")} buttonStyle={{borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center'}}/>
     </View>
 </View> 
 

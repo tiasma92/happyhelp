@@ -73,7 +73,7 @@ render(){
         marginTop: 20,
       }}>
     <Image source={this.props.navigation.getParam("img")} 
-      style={{ marginLeft: 60, marginRight: 60, textAlign: 'center', backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted' }}/>
+      style={{ marginLeft: 60, marginRight: 60, backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted' }}/>
     </View>
     <View style={{alignItems:'center', marginTop: 4}}><Text>{this.props.navigation.getParam("category")}</Text></View>
 
@@ -149,7 +149,7 @@ render(){
 
    
 
-    <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{marginBottom:10,borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
+    <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{marginBottom:10,borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center'}}/>
 
     </View>
 </View> 
