@@ -31,7 +31,7 @@ class HelperValid extends React.Component {
   }
   handleSubmitRequest() {
     console.log(this.props.navigation.getParam("id"))
-    fetch(`http://10.2.4.23:3000/valid_request?id_request=${this.props.navigation.getParam("id")}&id_user=${this.props.userIdfromStore}`)
+    fetch(`http://192.168.43.103:3000/valid_request?id_request=${this.props.navigation.getParam("id")}&id_user=${this.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -44,12 +44,16 @@ class HelperValid extends React.Component {
     .catch((error)=> {
         console.log('Request failed in my HelperValid Home request', error)
     });
-    this.props.navigation.navigate("myhelp")
+    this.props.navigation.navigate("helper")
   }
 
 
 render(){
-  
+  var desc='j ai besoin d aide pour apprendre a coder'
+  var firstName="martine";
+  var lastName="fontaine";
+  var adress="12 rue st denis 75001 PARIS";
+  var tel="0601122334";
   return(
       
     <ScrollView>
@@ -59,7 +63,7 @@ render(){
 
 { this.state.fontLoaded? (
    <View style={{textAlign: 'center', alignContent:'center'}}>
-      <Text style={{fontWeight: 'bold', fontFamily: 'openSansRegular', fontSize: 20, textAlign:'center' }}>RECAPITULATIF DE MA DEMANDE</Text>
+      <Text style={{fontWeight: 'bold', fontFamily: 'openSansRegular', fontSize: 20, textAlign:'center' }}>RECAPITULATIF DE LA DEMANDE</Text>
   
       <View style={{
         textAlign: 'center', 
@@ -73,7 +77,16 @@ render(){
       style={{ marginLeft: 60, marginRight: 60, textAlign: 'center', backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted' }}/>
     </View>
 
-    
+
+    <View style={{
+        textAlign:'center',
+        marginTop: 10, 
+}}>
+
+      <Text style={{fontWeight: "bold", fontSize: 20, textAlign:'center'}}>  Course </Text>
+
+</View>
+
     <View style={{
         flex: 1,
         flexDirection: 'row',
@@ -82,39 +95,70 @@ render(){
         justifyContent:'center',
         alignItems:'center'
       }}>
-    <Text style={{fontWeight: "bold", textAlign:'center', fontSize: 15, alignItems:'center', justifyContent:'center'}}>{this.props.navigation.getParam('type')}</Text>
-    </View>
-
-
-    <View style={{
-        flex: 1,
-        flexDirection: 'row',
-        marginTop: 30, 
-        
-        
-      }}>
-
-      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Détaillez votre demande (facultative):</Text>
+    <Text style={{fontWeight: "bold", textAlign:'center', fontSize: 15, alignItems:'center', justifyContent:'center'}}>Information concernant la demande d'aide</Text>
     </View>
 
     <View style={{
         flex: 1,
         flexDirection: 'row',
-        marginTop: 10
+        marginTop: 10, 
+}}>
+
+      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Description:  {desc} </Text>
+
+</View>
+    
+
+
+<View style={{
+        flex: 1,
+        flexDirection: 'row',
+        marginTop: 10, 
+}}>
+
+      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Nom:  {lastName} </Text>
+
+</View>
+
+<View style={{
+        flex: 1,
+        flexDirection: 'row',
+        marginTop: 10, 
+     }}>
+
+      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Prenom:  {firstName}</Text>
+
+
+</View>
+
+<View style={{
+        flex: 1,
+        flexDirection: 'row',
+        marginTop: 10, 
+        
+        
       }}>
-    <TextInput
-      style={{ height: 120, borderColor: 'gray', borderWidth: 1, width:"90%", marginLeft: 10 }}
-      onChange={(e) => this.setState({desc: e.target.value})} 
-      value={this.state.desc}
-       placeholder="Détails de votre demande"
-    />
+      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Adresse:  {adress}</Text>
+</View>
+
+<View style={{
+        flex: 1,
+        flexDirection: 'row',
+        marginTop: 10, 
+        
+        
+      }}>
+<Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Télephone:  {tel}</Text>
     </View>
+
+    
+    
        
     <View style={{alignItems:'center', justifyContent:'center', textAlign:'center', marginTop:20}}>
 
    
 
-    <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{ backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
+    <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{marginBottom:10,borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', textAlign:'center', justifyContent: 'center'}}/>
 
     </View>
 </View> 

@@ -42,8 +42,8 @@ render(){
 
         <View  style={{ marginTop: 50, alignItems: 'center'}}> 
             
-            <Button title="DEMANDER DE L'AIDE" onPress={()=>this.props.navigation.navigate('help')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
-            <Button title="MES DEMANDES D'AIDE" onPress={()=>this.props.navigation.navigate('historyhelp')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+            <Button title="J'AI BESOIN D'AIDE" onPress={()=>this.props.navigation.navigate('help')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+            <Button title="MON HISTORIQUE" onPress={()=>this.props.navigation.navigate('historyhelp')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
             <Button title="  MON PROFIL  " onPress={()=>this.props.navigation.navigate('profil')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
             
         </View>

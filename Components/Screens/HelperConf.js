@@ -67,7 +67,7 @@ render(){
 
     <TouchableOpacity
            style = {styles.submitButton}
-           onPress={()=>this.props.navigation.navigate('Home')
+           onPress={()=>this.props.navigation.navigate('HomeA')
            }>
            <Text style = {styles.submitButtonText}> RETOUR AU MENU </Text>
         </TouchableOpacity>

@@ -25,7 +25,7 @@ class MyHelp extends React.Component {
 
     ctx.setState({ fontLoaded: true });
 
-    fetch(`http://10.2.4.23:3000/myhelp?id=${this.props.userIdfromStore}`)
+    fetch(`http://192.168.43.103:3000/myhelp?id=${this.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -127,7 +127,7 @@ render(){
 
 
   <View style={{marginLeft:100, marginRight:100}}>
-    <Button title="RETOUR" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} 
+    <Button title="RETOUR" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} onPress= {() => this.props.navigation.navigate("HomeA")}
     /> 
     </View> 
 </View>
