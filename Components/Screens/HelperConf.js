@@ -60,7 +60,7 @@ render(){
         textAlign:'center',
         alignItems: 'center',
         justifyContent: 'center'}}>
-  Merci {Name} pour ton aide. Martine va te contacter
+  Merci {Name} pour ton aide. {this.props.navigation.getParam("name")} va te contacter
     </Text>
     </View>
 

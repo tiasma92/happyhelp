@@ -67,14 +67,14 @@ render(){
    
     <View>
     <Input style={{fontSize: 12, height: 40, borderColor: 'gray', borderWidth: 4}} placeholder="Votre adresse mail" marginTop= '10%'
-    errorStyle={{ color: 'red' }}
-    errorMessage="Votre mail n'est pas valide"
+    // errorStyle={{ color: 'red' }}
+    // errorMessage="Votre mail n'est pas valide"
     onChangeText = {(text) => {this.setState({email: text})}}
     />
 
     <Input style={{fontSize: 12, height: 40, borderColor: 'gray', borderWidth: 4, alignItems: 'center', justifyContent: 'center'}} placeholder="Votre mot de passe"
-    errorStyle={{ color: 'red' }}
-    errorMessage="Votre mot de passe n'est pas valide"
+    // errorStyle={{ color: 'red' }}
+    // errorMessage="Votre mot de passe n'est pas valide"
     secureTextEntry={true}
     onChangeText = {(text) => {this.setState({password: text})}}
     />

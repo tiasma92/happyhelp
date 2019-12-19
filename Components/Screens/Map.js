@@ -1,5 +1,3 @@
-
-     
 import React from 'react';
 import { Text, View, Image, StyleSheet, Dimensions, ScrollView} from 'react-native';
 import MapView, {Marker, Callout} from 'react-native-maps'; 
@@ -17,6 +15,7 @@ class Map extends React.Component {
       currentLatitude:0,
       currentLongitude:0,
       allRequest: [],
+      imgshop: "",
     }
   }
 
@@ -66,25 +65,31 @@ render(){
   console.log(this.state.allRequest) 
   var markerList = [];
   markerallRequest = [...this.state.allRequest];
-  markerList = markerallRequest.map((data,i) =>
-  <Marker
-                key={i}
-                draggable 
-                opacity={0.5}
-                pinColor="blue"
-                title="Cliquez ici"
-                coordinate={{latitude: data.latitude, longitude: data.longitude}}
-              >   
-              <Callout onPress={() => this.props.navigation.navigate("validhelp", {id: data._id, img:data.image, category:data.category, description: data.description})}>
-              <View style={{ alignItems: 'center'}} >
-                <Text>
-              <Image source={data.image} resizeMode="cover"
-              style={{  width: 100, height: 100, alignItems:'center', borderWidth: 1, borderColor:'grey', borderRadius: 7 }}/>
-              </Text>
-                <Text style={{ fontWeight: 'bold', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>{data.category}</Text>
-                <Text style={{ fontWeight: 'normal', fontSize: 13, textAlign:'center', fontFamily:'openSansRegular' }}>{data.description}</Text>
-              </View>
-            </Callout></Marker>)
+  
+  for(let i=0; i< markerallRequest.length; i++) {
+  //markerallRequest.map((data,i) =>
+  let data = markerallRequest[i];
+  if(!data.statut) {
+    markerList.push(<Marker
+                  key={i}
+                  draggable 
+                  opacity={0.5}
+                  pinColor="blue"
+                  title="Cliquez ici"
+                  coordinate={{latitude: data.latitude, longitude: data.longitude}}
+                >   
+                <Callout onPress={() => this.props.navigation.navigate("validhelp", {id: data._id, img:data.image, category:data.category, description: data.description})}>
+                <View style={{ alignItems: 'center'}} >
+                  <Text>
+                <Image source={data.image} resizeMode="cover"
+                style={{  width: 100, height: 100, alignItems:'center', borderWidth: 1, borderColor:'grey', borderRadius: 7 }}/>
+                </Text>
+                  <Text style={{ fontWeight: 'bold', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>{data.category}</Text>
+                  <Text style={{ fontWeight: 'normal', fontSize: 13, textAlign:'center', fontFamily:'openSansRegular' }}>{data.description}</Text>
+                </View>
+              </Callout></Marker>
+      );
+    }}
 
         
   return(
