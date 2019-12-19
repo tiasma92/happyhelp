@@ -56,12 +56,12 @@ render(){
 
 
 
-<AirbnbRating
+{/* <AirbnbRating
   count={5}
   reviews={["Mauvais", "Assez bien","Bien", "Tres bien", "Excellent"]}
   defaultRating={5}
   size={20}
-/>
+/> */}
 
 
     <View style={{
@@ -89,7 +89,7 @@ render(){
     />
     </View>
     <View style={{marginLeft:100, marginRight:100, marginTop: 10}}>
-        <Button title="VALIDER" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} onPress = {
+        <Button title="Terminer" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} onPress = {
          () => console.log("clic")}
         /> 
         </View> 

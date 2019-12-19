@@ -106,7 +106,7 @@ render(){
   subtitle={data.description}
   bottomDivider
   style={{width:400, marginLeft: 10, marginRight:10}}
-  onPress={() => console.log("commentaire")}
+  onPress={() => this.props.navigation.navigate("comment")}
   badge={{value:value , status:color}}
   chevron={{ color: 'black', height:20 }}
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View, Image, AppRegistry } from 'react-native';
 import { Button, Input } from 'react-native-elements';
-import { LinearGradient } from 'expo-linear-gradient';
 import * as Font from 'expo-font';
 import {connect} from 'react-redux'; 
 
