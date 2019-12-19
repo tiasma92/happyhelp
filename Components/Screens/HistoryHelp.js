@@ -91,11 +91,14 @@ render(){
   console.log("-------------------",HistoryallRequest)
   for (var i=0; i< HistoryallRequest.length; i++){
     var data = HistoryallRequest[i];
-    if (!data.statut){
+    if (data.statut === 'En attente'){
       value="En attente"
-      color = "warning"
-    } else if (data.statut){
+      color = "error"
+    } else if (data.statut === "En cours"){
       value= "En cours"
+      color = "warning"
+    } else if (data.statut === "Terminé"){
+      value= "Terminé"
       color = "success"
     }
       HistoryList.push(<ListItem
@@ -106,7 +109,7 @@ render(){
   subtitle={data.description}
   bottomDivider
   style={{width:400, marginLeft: 10, marginRight:10}}
-  onPress={() => this.props.navigation.navigate("comment")}
+  onPress={() => this.props.navigation.navigate("comment", {id:data._id})}
   badge={{value:value , status:color}}
   chevron={{ color: 'black', height:20 }}
 

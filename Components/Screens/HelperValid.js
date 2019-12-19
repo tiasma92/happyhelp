@@ -64,7 +64,27 @@ class HelperValid extends React.Component {
 
 
 render(){
-  
+  var img;
+  imgShop = require("../../assets/images/shop.png")
+  imgCar = require("../../assets/images/car.png")
+  imgPen = require("../../assets/images/pen.png")
+  imgTool = require("../../assets/images/tool.png")
+  imgVoice = require("../../assets/images/voice.png")
+  imgOrdi = require("../../assets/images/taptop-windows.png")
+  //markerallRequest.map((data,i) =>
+  if (this.props.navigation.getParam("category") === "Courses"){
+    img = imgShop;
+  } else if (this.props.navigation.getParam("category") === "Bricolage"){
+    img = imgTool;
+  } else if (this.props.navigation.getParam("category") === "Aide informatique"){
+    img = imgOrdi;
+  } else if (this.props.navigation.getParam("category") === "Accompagnement"){
+    img = imgCar;
+  } else if (this.props.navigation.getParam("category") === "Visite de courtoisie"){
+    img = imgVoice;
+  } else if (this.props.navigation.getParam("category") === "Démarches administratives"){
+    img = imgPen;
+  }
   return(
       
     <ScrollView>
@@ -84,7 +104,7 @@ render(){
         flexDirection: 'row',
         marginTop: 20,
       }}>
-    <Image source={this.props.navigation.getParam("img")} 
+    <Image source={img} 
       style={{ marginLeft: 60, marginRight: 60, backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
     </View>
     <View style={{alignItems:'center', marginTop: 4}}><Text>{this.props.navigation.getParam("category")}</Text></View>

@@ -84,10 +84,10 @@ render(){
     img = imgCar;
   } else if (data.category === "Visite de courtoisie"){
     img = imgVoice;
-  } else if (data.category === "Démarches"){
+  } else if (data.category === "Démarches administratives"){
     img = imgPen;
   }
-  if(!data.statut) {
+  if(data.statut === "En attente") {
     markerList.push(<Marker
                   key={i}
                   draggable 
@@ -96,7 +96,7 @@ render(){
                   title="Cliquez ici"
                   coordinate={{latitude: data.latitude, longitude: data.longitude}}
                 >   
-                <Callout onPress={() => this.props.navigation.navigate("validhelp", {id: data._id, img:img, category:data.category, description: data.description})}>
+                <Callout onPress={() => this.props.navigation.navigate("validhelp", {id: data._id,img: img, category:data.category, description: data.description})}>
                 <View style={{ alignItems: 'center'}} >
                   <Text>
                 <Image source={img} resizeMode="cover"
@@ -134,7 +134,7 @@ render(){
   }}>
 
   <View style={styles.container}>
-  <Button title="RETOUR" onPress={() => this.props.navigation.navigate('Home')} buttonStyle={{borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center'}}/>
+  <Button title="RETOUR" onPress={() => this.props.navigation.navigate('Home')} buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 15}}/>
 
 
     <MapView style={styles.mapStyle}

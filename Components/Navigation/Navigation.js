@@ -15,7 +15,7 @@ import ConfirmRequest from '../Screens/ConfirmRequest';
 import HistoryHelp from '../Screens/HistoryHelp';
 import MyHelp from '../Screens/MyHelp';
 import Comments from '../Screens/Comments';
-import Acceuil from '../Screens/Acceuil';
+import Accueil from '../Screens/Accueil';
 import DemandeConf from '../Screens/DemandeConf';
 import HomeHelper from '../Screens/HomeHelper';
 import HomeHelp from '../Screens/HomeHelp';
@@ -36,7 +36,7 @@ const AppNavigator = createStackNavigator(
       historyhelp: HistoryHelp,
       comment: Comments,
       myhelp: MyHelp,
-      acceuil:Acceuil,
+      accueil:Accueil,
       confirmD:DemandeConf,
       HomeH:HomeHelp,
       HomeA:HomeHelper,
@@ -44,7 +44,7 @@ const AppNavigator = createStackNavigator(
       
     },
     {
-      initialRouteName: 'acceuil',
+      initialRouteName: 'accueil',
     }
   );
 

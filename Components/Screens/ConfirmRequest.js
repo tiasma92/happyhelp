@@ -36,7 +36,7 @@ handleSubmitRequest() {
   fetch(`http://10.2.4.23:3000/new_request`,{
     method: 'POST',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}&image=${this.state.img}`
+    body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}`
   })
     .then(function(res, err){
       return res.json()
@@ -113,7 +113,7 @@ render(){
     </View>
        
     <View style={{alignItems:'center', justifyContent:'center', textAlign:'center', marginTop:20}}>
-    <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center'}}/>
+    <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
     </View>
 </View> 
 
