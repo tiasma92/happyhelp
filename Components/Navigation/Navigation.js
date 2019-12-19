@@ -44,7 +44,7 @@ const AppNavigator = createStackNavigator(
       
     },
     {
-      initialRouteName: 'acceuil',
+      initialRouteName: 'map',
     }
   );
 

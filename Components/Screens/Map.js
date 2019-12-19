@@ -29,7 +29,7 @@ class Map extends React.Component {
     ctx._getLocationAsync();
 ctx.setState({ fontLoaded: true });
 
-fetch(`http://10.2.4.23:3000/request`)
+fetch(`http://192.168.43.103:3000/request`)
 .then(function(res, err){
   return res.json()
 }).then((data)=> {
@@ -111,7 +111,7 @@ render(){
   }}>
 
   <View style={styles.container}>
-  <Button title="RETOUR" onPress={() => this.props.navigation.navigate('Home')} buttonStyle={{borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center'}}/>
+  <Button title="RETOUR" onPress={() => this.props.navigation.navigate('Home')} buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 15}}/>
 
 
     <MapView style={styles.mapStyle}

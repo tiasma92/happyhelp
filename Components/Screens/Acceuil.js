@@ -22,7 +22,6 @@ export default class Acceuil extends React.Component{
         await Font.loadAsync({
           'pacifico': require('../../assets/fonts/Pacifico-Regular.ttf'),
         });
-     
     this.setState({ fontLoaded: true });
       }
    

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, AppRegistry } from 'react-native';
+import { Text, View, Image, ScrollView } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Font from 'expo-font';
@@ -30,7 +30,7 @@ this.setState({ fontLoaded: true });
 
   handleSubmitSignIn() {
 
-    fetch(`http://10.2.4.23:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
+    fetch(`http://192.168.43.103:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -52,7 +52,8 @@ render(){
   console.log('loaded :',this.state.fontLoaded)
   return(
     
-      <View  style={{ alignItems:'center', textAlign:'center'}}>
+      <ScrollView>
+         <View style={{ alignItems:'center', textAlign:'center'}}>
 <Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 200, height: 200, marginTop: 10, alignItems:'center', justifyContent: 'center' }}/>
 
    { this.state.fontLoaded? (
@@ -96,6 +97,7 @@ render(){
 
     ) : null}
     </View>
+    </ScrollView>
  
   )
 }}
