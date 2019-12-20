@@ -13,6 +13,7 @@ class MyHelp extends React.Component {
     this.state = {
       fontLoaded: false,
       allRequest: [],
+      name: "",
     }
   }
 
@@ -25,7 +26,7 @@ class MyHelp extends React.Component {
 
     ctx.setState({ fontLoaded: true });
 
-    fetch(`http://192.168.43.103:3000/myhelp?id=${this.props.userIdfromStore}`)
+    fetch(`http://10.2.4.23:3000/myhelp?id=${this.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -36,6 +37,7 @@ class MyHelp extends React.Component {
     }
     ctx.setState({
       allRequest: HistoryList,
+      name: data.user.firstName
     })
       console.log("--------Mon tableau allrequest",ctx.state.allRequest)
     })
@@ -101,7 +103,7 @@ render(){
       value= "Terminé"
       color = "success"
     }
-    if(this.state.firstName === "Mattias"){
+    if(this.state.name === "Mattias"){
       img = imgAbde;
     } else {
       img = imgAvatar;
@@ -131,7 +133,7 @@ render(){
 
 { this.state.fontLoaded? (
    <View style={{textAlign: 'center', alignContent:'center'}}>
-    <Text style={{fontWeight: 'bold', fontFamily: 'openSansRegular', fontSize: 20, textAlign:'center' }}>MES AIDES</Text>
+    <Text style={{fontWeight: 'bold', fontSize: 20, textAlign:'center' }}>MES AIDES</Text>
 
   <View style={{
     flex: 1,

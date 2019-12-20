@@ -33,7 +33,7 @@ this.setState({ fontLoaded: true,
 
 handleSubmitRequest() {
   
-  fetch(`http://192.168.43.103:3000/new_request`,{
+  fetch(`http://10.2.4.23:3000/new_request`,{
     method: 'POST',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}`
@@ -62,7 +62,7 @@ render(){
 
 { this.state.fontLoaded? (
    <View style={{textAlign: 'center', alignContent:'center'}}>
-      <Text style={{fontWeight: 'bold', fontFamily: 'openSansRegular', fontSize: 20, textAlign:'center' }}>RECAPITULATIF DE MA DEMANDE</Text>
+      <Text style={{fontWeight: 'bold', fontSize: 20, textAlign:'center' }}>RECAPITULATIF DE MA DEMANDE</Text>
   
       <View style={{
         textAlign: 'center', 
@@ -85,7 +85,7 @@ render(){
         justifyContent:'center',
         alignItems:'center'
       }}>
-    <Text style={{fontWeight: "bold", textAlign:'center', fontSize: 15, alignItems:'center', justifyContent:'center'}}>{this.props.navigation.getParam('type')}</Text>
+    <Text style={{fontWeight: "bold", textAlign:'center', fontSize: 15, alignItems:'center', justifyContent:'center', fontFamily:'openSansRegular'}}>{this.props.navigation.getParam('type')}</Text>
     </View>
 
 

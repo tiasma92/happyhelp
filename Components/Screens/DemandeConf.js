@@ -36,7 +36,7 @@ export default class DemandeConf extends React.Component {
         textAlign:'center',
         alignItems: 'center',
         justifyContent: 'center'}}>
-  Vous serez contactez par un de nos Happy Helper disponible
+  Vous serez contacté par un de nos Happy Helper disponible
     </Text>
     </View>
 

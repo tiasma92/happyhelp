@@ -47,7 +47,7 @@ render(){
 
 { this.state.fontLoaded? (
    <View style={{textAlign: 'center', alignContent:'center'}}>
-    <Text style={{fontWeight: 'bold', fontFamily: 'openSansRegular', fontSize: 20, textAlign:'center' }}>MA DEMANDE D'AIDE</Text>
+    <Text style={{fontWeight: 'bold', fontSize: 20, textAlign:'center' }}>MA DEMANDE D'AIDE</Text>
 
     <Text style={{ fontWeight: 'normal', fontSize: 15, textAlign:'center' }}>Appuyer sur l'image qui correspond</Text>
     <Text style={{ fontWeight: 'normal', fontSize: 15, textAlign:'center' }}>à votre demande d'aide</Text>

@@ -29,7 +29,7 @@ this.setState({ fontLoaded: true });
 
   handleSubmitSignIn() {
 
-    fetch(`http://192.168.43.103:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
+    fetch(`http://10.2.4.23:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -79,9 +79,9 @@ render(){
     />
     </View>
 <View>
-    <Button title="Se connecter" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', marginBottom:20, width:250}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn() } 
+    <Button title="Se connecter" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13',  width:250}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn() } 
     />
-    <Button  title="Se connecter via Facebook" buttonStyle={{borderRadius: 13,backgroundColor: '#375D81', marginBottom:20, width:250}} style={{ height: 50, marginTop: '10%' }} style={{fontFamily: 'pacifico', height: 50 }} onPress = {() => this.handleSubmitSignIn() } 
+    <Button  title="Se connecter via Facebook" buttonStyle={{borderRadius: 13,backgroundColor: '#375D81', marginBottom:20, width:250}} style={{ height: 50, marginTop: '5%' }} onPress = {() => this.handleSubmitSignIn() } 
     />
 
 

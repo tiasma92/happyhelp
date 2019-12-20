@@ -27,7 +27,7 @@ class Map extends React.Component {
     ctx._getLocationAsync();
 ctx.setState({ fontLoaded: true });
 
-fetch(`http://192.168.43.103:3000/request`)
+fetch(`http://10.2.4.23:3000/request`)
 .then(function(res, err){
   return res.json()
 }).then((data)=> {
@@ -122,7 +122,7 @@ render(){
 
 { this.state.fontLoaded? (
    <View style={{textAlign: 'center', alignContent:'center'}}>
-    <Text style={{fontWeight: 'bold', fontSize: 18, textAlign:'center', fontFamily:'openSansRegular' }}>ILS ONT BESOIN DE VOUS</Text>
+    <Text style={{fontWeight: 'bold', fontSize: 18, textAlign:'center'}}>ILS ONT BESOIN DE VOUS</Text>
 
 <Text style={{ fontWeight: 'normal', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>Cliquez sur le picto pour voir la demande</Text>
   
