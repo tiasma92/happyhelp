@@ -36,7 +36,7 @@ handleSubmitRequest() {
   fetch(`http://192.168.43.103:3000/new_request`,{
     method: 'POST',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}&image=${this.state.img}`
+    body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}`
   })
     .then(function(res, err){
       return res.json()

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View, Image, ScrollView } from 'react-native';
 import { Button, Input } from 'react-native-elements';
-import { LinearGradient } from 'expo-linear-gradient';
 import * as Font from 'expo-font';
 import {connect} from 'react-redux'; 
 
@@ -58,31 +57,31 @@ render(){
 
    { this.state.fontLoaded? (
    <View>
-    <Text style={{ fontFamily: 'pacifico', fontSize: 18, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}}>
-      L'entraide 100% gratuite pour
+    <Text style={{ fontWeight: 'bold', fontSize: 20, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}}>
+    Entrez vos identifiants
       </Text>
-      <Text style={{ fontFamily: 'pacifico', fontSize: 18, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}}>
-     les personnes âgées et handicapées
-      </Text>
+      
      
    
-    <View>
-    <Input style={{fontSize: 12, height: 40, borderColor: 'gray', borderWidth: 4}} placeholder="Votre adresse mail" marginTop= '10%'
-    errorStyle={{ color: 'red' }}
-    errorMessage="Votre mail n'est pas valide"
+    <View style={{marginBottom:15}}>
+    <Input style={{fontSize: 12, height: 60, borderColor: 'gray', borderWidth: 4}} placeholder="Votre adresse mail" marginTop= '10%'
+    // errorStyle={{ color: 'red' }}
+    // errorMessage="Votre mail n'est pas valide"
     onChangeText = {(text) => {this.setState({email: text})}}
     />
 
-    <Input style={{fontSize: 12, height: 40, borderColor: 'gray', borderWidth: 4, alignItems: 'center', justifyContent: 'center'}} placeholder="Votre mot de passe"
-    errorStyle={{ color: 'red' }}
-    errorMessage="Votre mot de passe n'est pas valide"
+
+    <Input style={{fontSize: 12, height: 60, borderColor: 'gray', borderWidth: 4, alignItems: 'center', justifyContent: 'center'}} placeholder="Votre mot de passe"
+    // errorStyle={{ color: 'red' }}
+    // errorMessage="Votre mot de passe n'est pas valide"
     secureTextEntry={true}
     onChangeText = {(text) => {this.setState({password: text})}}
     />
-
-    <Button title="Se connecter" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', marginBottom:20}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn() } 
+    </View>
+<View>
+    <Button title="Se connecter" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13', marginBottom:20, width:250}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn() } 
     />
-    <Button  title="Se connecter via Facebook" buttonStyle={{borderRadius: 13,backgroundColor: '#375D81', marginBottom:10}} style={{fontFamily: 'pacifico', height: 50 }} onPress = {() => this.handleSubmitSignIn() } 
+    <Button  title="Se connecter via Facebook" buttonStyle={{borderRadius: 13,backgroundColor: '#375D81', marginBottom:20, width:250}} style={{ height: 50, marginTop: '10%' }} style={{fontFamily: 'pacifico', height: 50 }} onPress = {() => this.handleSubmitSignIn() } 
     />
 
 

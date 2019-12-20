@@ -1,5 +1,3 @@
-
-     
 import React from 'react';
 import { Text, View, Image, StyleSheet, Dimensions, ScrollView} from 'react-native';
 import MapView, {Marker, Callout} from 'react-native-maps'; 
@@ -66,25 +64,50 @@ render(){
   console.log(this.state.allRequest) 
   var markerList = [];
   markerallRequest = [...this.state.allRequest];
-  markerList = markerallRequest.map((data,i) =>
-  <Marker
-                key={i}
-                draggable 
-                opacity={0.5}
-                pinColor="blue"
-                title="Cliquez ici"
-                coordinate={{latitude: data.latitude, longitude: data.longitude}}
-              >   
-              <Callout onPress={() => this.props.navigation.navigate("validhelp", {id: data._id, img:data.image, category:data.category, description: data.description})}>
-              <View style={{ alignItems: 'center'}} >
-                <Text>
-              <Image source={data.image} resizeMode="cover"
-              style={{  width: 100, height: 100, alignItems:'center', borderWidth: 1, borderColor:'grey', borderRadius: 7 }}/>
-              </Text>
-                <Text style={{ fontWeight: 'bold', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>{data.category}</Text>
-                <Text style={{ fontWeight: 'normal', fontSize: 13, textAlign:'center', fontFamily:'openSansRegular' }}>{data.description}</Text>
-              </View>
-            </Callout></Marker>)
+  var img;
+  imgShop = require("../../assets/images/shop.png")
+  imgCar = require("../../assets/images/car.png")
+  imgPen = require("../../assets/images/pen.png")
+  imgTool = require("../../assets/images/tool.png")
+  imgVoice = require("../../assets/images/voice.png")
+  imgOrdi = require("../../assets/images/taptop-windows.png")
+  for(let i=0; i< markerallRequest.length; i++) {
+  //markerallRequest.map((data,i) =>
+  let data = markerallRequest[i];
+  if (data.category === "Courses"){
+    img = imgShop;
+  } else if (data.category === "Bricolage"){
+    img = imgTool;
+  } else if (data.category === "Aide informatique"){
+    img = imgOrdi;
+  } else if (data.category === "Accompagnement"){
+    img = imgCar;
+  } else if (data.category === "Visite de courtoisie"){
+    img = imgVoice;
+  } else if (data.category === "Démarches administratives"){
+    img = imgPen;
+  }
+  if(data.statut === "En attente") {
+    markerList.push(<Marker
+                  key={i}
+                  draggable 
+                  opacity={0.5}
+                  pinColor="blue"
+                  title="Cliquez ici"
+                  coordinate={{latitude: data.latitude, longitude: data.longitude}}
+                >   
+                <Callout onPress={() => this.props.navigation.navigate("validhelp", {id: data._id,img: img, category:data.category, description: data.description})}>
+                <View style={{ alignItems: 'center'}} >
+                  <Text>
+                <Image source={img} resizeMode="cover"
+                style={{  width: 100, height: 100, alignItems:'center', borderWidth: 1, borderColor:'grey', borderRadius: 7 }}/>
+                </Text>
+                  <Text style={{ fontWeight: 'bold', fontSize: 15, textAlign:'center', fontFamily:'openSansRegular' }}>{data.category}</Text>
+                  <Text style={{ fontWeight: 'normal', fontSize: 13, textAlign:'center', fontFamily:'openSansRegular' }}>{data.description}</Text>
+                </View>
+              </Callout></Marker>
+      );
+    }}
 
         
   return(

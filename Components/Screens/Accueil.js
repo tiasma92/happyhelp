@@ -23,6 +23,8 @@ export default class Acceuil extends React.Component{
           'pacifico': require('../../assets/fonts/Pacifico-Regular.ttf'),
         });
     this.setState({ fontLoaded: true });
+
+
       }
    
 render(){
@@ -42,10 +44,10 @@ render(){
 
       { this.state.fontLoaded? (
             <View>
-        <Text style={{fontFamily: 'pacifico',  fontSize: 18, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}}>
+        <Text style={{fontWeight: 'bold',  fontSize: 18, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}}>
       L'entraide 100% gratuite pour
       </Text>
-      <Text style={{fontFamily: 'pacifico',  fontSize: 18, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center', marginBottom:30}}>
+      <Text style={{fontWeight: 'bold',  fontSize: 18, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center', marginBottom:30}}>
      les personnes âgées
       </Text>
 

@@ -18,6 +18,7 @@ class HelperValid extends React.Component {
       position: '',
       img: "",
       allRequest: [],
+      user: {},
     }
   }
 
@@ -27,8 +28,22 @@ class HelperValid extends React.Component {
       'openSansRegular': require('../../assets/fonts/OpenSans-Regular.ttf')
     });
     this.setState({ fontLoaded: true})
-    
+    fetch(`http://192.168.43.103:3000/find_request?id_request=${this.props.navigation.getParam("id")}`)
+    .then(function(res, err){
+      return res.json()
+    }).then((data)=> {
+      console.log('RESULTAT DE Recuperation EN BD Request sur la map--->', data)
+      this.setState({
+        user: data.request.idAsker,
+      })
+      console.log("-------------------"+this.state.user)
+    })
+    .catch((error)=> {
+        console.log('Request failed in my HelperValid Home request', error)
+    });
   }
+
+
   handleSubmitRequest() {
     console.log(this.props.navigation.getParam("id"))
     fetch(`http://192.168.43.103:3000/valid_request?id_request=${this.props.navigation.getParam("id")}&id_user=${this.props.userIdfromStore}`)
@@ -44,15 +59,32 @@ class HelperValid extends React.Component {
     .catch((error)=> {
         console.log('Request failed in my HelperValid Home request', error)
     });
-    this.props.navigation.navigate("helper")
+    this.props.navigation.navigate("helper", {name: this.state.user.firstName})
   }
 
 
 render(){
-  var lastName = "Dupont";
-  var firstName = "Martine";
-  var adress = "151 rue saint Denis";
-  var tel = "0666666666"
+  var img;
+  imgShop = require("../../assets/images/shop.png")
+  imgCar = require("../../assets/images/car.png")
+  imgPen = require("../../assets/images/pen.png")
+  imgTool = require("../../assets/images/tool.png")
+  imgVoice = require("../../assets/images/voice.png")
+  imgOrdi = require("../../assets/images/taptop-windows.png")
+  //markerallRequest.map((data,i) =>
+  if (this.props.navigation.getParam("category") === "Courses"){
+    img = imgShop;
+  } else if (this.props.navigation.getParam("category") === "Bricolage"){
+    img = imgTool;
+  } else if (this.props.navigation.getParam("category") === "Aide informatique"){
+    img = imgOrdi;
+  } else if (this.props.navigation.getParam("category") === "Accompagnement"){
+    img = imgCar;
+  } else if (this.props.navigation.getParam("category") === "Visite de courtoisie"){
+    img = imgVoice;
+  } else if (this.props.navigation.getParam("category") === "Démarches administratives"){
+    img = imgPen;
+  }
   return(
       
     <ScrollView>
@@ -72,8 +104,8 @@ render(){
         flexDirection: 'row',
         marginTop: 20,
       }}>
-    <Image source={this.props.navigation.getParam("img")} 
-      style={{ marginLeft: 60, marginRight: 60, backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7, borderStyle: 'dotted' }}/>
+    <Image source={img} 
+      style={{ marginLeft: 60, marginRight: 60, backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
     </View>
     <View style={{alignItems:'center', marginTop: 4}}><Text>{this.props.navigation.getParam("category")}</Text></View>
 
@@ -95,7 +127,7 @@ render(){
         marginTop: 10, 
 }}>
 
-      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Description:  {this.props.navigation.getParam("description")} </Text>
+      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Description: </Text><Text style={{fontSize: 15}}>{this.props.navigation.getParam("description")}</Text>
 
 </View>
     
@@ -107,7 +139,7 @@ render(){
         marginTop: 10, 
 }}>
 
-      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Nom:  {lastName} </Text>
+      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Nom: </Text><Text style={{fontSize: 15}}>{this.state.user.lastName}</Text>
 
 </View>
 
@@ -117,7 +149,7 @@ render(){
         marginTop: 10, 
      }}>
 
-      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Prenom:  {firstName}</Text>
+      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Prenom: </Text><Text style={{fontSize: 15}}>{this.state.user.firstName}</Text>
 
 
 </View>
@@ -129,7 +161,7 @@ render(){
         
         
       }}>
-      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Adresse:  {adress}</Text>
+      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Adresse: </Text><Text style={{fontSize: 15}}>{this.state.user.address}</Text>
 </View>
 
 <View style={{
@@ -139,7 +171,7 @@ render(){
         
         
       }}>
-<Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Télephone:  {tel}</Text>
+<Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Télephone: </Text><Text style={{fontSize: 15}}>0{this.state.user.phone}</Text>
     </View>
 
     

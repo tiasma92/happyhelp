@@ -23,6 +23,18 @@ export default class Comments extends React.Component {
  
 this.setState({ fontLoaded: true });
   }
+  handleSubmit() {
+    fetch(`http://10.2.4.23:3000/end_request?id_request=${this.props.navigation.getParam("id")}`)
+    .then(function(res, err){
+      return res.json()
+    }).then((data)=> {
+      console.log('RESULTAT DE LERENGISTREMENT EN BD USER submit signin--->', data)      
+    })
+    .catch((error)=> {
+        console.log('Request failed in my Sign-In Home request', error)
+    });
+    this.props.navigation.navigate("HomeH")
+  }
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
@@ -56,12 +68,12 @@ render(){
 
 
 
-<AirbnbRating
+{/* <AirbnbRating
   count={5}
   reviews={["Mauvais", "Assez bien","Bien", "Tres bien", "Excellent"]}
   defaultRating={5}
   size={20}
-/>
+/> */}
 
 
     <View style={{
@@ -89,8 +101,8 @@ render(){
     />
     </View>
     <View style={{marginLeft:100, marginRight:100, marginTop: 10}}>
-        <Button title="VALIDER" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} onPress = {
-         () => console.log("clic")}
+        <Button title="Terminer" buttonStyle={{backgroundColor: '#2C5F13'}} style={{ height: 50, marginTop: '10%' }} onPress = {
+         () => this.handleSubmit()}
         /> 
         </View> 
     </View>

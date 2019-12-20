@@ -84,11 +84,21 @@ render(){
   //     value: 'En cours',
   //     color: 'warning'
   //   }]
-  
+  var value = "";
+  var color= "";
   var HistoryList = [];
   HistoryallRequest = [...this.state.allRequest];
   console.log("-------------------",HistoryallRequest)
-  HistoryList = HistoryallRequest.map((data,i) =>  <ListItem
+  for (var i=0; i< HistoryallRequest.length; i++){
+    var data = HistoryallRequest[i];
+    if (!data.statut){
+      value="En attente"
+      color = "warning"
+    } else if (data.statut){
+      value= "En cours"
+      color = "success"
+    }
+      HistoryList.push(<ListItem
   key={i}
   title={data.category}
   titleStyle={{ fontWeight: 'bold' }}
@@ -97,12 +107,12 @@ render(){
   bottomDivider
   style={{width:400, marginLeft: 10, marginRight:10}}
   onPress={() => console.log("commentaire")}
-  badge={{value:data.value , status:data.color}}
+  badge={{value:value , status:color}}
   chevron={{ color: 'black', height:20 }}
 
-
 />);
-
+  
+}
   return(
 
 
