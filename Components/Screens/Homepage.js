@@ -15,7 +15,7 @@ componentDidMount() {
     var ctx = this;
     console.log('componentDidMount',ctx.props.userIdfromStore)
     
-    fetch(`http://10.2.4.23:3000/profil?id=${ctx.props.userIdfromStore}`)
+    fetch(`http://192.168.43.103:3000/profil?id=${ctx.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {

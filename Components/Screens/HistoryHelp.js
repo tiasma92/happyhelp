@@ -25,7 +25,7 @@ class HistoryHelp extends React.Component {
 
     ctx.setState({ fontLoaded: true });
 
-    fetch(`http://10.2.4.23:3000/myhistory?id=${this.props.userIdfromStore}`)
+    fetch(`http://192.168.43.103:3000/myhistory?id=${this.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {

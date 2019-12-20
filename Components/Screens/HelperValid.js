@@ -28,7 +28,7 @@ class HelperValid extends React.Component {
       'openSansRegular': require('../../assets/fonts/OpenSans-Regular.ttf')
     });
     this.setState({ fontLoaded: true})
-    fetch(`http://10.2.4.23:3000/find_request?id_request=${this.props.navigation.getParam("id")}`)
+    fetch(`http://192.168.43.103:3000/find_request?id_request=${this.props.navigation.getParam("id")}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -46,7 +46,7 @@ class HelperValid extends React.Component {
 
   handleSubmitRequest() {
     console.log(this.props.navigation.getParam("id"))
-    fetch(`http://10.2.4.23:3000/valid_request?id_request=${this.props.navigation.getParam("id")}&id_user=${this.props.userIdfromStore}`)
+    fetch(`http://192.168.43.103:3000/valid_request?id_request=${this.props.navigation.getParam("id")}&id_user=${this.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
