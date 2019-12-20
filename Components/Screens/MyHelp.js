@@ -84,6 +84,9 @@ render(){
   //     value: 'En cours',
   //     color: 'warning'
   //   }]
+  var img;
+  var imgAvatar = require("../../assets/images/avatar.png")
+  var imgAbde = require("../../assets/images/AbdeVieux.png")
   var value = "";
   var color= "";
   var HistoryList = [];
@@ -91,18 +94,23 @@ render(){
   console.log("-------------------",HistoryallRequest)
   for (var i=0; i< HistoryallRequest.length; i++){
     var data = HistoryallRequest[i];
-    if (!data.statut){
-      value="En attente"
+    if (data.statut === "En cours"){
+      value="En cours"
       color = "warning"
-    } else if (data.statut){
-      value= "En cours"
+    } else if (data.statut === "Terminé"){
+      value= "Terminé"
       color = "success"
+    }
+    if(this.state.firstName === "Mattias"){
+      img = imgAbde;
+    } else {
+      img = imgAvatar;
     }
       HistoryList.push(<ListItem
   key={i}
   title={data.category}
   titleStyle={{ fontWeight: 'bold' }}
-  leftAvatar={{source: require('../../assets/images/avatar.png')}}
+  leftAvatar={{source: img}}
   subtitle={data.description}
   bottomDivider
   style={{width:400, marginLeft: 10, marginRight:10}}

@@ -44,12 +44,24 @@ componentDidMount() {
     });
 }
 render(){
+    var imgAbde = require("../../assets/images/AbdeVieux.png")
+    var imgAvatar = require("../../assets/images/avatar.png")
+    var imgMat = require("../../assets/images/Mattias.jpeg")
+    var img;
+    if (this.state.firstName === "Papy Abde"){
+        img = imgAbde;
+    } else if (this.state.firstName === "Mattias"){
+        img = imgMat;
+    } else {
+        img = imgAvatar;
+    }
+
     return(
         <View>
         <View style={{ alignItems: 'center',}}>
             <Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 100, height: 100, marginTop: 30}}/>
             <Text style={{fontWeight: 'bold', fontSize: 20}}>MON PROFIL</Text>
-            <Ionicons name="ios-contact" size={100} style={{marginTop:10}}/>
+            <Image source={img} style={{width: 100, height: 100, borderRadius: 50, marginBottom: 10, marginTop: 10}}/>
             </View>
             <View style={{alignItems: 'flex-start', marginLeft: 30}}>
             <Text style={styles.infoText}>Nom:                      {this.state.lastName}</Text>

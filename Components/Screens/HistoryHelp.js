@@ -12,6 +12,7 @@ class HistoryHelp extends React.Component {
     this.state = {
       fontLoaded: false,
       allRequest: [],
+      name: "",
     }
   }
 
@@ -35,6 +36,7 @@ class HistoryHelp extends React.Component {
     }
     ctx.setState({
       allRequest: HistoryList,
+      name: data.user.firstName
     })
       console.log(ctx.state.allRequest)
     })
@@ -83,7 +85,9 @@ render(){
   //     value: 'En cours',
   //     color: 'warning'
   //   }]
-  
+  var img;
+  var imgAvatar = require("../../assets/images/avatar.png")
+  var imgMat = require("../../assets/images/Mattias.jpeg")
   var value = "";
   var color= "";
   var HistoryList = [];
@@ -101,11 +105,16 @@ render(){
       value= "Terminé"
       color = "success"
     }
+    if(this.state.firstName === "Papy Abde"){
+      img = imgMat;
+    } else {
+      img = imgAvatar;
+    }
       HistoryList.push(<ListItem
   key={i}
   title={data.category}
   titleStyle={{ fontWeight: 'bold' }}
-  leftAvatar={{source: require('../../assets/images/avatar.png')}}
+  leftAvatar={{source: img}}
   subtitle={data.description}
   bottomDivider
   style={{width:400, marginLeft: 10, marginRight:10}}
@@ -127,7 +136,7 @@ render(){
 
 { this.state.fontLoaded? (
    <View style={{textAlign: 'center', alignContent:'center'}}>
-    <Text style={{fontWeight: 'bold', fontFamily: 'openSansRegular', fontSize: 20, textAlign:'center' }}>MES DEMANDES D'AIDE</Text>
+    <Text style={{fontWeight: 'bold', fontSize: 20, textAlign:'center' }}>MES DEMANDES D'AIDE</Text>
 
   <View style={{
     flex: 1,
