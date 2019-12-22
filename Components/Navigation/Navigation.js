@@ -20,6 +20,8 @@ import DemandeConf from '../Screens/DemandeConf';
 import HomeHelper from '../Screens/HomeHelper';
 import HomeHelp from '../Screens/HomeHelp';
 import HelperValid from '../Screens/HelperValid';
+import Contact from "../Screens/Contact";
+
 
 const AppNavigator = createStackNavigator(
     {
@@ -40,15 +42,20 @@ const AppNavigator = createStackNavigator(
       confirmD:DemandeConf,
       HomeH:HomeHelp,
       HomeA:HomeHelper,
-      validhelp: HelperValid
+      validhelp: HelperValid,
+      contact: Contact
       
     },
     {
       initialRouteName: 'accueil',
-    }
-  );
+      defaultNavigationOptions: {
+         headerStyle: {
+          backgroundColor: "#2C5F13",
+         },
+         headerTintColor: '#fff',
+    },
+  })
 
- 
   
   
-   export default Navigation = createAppContainer(AppNavigator)
+export default Navigation = createAppContainer(AppNavigator)

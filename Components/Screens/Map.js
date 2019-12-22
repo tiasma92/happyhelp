@@ -5,6 +5,8 @@ import { Button} from 'react-native-elements';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import * as Font from 'expo-font';
+import ipAdress from "./ip"
+
 
 class Map extends React.Component {
 
@@ -27,7 +29,7 @@ class Map extends React.Component {
     ctx._getLocationAsync();
 ctx.setState({ fontLoaded: true });
 
-fetch(`http://10.2.4.23:3000/request`)
+fetch(`http://${ipAdress}:3000/request`)
 .then(function(res, err){
   return res.json()
 }).then((data)=> {

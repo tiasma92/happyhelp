@@ -7,7 +7,7 @@ import ipAdress from "./ip"
 
 
 
-class HelperValid extends React.Component {
+export default class Contact extends React.Component {
 
   constructor (props) {
     super();
@@ -44,24 +44,6 @@ class HelperValid extends React.Component {
     });
   }
 
-
-  handleSubmitRequest() {
-    console.log(this.props.navigation.getParam("id"))
-    fetch(`http://${ipAdress}:3000/valid_request?id_request=${this.props.navigation.getParam("id")}&id_user=${this.props.userIdfromStore}`)
-    .then(function(res, err){
-      return res.json()
-    }).then((data)=> {
-      console.log('RESULTAT DE Recuperation EN BD Request sur la map--->', data)
-      this.setState({
-        allRequest: data.request,
-      })
-      console.log("-------------------"+this.state.allRequest)
-    })
-    .catch((error)=> {
-        console.log('Request failed in my HelperValid Home request', error)
-    });
-    this.props.navigation.navigate("helper", {name: this.state.user.firstName})
-  }
 
 
 render(){
@@ -182,7 +164,7 @@ render(){
 
    
 
-    <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{marginBottom:10,borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center'}}/>
+    <Button title="Retour" onPress={() => this.props.navigation.navigate("myhelp")} buttonStyle={{marginBottom:10,borderRadius: 13, backgroundColor:"#2C5F13", alignItems:'center', justifyContent: 'center'}}/>
 
     </View>
 </View> 
@@ -194,14 +176,3 @@ render(){
   )
 }}
 
-function mapStateToProps(state) {
-  console.log(state)
-  console.log('je recois de mon reducer lid suivant : ',state.userId)
-
-  return { userIdfromStore: state.userId }
-}
-
-export default connect(
-    mapStateToProps,
-    null
-)(HelperValid);

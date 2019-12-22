@@ -4,7 +4,6 @@ import userId from './Components/Reducer/myReducer';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers}  from 'redux';
 
-
 const store = createStore(combineReducers({userId}));
 
 export default class App extends React.Component {

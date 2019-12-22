@@ -3,6 +3,7 @@ import { Text, View, Image, ScrollView} from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 import * as Font from 'expo-font';
 import {connect} from 'react-redux';
+import ipAdress from "./ip"
 
 
 class MyHelp extends React.Component {
@@ -26,7 +27,7 @@ class MyHelp extends React.Component {
 
     ctx.setState({ fontLoaded: true });
 
-    fetch(`http://10.2.4.23:3000/myhelp?id=${this.props.userIdfromStore}`)
+    fetch(`http://${ipAdress}:3000/myhelp?id=${this.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -91,11 +92,9 @@ render(){
   var imgAbde = require("../../assets/images/AbdeVieux.png")
   var value = "";
   var color= "";
-  var HistoryList = [];
-  HistoryallRequest = [...this.state.allRequest];
+  var HistoryallRequest = [...this.state.allRequest];
   console.log("-------------------",HistoryallRequest)
-  for (var i=0; i< HistoryallRequest.length; i++){
-    var data = HistoryallRequest[i];
+  var HistoryList = HistoryallRequest.map((data, i) => {
     if (data.statut === "En cours"){
       value="En cours"
       color = "warning"
@@ -108,7 +107,7 @@ render(){
     } else {
       img = imgAvatar;
     }
-      HistoryList.push(<ListItem
+     return(<ListItem
   key={i}
   title={data.category}
   titleStyle={{ fontWeight: 'bold' }}
@@ -116,13 +115,13 @@ render(){
   subtitle={data.description}
   bottomDivider
   style={{width:400, marginLeft: 10, marginRight:10}}
-  onPress={() => console.log("commentaire")}
+  onPress={() => this.props.navigation.navigate("contact", {id:data._id, category: data.category})}
   badge={{value:value , status:color}}
   chevron={{ color: 'black', height:20 }}
 
-/>);
-  
-}
+/>); 
+})
+
   return(
 
 

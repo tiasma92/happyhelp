@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Image, ScrollView, TextInput} from 'react-native';
 import { Button, Rating, AirbnbRating } from 'react-native-elements';
 import * as Font from 'expo-font';
+import ipAdress from "./ip"
 
 
 
@@ -24,21 +25,21 @@ export default class Comments extends React.Component {
 this.setState({ fontLoaded: true });
   }
   handleSubmit() {
-    fetch(`http://10.2.4.23:3000/end_request?id_request=${this.props.navigation.getParam("id")}`)
+    fetch(`http://${ipAdress}:3000/end_request?id_request=${this.props.navigation.getParam("id")}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
       console.log('RESULTAT DE LERENGISTREMENT EN BD USER submit signin--->', data)      
     })
     .catch((error)=> {
-        console.log('Request failed in my Sign-In Home request', error)
+        console.log('Request failed in my Comments request', error)
     });
     this.props.navigation.navigate("HomeH")
   }
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
-
+  console.log(this.props.navigation.getParam("id"))
   
 
   return(
@@ -94,10 +95,11 @@ render(){
         marginTop: 20,
       }}>
     <TextInput
-      style={{ justifyContent: 'center', alignContent:'center', height: 120, borderColor: 'gray', borderWidth: 1, width:"100%" }}
-      onChange={(e) => this.setState({desc: e.target.value})} 
-      value={this.state.desc}
-       placeholder="Décrivez votre expérience"
+      style={{ height: 100, borderColor: 'gray', borderWidth: 1, width:"100%"}}
+      onChange={(text) => {this.setState({desc: text})}} 
+      placeholder="Décrivez votre expérience"
+      multiline={true}
+      numberOfLines={4}
     />
     </View>
     <View style={{marginLeft:100, marginRight:100, marginTop: 10}}>

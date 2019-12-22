@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Image,TextInput, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import {  Button } from 'react-native-elements';
 import {connect} from 'react-redux'; 
+import ipAdress from "./ip"
 
 
 
@@ -14,7 +15,7 @@ import {connect} from 'react-redux';
   }
 componentDidMount() {
   var ctx = this;
-  fetch(`http://10.2.4.23:3000/profil?id=${ctx.props.userIdfromStore}`)
+  fetch(`http://${ipAdress}:3000/profil?id=${ctx.props.userIdfromStore}`)
   .then(function(res, err){
     return res.json()
   }).then((data)=> {

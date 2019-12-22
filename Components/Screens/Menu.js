@@ -29,9 +29,8 @@
 
 //     <Menu
 //       ref={this.setMenuRef}
-//       button={
-//        <Image source={require('../../assets/images/format.png')}  onPress={this.showMenu} style={{ width: 30, height: 30, marginLeft:350}}/>
-//     }
+//       button={<Text onPress={this.showMenu}>Show menu</Text>}
+//     //   children={this.setMenuRef}
 //     >
 //       <MenuItem onPress={this.hideMenu}>Profil</MenuItem>
 //       <MenuItem onPress={this.hideMenu}>Mes demandes d'aide</MenuItem>

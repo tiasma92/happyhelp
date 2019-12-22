@@ -3,6 +3,7 @@ import { Text, View, Image, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import {connect} from 'react-redux';
+import ipAdress from "./ip"
 
 
 const styles = StyleSheet.create({
@@ -21,13 +22,13 @@ class Profil extends React.Component{
             firstName: "",
             lastName: "",
             address: "",
-            city: "75000",
+            city: "",
             phone: "",
         })
     }
 componentDidMount() {
     var ctx = this;
-    fetch(`http://10.2.4.23:3000/profil?id=${ctx.props.userIdfromStore}`)
+    fetch(`http://${ipAdress}:3000/profil?id=${ctx.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -36,6 +37,7 @@ componentDidMount() {
            firstName: data.user.firstName,
            lastName: data.user.lastName,
            address: data.user.address,
+           city: data.user.city,
            phone: data.user.phone,
        })
     })

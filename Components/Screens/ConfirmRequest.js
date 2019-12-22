@@ -3,6 +3,7 @@ import { Text, View, Image, TextInput, ScrollView} from 'react-native';
 import { Button } from 'react-native-elements';
 import * as Font from 'expo-font';
 import {connect} from 'react-redux';
+import ipAdress from "./ip"
 
 
 
@@ -33,7 +34,7 @@ this.setState({ fontLoaded: true,
 
 handleSubmitRequest() {
   
-  fetch(`http://10.2.4.23:3000/new_request`,{
+  fetch(`http://${ipAdress}:3000/new_request`,{
     method: 'POST',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}`
@@ -106,9 +107,11 @@ render(){
         marginTop: 10
       }}>
     <TextInput
-      style={{ height: 120, borderColor: 'gray', borderWidth: 1, width:"90%", marginLeft: 10 }}
+      style={{ height: 100, borderColor: 'gray', borderWidth: 1, width:"90%", marginLeft: 10}}
       onChangeText = {(text) => {this.setState({desc: text})}}
       placeholder="Détails de votre demande"
+      multiline={true}
+      numberOfLines={4}
     />
     </View>
        

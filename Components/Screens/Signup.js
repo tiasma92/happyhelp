@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Image, ScrollView,AppRegistry } from 'react-native';
 import { Input} from 'react-native-elements';
 import {connect} from 'react-redux'; 
-
+import ipAdress from "./ip"
 
 class Signup extends React.Component {
    constructor(props){
@@ -13,6 +13,7 @@ class Signup extends React.Component {
       password: '',
       repeatPassword:'',
       address: '',
+      city: "",
       firstName:'',
       lastName:'',
       telephone:'',
@@ -21,10 +22,10 @@ class Signup extends React.Component {
    
    handleSubmitSignUp(){
       if (this.state.password === this.state.repeatPassword){
-      fetch(`http://10.2.4.23:3000/sign-up`, {
+      fetch(`http://${ipAdress}:3000/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: `firstName=${this.state.firstName}&lastName=${this.state.lastName}&email=${this.state.email}&password=${this.state.password}&telephone=${this.state.telephone}&address=${this.state.address}`
+        body: `firstName=${this.state.firstName}&lastName=${this.state.lastName}&email=${this.state.email}&password=${this.state.password}&telephone=${this.state.telephone}&address=${this.state.address}&city=${this.state.city}`
       }
       ).then(function(res, err){
         return res.json()
@@ -86,7 +87,16 @@ class Signup extends React.Component {
                autoCapitalize = "none"
                onChangeText = {(text) => {this.setState({address: text})}}/>
 
+<View style={{ marginLeft:50, marginTop:1}}>
+            <Text style={{  fontWeight: 'bold', fontSize: 15}}>VOTRE VILLE</Text>
+            </View>
 
+            <TextInput style = {styles.input}
+               underlineColorAndroid = "transparent"
+               placeholder = "Entrez votre ville"
+               
+               autoCapitalize = "none"
+               onChangeText = {(text) => {this.setState({city: text})}}/>
 
             <View style={{ marginLeft:50, marginTop:1}}>
             <Text style={{  fontWeight: 'bold', fontSize: 15}}>EMAIL</Text>

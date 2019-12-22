@@ -3,7 +3,7 @@ import { Text, View, Image, ScrollView } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import * as Font from 'expo-font';
 import {connect} from 'react-redux'; 
-
+import ipAdress from "./ip"
 
 
 class Signin extends React.Component {
@@ -29,7 +29,7 @@ this.setState({ fontLoaded: true });
 
   handleSubmitSignIn() {
 
-    fetch(`http://10.2.4.23:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
+    fetch(`http://${ipAdress}:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {

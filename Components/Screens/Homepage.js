@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Image, } from 'react-native';
 import {  Button } from 'react-native-elements';
 import {connect} from 'react-redux';
+import ipAdress from "./ip"
 
 
 class HomePage extends React.Component{
@@ -15,7 +16,7 @@ componentDidMount() {
     var ctx = this;
     console.log('componentDidMount',ctx.props.userIdfromStore)
     
-    fetch(`http://10.2.4.23:3000/profil?id=${ctx.props.userIdfromStore}`)
+    fetch(`http://${ipAdress}:3000/profil?id=${ctx.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
