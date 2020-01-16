@@ -13,19 +13,20 @@ class Signup extends React.Component {
       password: '',
       repeatPassword:'',
       address: '',
-      city: "",
+      // city: "",
       firstName:'',
       lastName:'',
       telephone:'',
       isUserExist:false,
    }
    
+   /* For send the information to the back and register a new user or check if he exists */
    handleSubmitSignUp(){
       if (this.state.password === this.state.repeatPassword){
       fetch(`http://${ipAdress}:3000/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: `firstName=${this.state.firstName}&lastName=${this.state.lastName}&email=${this.state.email}&password=${this.state.password}&telephone=${this.state.telephone}&address=${this.state.address}&city=${this.state.city}`
+        body: `firstName=${this.state.firstName}&lastName=${this.state.lastName}&email=${this.state.email}&password=${this.state.password}&telephone=${this.state.telephone}&address=${this.state.address}`
       }
       ).then(function(res, err){
         return res.json()
@@ -87,7 +88,7 @@ class Signup extends React.Component {
                autoCapitalize = "none"
                onChangeText = {(text) => {this.setState({address: text})}}/>
 
-<View style={{ marginLeft:50, marginTop:1}}>
+{/* <View style={{ marginLeft:50, marginTop:1}}>
             <Text style={{  fontWeight: 'bold', fontSize: 15}}>VOTRE VILLE</Text>
             </View>
 
@@ -96,7 +97,7 @@ class Signup extends React.Component {
                placeholder = "Entrez votre ville"
                
                autoCapitalize = "none"
-               onChangeText = {(text) => {this.setState({city: text})}}/>
+               onChangeText = {(text) => {this.setState({city: text})}}/> */}
 
             <View style={{ marginLeft:50, marginTop:1}}>
             <Text style={{  fontWeight: 'bold', fontSize: 15}}>EMAIL</Text>

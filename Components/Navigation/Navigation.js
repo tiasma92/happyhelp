@@ -21,7 +21,9 @@ import HomeHelper from '../Screens/HomeHelper';
 import HomeHelp from '../Screens/HomeHelp';
 import HelperValid from '../Screens/HelperValid';
 import Contact from "../Screens/Contact";
-
+import { Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
+import { Button } from 'react-native-elements';
+import Menu,{ MenuItem, MenuDivider } from 'react-native-material-menu';
 
 const AppNavigator = createStackNavigator(
     {
@@ -53,7 +55,8 @@ const AppNavigator = createStackNavigator(
           backgroundColor: "#2C5F13",
          },
          headerTintColor: '#fff',
-    },
+         
+         }
   })
 
   

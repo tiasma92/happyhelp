@@ -28,6 +28,7 @@ class Profil extends React.Component{
     }
 componentDidMount() {
     var ctx = this;
+    /* Take from the database my information  */
     fetch(`http://${ipAdress}:3000/profil?id=${ctx.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
@@ -66,7 +67,7 @@ render(){
             <Image source={img} style={{width: 100, height: 100, borderRadius: 50, marginBottom: 10, marginTop: 10}}/>
             </View>
             <View style={{alignItems: 'flex-start', marginLeft: 30}}>
-            <Text style={styles.infoText}>Nom:                      {this.state.lastName}</Text>
+            <Text style={styles.infoText}>Nom:                     {this.state.lastName}</Text>
             <Text style={styles.infoText}>Prenom:               {this.state.firstName}</Text>
             <Text style={styles.infoText}>Adresse:              {this.state.address}</Text>
             <Text style={styles.infoText}>Ville:                      {this.state.city}</Text>
@@ -80,6 +81,7 @@ render(){
 }
 }
 
+/* From Redux, take back the id of my user */
 function mapStateToProps(state) {
     console.log(state)
     console.log('je recois de mon reducer lid suivant : ',state.userId)

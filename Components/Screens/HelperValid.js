@@ -29,6 +29,9 @@ class HelperValid extends React.Component {
       'openSansRegular': require('../../assets/fonts/OpenSans-Regular.ttf')
     });
     this.setState({ fontLoaded: true})
+
+    /* Recover the information of the user from the id of the request (by redux) for display it */
+
     fetch(`http://${ipAdress}:3000/find_request?id_request=${this.props.navigation.getParam("id")}`)
     .then(function(res, err){
       return res.json()
@@ -44,6 +47,7 @@ class HelperValid extends React.Component {
     });
   }
 
+/* Finish the request and change his statut in database */
 
   handleSubmitRequest() {
     console.log(this.props.navigation.getParam("id"))

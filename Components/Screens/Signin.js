@@ -27,6 +27,8 @@ class Signin extends React.Component {
 this.setState({ fontLoaded: true });
   }
 
+
+/* For check if the user is already registered in the database */
   handleSubmitSignIn() {
 
     fetch(`http://${ipAdress}:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)

@@ -15,6 +15,9 @@ class HomeHelp extends React.Component{
 componentDidMount() {
     var ctx = this;
 
+
+    /* Recover the id from Redux for change the state of the user and display it */
+
     fetch(`http://${ipAdress}:3000/profil?id=${ctx.props.userIdfromStore}`)
 
     .then(function(res, err){

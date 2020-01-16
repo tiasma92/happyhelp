@@ -27,6 +27,7 @@ class MyHelp extends React.Component {
 
     ctx.setState({ fontLoaded: true });
 
+    /* With the id given by redux, take from my database all my help requests */
     fetch(`http://${ipAdress}:3000/myhelp?id=${this.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()
@@ -51,42 +52,7 @@ render(){
 
 
 
-  // const data =[
-  //   {
-  //     name: 'BRICOLAGE',
-  //     avatar: '../../assets/images/LogoHappyHelp.png',
-  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-  //     value: 'En attente',
-  //     color:'primary'
-  //   },
-  //   {
-  //     name: 'BRICOLAGE',
-  //     avatar: '../../assets/images/LogoHappyHelp.png',
-  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-  //     value: 'En attente',
-  //     color:'primary'
-  //   },
-  //   {
-  //     name: 'COURS',
-  //     avatar: '../../assets/images/LogoHappyHelp.png',
-  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-  //     value: 'En cours',
-  //     color:'warning'
-  //   },
-  //   {
-  //     name: 'VISITE DE COURTOISIE',
-  //     avatar: '../../assets/images/LogoHappyHelp.png',
-  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-  //     value: 'Terminé',
-  //     color:'success'
-  //   },
-  //   {
-  //     name: 'JARDINAGE',
-  //     avatar: '../../assets/images/LogoHappyHelp.png',
-  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-  //     value: 'En cours',
-  //     color: 'warning'
-  //   }]
+
   var img;
   var imgAvatar = require("../../assets/images/avatar.png")
   var imgAbde = require("../../assets/images/AbdeVieux.png")
@@ -94,6 +60,7 @@ render(){
   var color= "";
   var HistoryallRequest = [...this.state.allRequest];
   console.log("-------------------",HistoryallRequest)
+  /* Do a boucle for display all my help requests */
   var HistoryList = HistoryallRequest.map((data, i) => {
     if (data.statut === "En cours"){
       value="En cours"
@@ -115,7 +82,7 @@ render(){
   subtitle={data.description}
   bottomDivider
   style={{width:400, marginLeft: 10, marginRight:10}}
-  onPress={() => this.props.navigation.navigate("contact", {id:data._id, category: data.category})}
+  onPress={() => this.props.navigation.navigate("contact", {id:data._id, category: data.category, description:data.description})}
   badge={{value:value , status:color}}
   chevron={{ color: 'black', height:20 }}
 

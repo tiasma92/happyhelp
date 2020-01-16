@@ -15,7 +15,9 @@ class HomePage extends React.Component{
 componentDidMount() {
     var ctx = this;
     console.log('componentDidMount',ctx.props.userIdfromStore)
-    
+
+    /* Recover the id from redux */
+
     fetch(`http://${ipAdress}:3000/profil?id=${ctx.props.userIdfromStore}`)
     .then(function(res, err){
       return res.json()

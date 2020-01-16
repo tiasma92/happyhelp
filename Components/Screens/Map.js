@@ -29,6 +29,7 @@ class Map extends React.Component {
     ctx._getLocationAsync();
 ctx.setState({ fontLoaded: true });
 
+/* Take from the back all my request  */
 fetch(`http://${ipAdress}:3000/request`)
 .then(function(res, err){
   return res.json()
@@ -89,6 +90,7 @@ render(){
   } else if (data.category === "Démarches administratives"){
     img = imgPen;
   }
+  /* Display all the request on the map thanks to the boucle */
   if(data.statut === "En attente") {
     markerList.push(<Marker
                   key={i}

@@ -32,6 +32,8 @@ this.setState({ fontLoaded: true,
             img: this.props.navigation.getParam("img") });
   }
 
+  /* Register a request from someone who need helps in database */
+
 handleSubmitRequest() {
   
   fetch(`http://${ipAdress}:3000/new_request`,{
