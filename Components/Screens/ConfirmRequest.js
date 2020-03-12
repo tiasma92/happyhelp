@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text, View, Image, TextInput, ScrollView} from 'react-native';
-import { Button } from 'react-native-elements';
+import { Text, View, Image, TextInput, ScrollView, Modal, StyleSheet} from 'react-native';
+import { Button, Input } from 'react-native-elements';
 import * as Font from 'expo-font';
 import {connect} from 'react-redux';
 import ipAdress from "./ip"
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
@@ -18,6 +19,7 @@ class ConfirmRequest extends React.Component {
       dateRequest: '',
       position: '',
       img: "",
+      modalVisible: false,
     }
   }
 
@@ -33,7 +35,7 @@ this.setState({ fontLoaded: true,
   }
 
   /* Register a request from someone who need helps in database */
-
+//// title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
 handleSubmitRequest() {
   
   fetch(`http://${ipAdress}:3000/new_request`,{
@@ -52,6 +54,10 @@ handleSubmitRequest() {
     this.props.navigation.navigate("confirmD")
 }
 
+setModalVisible(visible) {
+  this.setState({modalVisible: visible});
+}
+
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
@@ -59,6 +65,35 @@ render(){
   return(
       
     <ScrollView>
+      <Modal
+          animationType='slide'
+          transparent={true}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+          }}>
+          <View style={{flex: 1, flexDirection: 'row', textAlign: 'center', alignItems:'center', justifyContent: 'center'}}>
+            <View style={{marginTop: 22, width: '90%', height: '70%', backgroundColor: 'white'}}>
+
+            <Input style={{fontSize: 12, height: 60, borderColor: 'black', borderWidth: 4, alignItems: 'center', justifyContent: 'center',}}
+             inputContainerStyle={{height: 35, borderColor: '#2C5F13',borderWidth: 1,}}
+             label='Detail'
+             placeholder="Votre mot de passe"
+            // errorStyle={{ color: 'red' }}
+            // errorMessage="Votre mot de passe n'est pas valide"
+            // secureTextEntry={true}
+            // onChangeText = {(text) => {this.setState({password: text})}}
+            />
+
+              <TouchableOpacity
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);
+                }}>
+                <Text>Hide Modal</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
       <View style={{alignItems:'center'}}>
       <Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 150, height: 150, marginTop: 30, alignItems:'center', justifyContent: 'center' }}/>
       </View>
@@ -96,7 +131,7 @@ render(){
         flex: 1,
         flexDirection: 'row',
         marginTop: 30, 
-        
+        justifyContent: 'center'
         
       }}>
 
@@ -106,10 +141,11 @@ render(){
     <View style={{
         flex: 1,
         flexDirection: 'row',
+        justifyContent: 'center',
         marginTop: 10
       }}>
     <TextInput
-      style={{ height: 100, borderColor: 'gray', borderWidth: 1, width:"90%", marginLeft: 10}}
+      style={{ height: 100, borderColor: 'gray', borderWidth: 1, width:"90%"}}
       onChangeText = {(text) => {this.setState({desc: text})}}
       placeholder="Détails de votre demande"
       multiline={true}
@@ -119,6 +155,7 @@ render(){
        
     <View style={{alignItems:'center', justifyContent:'center', textAlign:'center', marginTop:20}}>
     <Button title="VALIDER" onPress={() => this.handleSubmitRequest()} buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+    
     </View>
 </View> 
 
@@ -128,6 +165,27 @@ render(){
  
   )
 }}
+
+
+const styles = StyleSheet.create({
+  input: {
+    //  flex:1,
+    //  flexDirection:'column',
+    //  borderWidth: 0,
+    //  borderRadius: 13,
+    //  marginBottom:15,
+    //  marginLeft: 50,
+    //  marginRight: 50,
+    
+    //  fontSize: 15,
+    //  textAlign: 'center' ,
+     height: 35,
+     borderColor: '#2C5F13',
+     borderWidth: 1,
+    //  justifyContent:"center",
+    //  alignItems:'center'
+  }
+})
 
 function mapStateToProps(state) {
   console.log(state)

@@ -21,22 +21,20 @@ import HomeHelper from '../Screens/HomeHelper';
 import HomeHelp from '../Screens/HomeHelp';
 import HelperValid from '../Screens/HelperValid';
 import Contact from "../Screens/Contact";
+// import {View, Image, Text} from "react-native"
+// import { TouchableOpacity } from 'react-native-gesture-handler';
 
-
-// class NavigationDrawerStructure extends Component {
-  //Structure for the navigatin Drawer
-  // toggleDrawer = () => {
-    //Props to open/close the drawer
+// class NavigationDrawerStructure extends React.Component {
+//   toggleDrawer = () => {
 //     this.props.navigationProps.toggleDrawer();
 //   };
 //   render() {
 //     return (
 //       <View style={{ flexDirection: 'row' }}>
 //         <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
-//           {/*Donute Button Image */}
 //           <Image
-//             source={require('./image/drawer.png')}
-//             style={{ width: 25, height: 25, marginLeft: 5 }}
+//             source={require('../../assets/images/drawer.png')}
+//             style={{ width: 25, height: 25, marginRight: 5 }}
 //           />
 //         </TouchableOpacity>
 //       </View>
@@ -64,6 +62,7 @@ const LoginStack = createStackNavigator({
        headerTintColor: '#fff',
       }
 })
+
 
 const NavNavigator = createStackNavigator(
     {
@@ -97,7 +96,7 @@ const NavNavigator = createStackNavigator(
 
 
 
-// const DrawerNavigator = createDrawerNavigator({
+// const DrawerStack = createDrawerNavigator({
 //   profil: {
 //     //Title
 //     screen: Profil,
@@ -121,12 +120,13 @@ const NavNavigator = createStackNavigator(
 //   },
 // });
 
+
+
 const AppNavigator = createAppContainer(
   createSwitchNavigator(
     {
       Login: LoginStack,
       Nav: NavNavigator,
-      // drawer: DrawerNavigator
     },
     {
       initialRouteName: "Login"
