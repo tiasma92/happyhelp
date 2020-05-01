@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
   }
 })
 
+
 function mapStateToProps(state) {
   console.log(state)
   console.log('je recois de mon reducer lid suivant : ', state.userId)
