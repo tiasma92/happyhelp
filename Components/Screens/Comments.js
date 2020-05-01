@@ -25,7 +25,7 @@ export default class Comments extends React.Component {
 this.setState({ fontLoaded: true });
   }
   handleSubmit() {
-    fetch(`http://${ipAdress}:3000/end_request?id_request=${this.props.navigation.getParam("id")}`)
+    fetch(`http://${ipAdress}:3000/end_request?id_request=${this.props.route.params.id}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -39,7 +39,7 @@ this.setState({ fontLoaded: true });
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
-  console.log(this.props.navigation.getParam("id"))
+  console.log(this.props.route.params.id)
   
 
   return(

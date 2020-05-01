@@ -8,7 +8,7 @@ import ipAdress from "./ip"
 class HomeHelper extends React.Component{
     constructor(props){
         super()
-        this.state = ({
+        this.state = ({ 
             firstName: "",
         })
     }
@@ -43,9 +43,9 @@ render(){
 
         <View  style={{ marginTop: 50, alignItems: 'center'}}> 
             
-        <Button title="QUI A BESOIN D'AIDE?" onPress={()=>this.props.navigation.navigate('map')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
-        <Button title="  MON HISTORIQUE  " onPress={()=>this.props.navigation.navigate('myhelp')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
-            <Button title="  MON PROFIL  " onPress={()=>this.props.navigation.navigate('profil')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+        <Button title="QUI A BESOIN D'AIDE?" onPress={()=>this.props.navigation.navigate('map')}  buttonStyle={{borderRadius: 200, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10, height: 250}}/>
+        {/* <Button title="  MON HISTORIQUE  " onPress={()=>this.props.navigation.navigate('myhelp')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/>
+            <Button title="  MON PROFIL  " onPress={()=>this.props.navigation.navigate('profil')}  buttonStyle={{borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10}}/> */}
             
         </View>
 

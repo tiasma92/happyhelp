@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text, View, Image, ScrollView } from 'react-native';
+import { Text, View, Image, ScrollView, AsyncStorage } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import * as Font from 'expo-font';
 import {connect} from 'react-redux'; 
 import ipAdress from "./ip"
+import FBLoginButton from './facebook';
 
 
 class Signin extends React.Component {
@@ -14,7 +15,8 @@ class Signin extends React.Component {
     this.state = {
       fontLoaded: false,
       email: '',
-      password: ''
+      password: '',
+      id: "",
     }
   }
 
@@ -29,16 +31,20 @@ this.setState({ fontLoaded: true });
 
 
 /* For check if the user is already registered in the database */
-  handleSubmitSignIn() {
+  handleSubmitSignIn = async () => {
 
-    fetch(`http://${ipAdress}:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
+    await fetch(`http://${ipAdress}:3000/sign-in?email=${this.state.email}&password=${this.state.password}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
       console.log('RESULTAT DE LERENGISTREMENT EN BD USER submit signin--->', data)
       if (data.result === true){
-        this.props.saveId(data.user._id)
-        this.props.navigation.navigate("Home")
+        this.setState({
+          id: data.user._id
+        })
+        this.storeData();
+        this.props.saveId(data.user._id);
+        // this.props.navigation.navigate("Home")
       } else {
         this.props.navigation.navigate('signup')
       }  
@@ -48,6 +54,14 @@ this.setState({ fontLoaded: true });
         console.log('Request failed in my Sign-In Home request', error)
     });
  }
+
+ storeData = async () => {
+  try {
+    await AsyncStorage.setItem("token", this.state.id)
+  } catch (error) {
+    console.log("Something went wrong", error);
+  }
+}
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
@@ -83,8 +97,7 @@ render(){
 <View>
     <Button title="Se connecter" buttonStyle={{borderRadius: 13,backgroundColor: '#2C5F13',  width:250}} style={{ height: 50, marginTop: '10%' }} onPress = {() => this.handleSubmitSignIn() } 
     />
-    <Button  title="Se connecter via Facebook" buttonStyle={{borderRadius: 13,backgroundColor: '#375D81', marginBottom:20, width:250}} style={{ height: 50, marginTop: '5%' }} onPress = {() => this.handleSubmitSignIn() } 
-    />
+    <Button  title="Se connecter via Facebook" buttonStyle={{borderRadius: 13,backgroundColor: '#375D81', marginBottom:20, width:250}} style={{ height: 50, marginTop: '5%' }} onPress = {() => this.handleSubmitSignIn() } />
 
 
     <Text style={{fontSize: 15, color:'#000000', textAlign:'center', alignItems: 'center', justifyContent: 'center'}} onPress= {() => this.props.navigation.navigate("forget")}>

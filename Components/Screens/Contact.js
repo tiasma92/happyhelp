@@ -29,7 +29,7 @@ export default class Contact extends React.Component {
       'openSansRegular': require('../../assets/fonts/OpenSans-Regular.ttf')
     });
     this.setState({ fontLoaded: true})
-    fetch(`http://${ipAdress}:3000/find_request?id_request=${this.props.navigation.getParam("id")}`)
+    fetch(`http://${ipAdress}:3000/find_request?id_request=${this.props.route.params.id}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -55,17 +55,17 @@ render(){
   imgVoice = require("../../assets/images/voice.png")
   imgOrdi = require("../../assets/images/taptop-windows.png")
   //markerallRequest.map((data,i) =>
-  if (this.props.navigation.getParam("category") === "Courses"){
+  if (this.props.route.params.category === "Courses"){
     img = imgShop;
-  } else if (this.props.navigation.getParam("category") === "Bricolage"){
+  } else if (this.props.route.params.category === "Bricolage"){
     img = imgTool;
-  } else if (this.props.navigation.getParam("category") === "Aide informatique"){
+  } else if (this.props.route.params.category === "Aide informatique"){
     img = imgOrdi;
-  } else if (this.props.navigation.getParam("category") === "Accompagnement"){
+  } else if (this.props.route.params.category === "Accompagnement"){
     img = imgCar;
-  } else if (this.props.navigation.getParam("category") === "Visite de courtoisie"){
+  } else if (this.props.route.params.category === "Visite de courtoisie"){
     img = imgVoice;
-  } else if (this.props.navigation.getParam("category") === "Démarches administratives"){
+  } else if (this.props.route.params.category === "Démarches administratives"){
     img = imgPen;
   }
   return(
@@ -90,7 +90,7 @@ render(){
     <Image source={img} 
       style={{ marginLeft: 60, marginRight: 60, backgroundColor: "transparent", width: 60, height: 60, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
     </View>
-    <View style={{alignItems:'center', marginTop: 4}}><Text>{this.props.navigation.getParam("category")}</Text></View>
+    <View style={{alignItems:'center', marginTop: 4}}><Text>{this.props.route.params.category}</Text></View>
 
 
     <View style={{
@@ -110,7 +110,7 @@ render(){
         marginTop: 10, 
 }}>
 
-      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Description: </Text><Text style={{fontSize: 15}}>{this.props.navigation.getParam("description")}</Text>
+      <Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Description: </Text><Text style={{fontSize: 15}}>{this.props.route.params.description}</Text>
 
 </View>
     

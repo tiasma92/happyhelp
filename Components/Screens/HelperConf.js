@@ -61,7 +61,7 @@ render(){
         textAlign:'center',
         alignItems: 'center',
         justifyContent: 'center'}}>
-  Merci {Name} pour ton aide. {this.props.navigation.getParam("name")} attend ton appel.
+  Merci {Name} pour ton aide. {this.props.route.params.name} attend ton appel.
     </Text>
     </View>
 

@@ -46,7 +46,7 @@ render(){
 </View>
 
 { this.state.fontLoaded? (
-   <View style={{textAlign: 'center', alignContent:'center'}}>
+   <View style={{textAlign: 'center', alignItems: 'center'}}>
     <Text style={{fontWeight: 'bold', fontSize: 20, textAlign:'center' }}>MA DEMANDE D'AIDE</Text>
 
     <Text style={{ fontWeight: 'normal', fontSize: 15, textAlign:'center' }}>Appuyer sur l'image qui correspond</Text>
@@ -56,7 +56,6 @@ render(){
         flex: 1,
         flexDirection: 'row',
         marginTop: 10,
-        marginLeft:25
       }}>
         <TouchableOpacity 
         onPress={() => this.props.navigation.navigate('confirmR', {
@@ -114,7 +113,6 @@ render(){
         flex: 1,
         flexDirection: 'row',
         marginTop: 10,
-       marginLeft:25
       }}>
     
     <TouchableOpacity 

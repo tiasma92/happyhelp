@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, Image, ScrollView,AppRegistry } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Image, ScrollView, AsyncStorage } from 'react-native';
 import { Input} from 'react-native-elements';
 import {connect} from 'react-redux'; 
 import ipAdress from "./ip"
@@ -9,6 +9,7 @@ class Signup extends React.Component {
       super();
    }
    state = {
+      id: '',
       email: '',
       password: '',
       repeatPassword:'',
@@ -21,7 +22,7 @@ class Signup extends React.Component {
    }
    
    /* For send the information to the back and register a new user or check if he exists */
-   handleSubmitSignUp(){
+   handleSubmitSignUp = async () => {
       if (this.state.password === this.state.repeatPassword){
       fetch(`http://${ipAdress}:3000/sign-up`, {
         method: 'POST',
@@ -33,14 +34,23 @@ class Signup extends React.Component {
       }).then((data)=> {
       
          console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data.user)
+         this.setState({id: data.user._id})
+         this.storeData();
          this.props.saveId(data.user._id)
-         this.props.navigation.navigate("Home")
       })
       .catch((error)=> {
           console.log('Request failed in my Sign-Up Home request', error)
       });
    }
    }
+
+   storeData = async () => {
+      try {
+        await AsyncStorage.setItem("token", this.state.id)
+      } catch (error) {
+        console.log("Something went wrong", error);
+      }
+    }
    
    render() {
       console.log(this.state.lastName)
