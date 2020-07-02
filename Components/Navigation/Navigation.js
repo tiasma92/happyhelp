@@ -1,7 +1,4 @@
 import React from 'react';
-// import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-// import { createDrawerNavigator } from 'react-navigation-drawer'
-// import { createStackNavigator } from 'react-navigation-stack';
 import Signin from '../Screens/Signin';
 import Profil from '../Screens/Profil';
 import Signup from '../Screens/Signup';
@@ -108,12 +105,10 @@ function NavStackScreen({ navigation }) {
       <NavStack.Screen name="helper" component={HelperConf} options={{ title: "" }} />
       <NavStack.Screen name="map" component={Map} options={{ title: "" }} />
       <NavStack.Screen name="confirmR" component={ConfirmRequest} options={{ title: "" }} />
-      <NavStack.Screen name="comment" component={Comments} options={{ title: "" }} />
       <NavStack.Screen name="confirmD" component={DemandeConf} options={{ title: "" }} />
       <NavStack.Screen name="HomeH" component={HomeHelp} options={{ title: "" }} />
       <NavStack.Screen name="HomeA" component={HomeHelper} options={{ title: "" }} />
       <NavStack.Screen name="validhelp" component={HelperValid} options={{ title: "" }} />
-      <NavStack.Screen name="contact" component={Contact} options={{ title: "" }} />
       {/* </> */}
       {/* )\ */}
     </NavStack.Navigator>
@@ -134,6 +129,7 @@ function MyHelpStackScreen({ navigation }) {
           </TouchableHighlight>),
         headerRightContainerStyle: { marginRight: 20 },
       }} />
+      <MyHelpStack.Screen name="contact" component={Contact} options={{ title: "", headerStyle: { backgroundColor: "#2C5F13" }, headerTintColor: '#fff' }} />
     </MyHelpStack.Navigator>
   )
 }
@@ -170,6 +166,7 @@ function HistoryHelpStackScreen({ navigation }) {
           </TouchableHighlight>),
         headerRightContainerStyle: { marginRight: 20 },
       }} />
+      <HistoryHelpStack.Screen name="comment" component={Comments} options={{ title: "", headerStyle: { backgroundColor: "#2C5F13" }, headerTintColor: '#fff' }} />
     </HistoryHelpStack.Navigator>
   )
 }
@@ -192,6 +189,6 @@ function MyDrawer() {
 
 export default function Navigation() {
   return (
-      <MyDrawer />
+    <MyDrawer />
   )
 }

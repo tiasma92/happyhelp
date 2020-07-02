@@ -21,17 +21,17 @@ removeToken = async () => {
 
 function mapStateToProps(state) {
     console.log(state)
-    console.log('je recois de mon reducer lid suivant : ', state.userId)
+    console.log('je recois de mon reducer le token suivant : ', state.userToken)
 
-    return { userIdfromStore: state.userId }
+    return { userTokenfromStore: state.userToken }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        disconnect: function (id) {
+        disconnect: function (token) {
             dispatch({
                 type: 'deleteConnect',
-                id,
+                token,
             })
         }
     }

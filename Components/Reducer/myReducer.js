@@ -1,14 +1,13 @@
-export default function(id = "", action) {
+export default function(token = "", action) {
 
     if(action.type == 'connect') {
-         console.log('Dans mon reducer --->',action.id)
-         console.log("aaaaaa", id)
-         return action.id;
+         console.log('Dans mon reducer --->',action.token)
+         return action.token;
     } else if (action.type == "deleteConnect") {
-        action.id = ""
-        console.log('Well Deconnected',action.id)
-        return action.id;
+        action.token = ""
+        console.log('Well Deconnected',action.token)
+        return action.token;
     } else {
-        return id
+        return token
     }
   }

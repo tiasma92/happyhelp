@@ -51,7 +51,7 @@ class HelperValid extends React.Component {
 
   handleSubmitRequest() {
     console.log(this.props.route.params.id)
-    fetch(`http://${ipAdress}:3000/valid_request?id_request=${this.props.route.params.id}&id_user=${this.props.userIdfromStore}`)
+    fetch(`http://${ipAdress}:3000/valid_request?id_request=${this.props.route.params.id}&token_user=${this.props.userTokenfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -200,9 +200,9 @@ render(){
 
 function mapStateToProps(state) {
   console.log(state)
-  console.log('je recois de mon reducer lid suivant : ',state.userId)
+  console.log('je recois de mon reducer le token suivant : ',state.userToken)
 
-  return { userIdfromStore: state.userId }
+  return { userTokenfromStore: state.userToken }
 }
 
 export default connect(

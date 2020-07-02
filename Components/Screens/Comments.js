@@ -62,7 +62,7 @@ render(){
         flexDirection: 'row',
         marginTop: 20,
       }}>
-    <Image source={require('../../assets/images/Mattias.jpeg')} 
+    <Image source={require('../../assets/images/avatar.png')} 
       style={{ marginLeft: 60, marginRight: 60, backgroundColor: "transparent", width: 100, height: 100, alignItems:'center', justifyContent: 'center', borderRadius: 50 }}/>
     </View>
 

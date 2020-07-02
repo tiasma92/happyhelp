@@ -3,7 +3,11 @@ import { Text, View, Image, StyleSheet } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
+import * as Permissions from 'expo-permissions';
+import * as ImagePicker from 'expo-image-picker';
+import { Camera } from 'expo-camera';
 import ipAdress from "./ip"
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const styles = StyleSheet.create({
@@ -25,12 +29,14 @@ class Profil extends React.Component {
             city: "",
             phone: "",
             change: false,
+            hasCameraPermission: null,
+            image: ""
         })
     }
     componentDidMount() {
         var ctx = this;
         /* Take from the database my information  */
-        fetch(`http://${ipAdress}:3000/profil?id=${ctx.props.userIdfromStore}`)
+         fetch(`http://${ipAdress}:3000/profil?token=${ctx.props.userTokenfromStore}`)
             .then(function (res, err) {
                 return res.json()
             }).then((data) => {
@@ -41,6 +47,7 @@ class Profil extends React.Component {
                     address: data.user.address,
                     city: data.user.city,
                     phone: data.user.phone,
+                    image: data.user.pictureName
                 })
             })
             .catch((error) => {
@@ -52,40 +59,79 @@ class Profil extends React.Component {
         this.setState({ change: !this.state.change })
     }
 
-    confirmData() {
-            fetch(`http://${ipAdress}:3000/update_profil`, {
-              method: 'POST',
-              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-              body: `firstName=${this.state.firstName}&lastName=${this.state.lastName}&telephone=${this.state.phone}&address=${this.state.address}&city=${this.state.city}&id=${this.props.userIdfromStore}`
+    askPermission = async () => {
+        const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        this.setState({ hasCameraPermission: status === 'granted' });
+    }
+
+    _pickImage = async () => {
+        try {
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
+            });
+            if (!result.cancelled) {
+                // this.setState({image: result.uri})
+                var data = new FormData();
+                data.append('picture', {
+                    uri: result.uri,
+                    type: 'image/jpeg',
+                    name: 'myPicture',
+                });
+                await fetch(`http://${ipAdress}:3000/upload`, {
+                    method: 'POST',
+                    body: data
+                }).then((response) => {
+                    return response.json();
+                }).then((data) => {
+                    console.log("data from cloudinary" + data.data)
+                    this.setState({ image: data.data });
+                })
+                    .catch((error) => {
+                        console.log(error)
+                    });
             }
-            ).then(function(res, err){
-              return res.json()
-            }).then((data)=> {
-            
-               console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data.user)
-               
-              
-            })
-            .catch((error)=> {
+        } catch (E) {
+            console.log(E);
+        }
+    };
+
+
+    confirmData() {
+        fetch(`http://${ipAdress}:3000/update_profil`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `firstName=${this.state.firstName}&lastName=${this.state.lastName}&telephone=${this.state.phone}&address=${this.state.address}&city=${this.state.city}&token=${this.props.userTokenfromStore}&image=${this.state.image}`
+        }
+        ).then(function (res, err) {
+            return res.json()
+        }).then((data) => {
+            console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data.user)
+        }).catch((error) => {
                 console.log('Request failed in my Sign-Up Home request', error)
             });
-            this.setState({ change: !this.state.change })
+        this.setState({ change: !this.state.change })
+    }
+
+    changePicture = async () => {
+        this.askPermission();
+        this._pickImage();
     }
 
     render() {
-        var imgAbde = require("../../assets/images/AbdeVieux.png")
         var imgAvatar = require("../../assets/images/avatar.png")
-        var imgMat = require("../../assets/images/Mattias.jpeg")
-        var img;
-        if (this.state.firstName === "Papy Abde") {
-            img = imgAbde;
-        } else if (this.state.firstName === "Mattias") {
-            img = imgMat;
+        if (this.state.image !== undefined) {
+            if (this.state.image.length > 0) {
+                var img = { uri: this.state.image }
+            } else {
+                img = imgAvatar;
+            }
         } else {
             img = imgAvatar;
         }
         const isChange = this.state.change
-        console.log(this.state.phone)
         if (!isChange) {
             return (
                 <View>
@@ -125,12 +171,14 @@ class Profil extends React.Component {
                     <View style={{ alignItems: 'center', }}>
                         <Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 100, height: 100, marginTop: 30 }} />
                         <Text style={{ fontWeight: 'bold', fontSize: 20 }}>MON PROFIL</Text>
-                        <Image source={img} style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 10, marginTop: 10 }} />
+                        <TouchableOpacity onPress={() => this.changePicture()}>
+                            <Image source={img} style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 10, marginTop: 10 }} />
+                        </TouchableOpacity>
                     </View>
                     <View style={{ alignItems: 'center' }}>
                     </View>
                     <View style={{ justifyContent: "center", flexDirection: "row" }}>
-                        <View style={{ alignItems: 'flex-start'}}>
+                        <View style={{ alignItems: 'flex-start' }}>
                             <Text style={styles.infoText}>Nom: </Text>
                             <Text style={styles.infoText}>Prenom: </Text>
                             <Text style={styles.infoText}>Adresse: </Text>
@@ -172,9 +220,9 @@ class Profil extends React.Component {
 /* From Redux, take back the id of my user */
 function mapStateToProps(state) {
     console.log(state)
-    console.log('je recois de mon reducer lid suivant : ', state.userId)
+    console.log('je recois de mon reducer lid suivant : ', state.userToken)
 
-    return { userIdfromStore: state.userId }
+    return { userTokenfromStore: state.userToken }
 }
 
 export default connect(

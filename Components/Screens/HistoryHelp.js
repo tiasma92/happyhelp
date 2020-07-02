@@ -26,7 +26,7 @@ class HistoryHelp extends React.Component {
 
     ctx.setState({ fontLoaded: true });
 
-    fetch(`http://${ipAdress}:3000/myhistory?id=${this.props.userIdfromStore}`)
+    await fetch(`http://${ipAdress}:3000/myhistory?token=${this.props.userTokenfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -35,67 +35,27 @@ class HistoryHelp extends React.Component {
       for (var i =0; i<data.user.helpRequest.length; i++) {
         HistoryList.push(data.user.helpRequest[i])
     }
+    
     ctx.setState({
       allRequest: HistoryList,
       name: data.user.firstName
     })
-      console.log(ctx.state.allRequest)
     })
     .catch((error)=> {
         console.log('Request failed in my histo request', error)
     });
       }
+ 
+
 render(){
   console.log('loaded :',this.state.fontLoaded)
-
-
-
-  // const data =[
-  //   {
-  //     name: 'BRICOLAGE',
-  //     avatar: '../../assets/images/LogoHappyHelp.png',
-  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-  //     value: 'En attente',
-  //     color:'primary'
-  //   },
-  //   {
-  //     name: 'BRICOLAGE',
-  //     avatar: '../../assets/images/LogoHappyHelp.png',
-  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-  //     value: 'En attente',
-  //     color:'primary'
-  //   },
-  //   {
-  //     name: 'COURS',
-  //     avatar: '../../assets/images/LogoHappyHelp.png',
-  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-  //     value: 'En cours',
-  //     color:'warning'
-  //   },
-  //   {
-  //     name: 'VISITE DE COURTOISIE',
-  //     avatar: '../../assets/images/LogoHappyHelp.png',
-  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-  //     value: 'Terminé',
-  //     color:'success'
-  //   },
-  //   {
-  //     name: 'JARDINAGE',
-  //     avatar: '../../assets/images/LogoHappyHelp.png',
-  //     subtitle: 'Description: Réparation de meuble. Fait le: 15/12/2019. Réalisé par: John DOE',
-  //     value: 'En cours',
-  //     color: 'warning'
-  //   }]
   var img;
   var imgAvatar = require("../../assets/images/avatar.png")
-  var imgMat = require("../../assets/images/Mattias.jpeg")
+  img = imgAvatar 
   var value = "";
   var color= "";
   var HistoryallRequest = [...this.state.allRequest];
-  console.log("-------------------",HistoryallRequest)
-  // for (var i=0; i< HistoryallRequest.length; i++){
-  //   var data = HistoryallRequest[i];
-  //   console.log(data._id)
+ 
 
   var HistoryList = HistoryallRequest.map((data, i) => {
     if (data.statut === 'En attente'){
@@ -107,11 +67,6 @@ render(){
     } else if (data.statut === "Terminé"){
       value= "Terminé"
       color = "success"
-    }
-    if(this.state.name === "Papy Abde"){
-      img = imgMat;
-    } else {
-      img = imgAvatar;
     }
       return(<ListItem
   key={i}
@@ -171,9 +126,9 @@ render(){
 
 function mapStateToProps(state) {
   console.log(state)
-  console.log('je recois de mon reducer lid suivant : ',state.userId)
+  console.log('je recois de mon reducer le token suivant : ',state.userToken)
 
-  return { userIdfromStore: state.userId }
+  return { userTokenfromStore: state.userToken }
 }
 
 export default connect(

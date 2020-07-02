@@ -14,11 +14,11 @@ class HomePage extends React.Component{
     }
 componentDidMount() {
     var ctx = this;
-    console.log('componentDidMount',ctx.props.userIdfromStore)
+    console.log('componentDidMount',ctx.props.userTokenfromStore)
 
     /* Recover the id from redux */
 
-    fetch(`http://${ipAdress}:3000/profil?id=${ctx.props.userIdfromStore}`)
+    fetch(`http://${ipAdress}:3000/profil?token=${ctx.props.userTokenfromStore}`)
     .then(function(res, err){
       return res.json()
     }).then((data)=> {
@@ -72,9 +72,9 @@ render(){
 
 function mapStateToProps(state) {
     console.log(state)
-    console.log('je recois de mon reducer lid suivant homepage: ',state.userId)
+    console.log('je recois de mon reducer le token suivant homepage: ',state.userToken)
 
-    return { userIdfromStore: state.userId }
+    return { userTokenfromStore: state.userToken }
   }
   
   export default connect(

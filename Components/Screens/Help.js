@@ -31,12 +31,6 @@ this.setState({ fontLoaded: true });
 
 render(){
   console.log('loaded :',this.state.fontLoaded)
-  // requestList = [{img: require('../../assets/images/shop.png'), type: "Courses" },
-  // {img: require('../../assets/images/tool.png'), type: "Bricolage" },
-  // {img: require('../../assets/images/taptop-windows.png'), type: "Aide informatique" },
-  // {img: require('../../assets/images/car.png'), type: "Accompagnement" },
-  // {img: require('../../assets/images/voice.png'), type: "Visite de courtoisie" },
-  // {img: require('../../assets/images/pen.png'), type: "Démarches Administratives" }]
   return(
     
       
@@ -62,11 +56,6 @@ render(){
             img: require('../../assets/images/shop.png'),
             type: "Courses",
         })}
-        // onPress={() => {if (this.state.backgroundColorShop == 'transparent') {
-        //   console.log('Pressed shop'); 
-        //   this.setState({backgroundColorShop: '#FFD029'})} else {
-        //     this.setState({backgroundColorShop:'transparent'})
-        //   }}}
           >
     
     <Image source={require('../../assets/images/shop.png')} 
@@ -79,12 +68,6 @@ render(){
             img: require('../../assets/images/tool.png'),
             type: "Bricolage",
         })} 
-          // {if (this.state.backgroundColorTool == 'transparent') {
-          // console.log('Pressed shop'); 
-          // this.setState({backgroundColorTool: '#FFD029'})}
-          // else {
-          //   this.setState({backgroundColorTool:'transparent'})
-          // }}}
           >
     <Image source={require('../../assets/images/tool.png')} 
       style={{ backgroundColor: this.state.backgroundColorTool, width: 80, height: 80,  alignItems:'center', justifyContent: 'center',margin:10, borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
@@ -96,12 +79,6 @@ render(){
             img: require('../../assets/images/taptop-windows.png'),
             type: "Aide informatique",
         })} 
-          // {if (this.state.backgroundColorLaptop == 'transparent') {
-          // console.log('Pressed shop'); 
-          // this.setState({backgroundColorLaptop: '#FFD029'})}
-          // else {
-          //   this.setState({backgroundColorLaptop:'transparent'})
-          // }}
           >
       <Image source={require('../../assets/images/taptop-windows.png')} 
         style={{ backgroundColor: this.state.backgroundColorLaptop, borderColor:'grey', borderRadius: 7, borderWidth: 1, width: 80, height: 80,margin:10, alignItems:'center', justifyContent: 'center'}}/>
@@ -120,12 +97,6 @@ render(){
             img: require('../../assets/images/car.png'),
             type: "Accompagnement",
         })}
-          // {if (this.state.backgroundColorCar == 'transparent') {
-          // console.log('Pressed shop'); 
-          // this.setState({backgroundColorCar: '#FFD029'})}
-          // else {
-          //   this.setState({backgroundColorCar:'transparent'})
-          // }}
           >
     <Image source={require('../../assets/images/car.png')} 
       style={{ backgroundColor: this.state.backgroundColorCar, width: 80, height: 80, margin:10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
@@ -137,12 +108,6 @@ render(){
             img: require('../../assets/images/voice.png'),
             type: "Visite de courtoisie",
         })} 
-          // {if (this.state.backgroundColorVoice == 'transparent') {
-          // console.log('Pressed shop'); 
-          // this.setState({backgroundColorVoice: '#FFD029'})}
-          // else {
-          //   this.setState({backgroundColorVoice:'transparent'})
-          // }}
           >
     <Image source={require('../../assets/images/voice.png')} 
     style={{ backgroundColor: this.state.backgroundColorVoice, width: 80, height: 80,margin:10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>
@@ -155,12 +120,6 @@ render(){
             img: require('../../assets/images/pen.png'),
             type: "Démarches administratives",
         })} 
-          // {if (this.state.backgroundColorPen == 'transparent') {
-          // console.log('Pressed shop'); 
-          // this.setState({backgroundColorPen: '#FFD029'})}
-          // else {
-          //   this.setState({backgroundColorPen:'transparent'})
-          // }}
           >
     <Image source={require('../../assets/images/pen.png')} 
       style={{backgroundColor: this.state.backgroundColorPen, width: 80, height: 80, margin:10, alignItems:'center', justifyContent: 'center', borderWidth: 1, borderColor:'grey', borderRadius: 7}}/>

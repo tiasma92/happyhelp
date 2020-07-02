@@ -154,7 +154,7 @@ render(){
         
         
       }}>
-<Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Télephone: </Text><Text style={{fontSize: 15}}>0{this.state.user.phone}</Text>
+<Text style={{fontWeight: "bold", fontSize: 15, marginLeft: 10}}>Télephone: </Text><Text style={{fontSize: 15}}>{this.state.user.phone}</Text>
     </View>
 
     

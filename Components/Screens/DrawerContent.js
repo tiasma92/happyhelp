@@ -3,17 +3,7 @@ import { View, StyleSheet, ImageBackground } from "react-native";
 import { Image } from "react-native-elements";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
-import {
-    Avatar,
-    Title,
-    Caption,
-    Paragraph,
-    Drawer,
-    Text,
-    TouchableRipple,
-    Switch,
-} from "react-native-paper";
-import LogOut from "../Navigation/LogOut";
+import { Drawer } from "react-native-paper";
 
 export function DrawerContent(props) {
     return (
@@ -29,7 +19,7 @@ export function DrawerContent(props) {
                             <Icon name="home-outline" color="white" size={size} />
                         )}
                         inactiveTintColor="white"
-                        label="home"
+                        label="Accueil"
                         onPress={() => {
                             props.navigation.navigate("Home");
                         }}
@@ -73,7 +63,7 @@ export function DrawerContent(props) {
               <Icon name="logout" color="white" size={size} />
             )}
             inactiveTintColor="white"
-            label="déconnexion"
+            label="Déconnexion"
             onPress={() => {
               props.navigation.navigate("Deconnexion")
             }}

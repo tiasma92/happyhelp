@@ -3,7 +3,8 @@ import { Text, View, Image, TextInput, ScrollView, Modal, StyleSheet } from 'rea
 import { Button, Input } from 'react-native-elements';
 import * as Font from 'expo-font';
 import { connect } from 'react-redux';
-import ipAdress from "./ip"
+import ipAdress from "./ip";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
@@ -22,6 +23,7 @@ class ConfirmRequest extends React.Component {
       city: '',
       img: "",
       modalVisible: false,
+      errorMsg: "",
     }
   }
 
@@ -45,18 +47,24 @@ class ConfirmRequest extends React.Component {
     fetch(`http://${ipAdress}:3000/new_request`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `description=${this.state.desc}&category=${this.state.category}&id=${this.props.userIdfromStore}&address=${this.state.address}&city=${this.state.city}`
+      body: `description=${this.state.desc}&category=${this.state.category}&token=${this.props.userTokenfromStore}&address=${this.state.address}&city=${this.state.city}`
     })
       .then(function (res, err) {
         return res.json()
       }).then((data) => {
-        console.log('RESULTAT DE LERENGISTREMENT EN BD USER --->', data)
+        console.log("data.result : ", data.result)
+        if (data.result) {
+          this.setState({ modalVisible: !this.state.modalVisible })
+          this.props.navigation.navigate("confirmD")
+        } else {
+          this.setState({ errorMsg: "L'adresse rentré n'existe pas" })
+          console.log(this.state.errorMsg)
+        }
+        console.log('RESULTAT DE LERENGISTREMENT EN BD Request --->', data)
       })
       .catch((error) => {
         console.log('Request failed in my ConfirmRequest Home request', error)
       });
-      this.setState({modalVisible: !this.state.modalVisible})
-    this.props.navigation.navigate("confirmD")
   }
 
   setModalVisible(visible) {
@@ -66,9 +74,10 @@ class ConfirmRequest extends React.Component {
 
 
   render() {
+    console.log(this.state.visible)
     return (
 
-      <ScrollView  style={ this.state.modalVisible ? {backgroundColor: 'rgba(0, 0, 0, 0.5)'} : {}}>
+      <ScrollView style={this.state.modalVisible ? { backgroundColor: 'rgba(0, 0, 0, 0.5)' } : {}}>
         <Modal
           animationType='slide'
           transparent={true}
@@ -79,98 +88,100 @@ class ConfirmRequest extends React.Component {
           <View style={{ flex: 1, flexDirection: 'row', textAlign: 'center', alignItems: 'center', justifyContent: 'center' }}>
             <View style={{ marginTop: 22, width: '90%', height: '70%', backgroundColor: 'white' }}>
               <Text style={{ textAlign: "center", fontSize: 18, fontWeight: "bold", marginBottom: '6%' }}>Localisation de la requête</Text>
-              <Input style={{ fontSize: 12, height: 60, borderColor: 'black', borderWidth: 4, alignItems: 'center'}}
-                inputContainerStyle={{ height: 35, borderColor: '#2C5F13', borderWidth: 1, marginBottom: '3%' }}
+              <Input style={{ fontSize: 12, height: 60, borderColor: 'black', borderWidth: 4, alignItems: 'center' }}
+                inputContainerStyle={{ height: 35, borderColor: '#2C5F13', borderWidth: 1}}
                 label='Adresse: '
                 placeholder="Votre adresse"
+                errorStyle={{ color: 'red' }}
+                errorMessage={this.state.errorMsg}
                 onChangeText={(text) => { this.setState({ address: text }) }}
               />
-              <Input style={{ fontSize: 12, height: 60, borderColor: 'black', borderWidth: 4, alignItems: 'center'}}
-                inputContainerStyle={{ height: 35, borderColor: '#2C5F13', borderWidth: 1, }}
+              <Input style={{ fontSize: 12, height: 60, borderColor: 'black', borderWidth: 4, alignItems: 'center' }}
+                inputContainerStyle={{ height: 35, borderColor: '#2C5F13', borderWidth: 1, marginTop: "3%" }}
                 label='Ville: '
                 placeholder="Votre ville"
                 onChangeText={(text) => { this.setState({ city: text }) }}
               />
               <Button title="Confirmer" onPress={() => this.handleSubmitRequest()}
-               style={{ alignItems: 'center', justifyContent: 'flex-end' }}  buttonStyle={{ borderRadius: 13, backgroundColor: '#2C5F13', padding: 8, width: '70%', margin: 10, marginTop: 250}} />
+                style={{ alignItems: 'center', justifyContent: 'flex-end' }} buttonStyle={{ borderRadius: 13, backgroundColor: '#2C5F13', padding: 8, width: '70%', margin: 10, marginTop: hp('35%') }} />
             </View>
           </View>
         </Modal>
         <View >
-        <View style={{ alignItems: 'center' }}>
-          <Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 150, height: 150, marginTop: 30, alignItems: 'center', justifyContent: 'center' }} />
-        </View>
+          <View style={{ alignItems: 'center' }}>
+            <Image source={require('../../assets/images/LogoHappyHelp.png')} style={{ width: 150, height: 150, marginTop: 30, alignItems: 'center', justifyContent: 'center' }} />
+          </View>
 
-        {this.state.fontLoaded ? (
-          <View style={{ textAlign: 'center', alignContent: 'center' }}>
-            <Text style={{ fontWeight: 'bold', fontSize: 20, textAlign: 'center' }}>RECAPITULATIF DE MA DEMANDE</Text>
+          {this.state.fontLoaded ? (
+            <View style={{ textAlign: 'center', alignContent: 'center' }}>
+              <Text style={{ fontWeight: 'bold', fontSize: 20, textAlign: 'center' }}>RECAPITULATIF DE MA DEMANDE</Text>
 
-            <View style={{
-              textAlign: 'center',
-              alignContent: 'center',
-              justifyContent: 'center',
-              flex: 1,
-              flexDirection: 'row',
-              marginTop: 20,
-            }}>
-              <Image source={this.state.img}
-                style={{ marginLeft: 60, marginRight: 60, backgroundColor: "transparent", width: 60, height: 60, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'grey', borderRadius: 7 }} />
-            </View>
-
-
-            <View style={{
-              flex: 1,
-              flexDirection: 'row',
-              marginTop: 10,
-              textAlign: 'center',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}> 
-              <Text style={{ fontWeight: "bold", textAlign: 'center', fontSize: 15, alignItems: 'center', justifyContent: 'center', fontFamily: 'openSansRegular' }}>{this.props.route.params.type}</Text>
-            </View>
+              <View style={{
+                textAlign: 'center',
+                alignContent: 'center',
+                justifyContent: 'center',
+                flex: 1,
+                flexDirection: 'row',
+                marginTop: 20,
+              }}>
+                <Image source={this.state.img}
+                  style={{ marginLeft: 60, marginRight: 60, backgroundColor: "transparent", width: 60, height: 60, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'grey', borderRadius: 7 }} />
+              </View>
 
 
-            <View style={{
-              flex: 1,
-              flexDirection: 'row',
-              marginTop: 30,
-              justifyContent: 'center'
+              <View style={{
+                flex: 1,
+                flexDirection: 'row',
+                marginTop: 10,
+                textAlign: 'center',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                <Text style={{ fontWeight: "bold", textAlign: 'center', fontSize: 15, alignItems: 'center', justifyContent: 'center', fontFamily: 'openSansRegular' }}>{this.props.route.params.type}</Text>
+              </View>
 
-            }}>
 
-              <Text style={{ fontWeight: "bold", fontSize: 15, marginLeft: 10 }}>Détaillez votre demande (facultative):</Text>
-            </View>
+              <View style={{
+                flex: 1,
+                flexDirection: 'row',
+                marginTop: 30,
+                justifyContent: 'center'
 
-            <View style={{
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: 10
-            }}>
-              <Input style={{ fontSize: 12, borderColor: 'black', borderWidth: 1, }} inputContainerStyle={{ height: 100, width: "90%", borderColor: 'grey', borderWidth: 1, alignSelf: 'center' }}
-                                placeholder="Détails de votre demande"
-                                numberOfLines={0}
-                                multiline={true}
-                                onChangeText={(text) => { this.setState({ desc: text }) }}
-                            />
-              {/* <Input
+              }}>
+
+                <Text style={{ fontWeight: "bold", fontSize: 15, marginLeft: 10 }}>Détaillez votre demande (facultative):</Text>
+              </View>
+
+              <View style={{
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop: 10
+              }}>
+                <Input style={{ fontSize: 12, borderColor: 'black', borderWidth: 1, }} inputContainerStyle={{ height: 100, width: "90%", borderColor: 'grey', borderWidth: 1 }}
+                  placeholder="Détails de votre demande"
+                  numberOfLines={0}
+                  multiline={true}
+                  onChangeText={(text) => { this.setState({ desc: text }) }}
+                />
+                {/* <Input
                 style={{ height: 100, borderColor: 'gray', borderWidth: 1, width: "90%" }}
                 onChangeText={(text) => { this.setState({ desc: text }) }}
                 placeholder="Détails de votre demande"
                 multiline={true}
                 numberOfLines={4}
               /> */}
+              </View>
+
+              <View style={{ alignItems: 'center', justifyContent: 'center', textAlign: 'center', marginTop: 20 }}>
+                <Button title="VALIDER" onPress={() => this.setModalVisible(!this.state.modalVisible)} buttonStyle={{ borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10 }} />
+
+              </View>
             </View>
 
-            <View style={{ alignItems: 'center', justifyContent: 'center', textAlign: 'center', marginTop: 20 }}>
-              <Button title="VALIDER" onPress={() => this.setModalVisible(!this.state.modalVisible)} buttonStyle={{ borderRadius: 13, backgroundColor: '#2C5F13', padding: 10, width: 250, margin: 10 }} />
 
-            </View>
-          </View>
-          
-
-        ) : null}
+          ) : null}
         </View>
       </ScrollView>
 
@@ -202,9 +213,9 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   console.log(state)
-  console.log('je recois de mon reducer lid suivant : ', state.userId)
+  console.log('je recois de mon reducer le token suivant : ', state.userToken)
 
-  return { userIdfromStore: state.userId }
+  return { userTokenfromStore: state.userToken }
 }
 
 export default connect(

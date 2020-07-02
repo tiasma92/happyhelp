@@ -9,31 +9,19 @@ import MyDrawer from '../Navigation/Navigation';
 
 const Stack = createStackNavigator();
 
-function AuthLoading({ user, saveId }) {
-    // const [userToken, setUserToken] = useState(null);
-
-    // const onChangeToken = value => {
-    //     setUserToken(value);
-    // }
-
-    // useEffect(() => {
-    //     if (user.token) {
-    //         console.log('user token', user.token);
-    //         onChangeToken(user.token);
-    //     }
-    // }, [user.token]);
-
+function AuthLoading({ user, saveToken }) {
+    console.log(user)
     getData = async () => {
         try {
           const value = await AsyncStorage.getItem("token"); 
-            saveId(value)
+            saveToken(value)
             console.log("value from asyncstorage",value);
         } catch (error) {
           console.log("Something went wrong", error);
         }
       }
       getData();
-
+    console.log(user)
     return (
         <NavigationContainer>
             <Stack.Navigator headerMode="none">
@@ -47,22 +35,19 @@ function AuthLoading({ user, saveId }) {
     )
 }
 
-
-
 function mapDispatchToProps(dispatch) {
     return {
-        saveId: function (id) {
+        saveToken: function (token) {
             dispatch({
                 type: 'connect',
-                id,
+                token,
             })
         }
     }
 }
 
-
 const mapStateToProps = state => ({
-    user: state.userId,
+    user: state.userToken,
 });
 
 export default connect(

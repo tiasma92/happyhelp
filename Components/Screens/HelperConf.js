@@ -15,7 +15,7 @@ import ipAdress from "./ip"
   }
 componentDidMount() {
   var ctx = this;
-  fetch(`http://${ipAdress}:3000/profil?id=${ctx.props.userIdfromStore}`)
+  fetch(`http://${ipAdress}:3000/profil?token=${ctx.props.userTokenfromStore}`)
   .then(function(res, err){
     return res.json()
   }).then((data)=> {
@@ -130,9 +130,9 @@ const styles = StyleSheet.create({
 
      function mapDispatchToProps(dispatch) {
       return {
-        saveId: function(id) {
+        saveToken: function(token) {
             dispatch( {type: 'connect',
-             id,
+             token,
             } );
         }
       }
@@ -140,9 +140,9 @@ const styles = StyleSheet.create({
     
     function mapStateToProps(state) {
       console.log(state)
-      console.log('je recois de mon reducer lid suivant : ',state.userId)
+      console.log('je recois de mon reducer le token suivant : ',state.userToken)
   
-      return { userIdfromStore: state.userId }
+      return { userTokenfromStore: state.userToken }
     }
     
     export default connect(

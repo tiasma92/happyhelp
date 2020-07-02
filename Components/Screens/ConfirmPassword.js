@@ -3,10 +3,6 @@ import { Text, View, Image, StyleSheet} from 'react-native';
 
 
 
-
-
-
-
 export default class ComfirmPassword extends React.Component{
 
    
